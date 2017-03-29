@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="a61e7010aa7be5da53cd1bc5279630510c9a4912">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-10.2.0_1ed7d1dc1e49aa7f55fd224ddd74b3e1fb4f9e98.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="1df6d719c4e264d66bb98baa5cb637495b8cca66">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-storage-common-10.2.0_a5b62c45a351804411971420aa20e854ac84c5ab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="bd75f9f0296fe220da6d0ad961831b04541c4452">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-10.2.0_66f555e569cc21a9393532a8ad4613ce3b376eab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.firebaseui/firebase-ui-database/0.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c76f6507a42aec274953e882bf3c49a570843ef5">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.firebaseui-firebase-ui-database-0.4.0_16d54221c5db9fab1830016ea6c172bd454e51c0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="1ac56e5801e986583cbe27f2cce57f626cc7ff93">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-10.2.0_4927d84ecf7aad959814d056454061906b1cf21c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_8e6b82c70456859e6c2f264b40a1daf846188b21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_4989fc01c030a4e9df4492177d65254438d5e48c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_c2505102c46b749947eadbbdbfea502cdec7d246.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0d5cbbbfe040201c7569478b70a13b58fd11aab4">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-10.2.0_9daf02d9da4a79da5e54742cd88cefc9e4b9ffa8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_117793377065843abc82333249ca33b7165c1adc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_e0395ca415c0ba789309cf6540d9917b0a8f0fa1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="ce9112e08a027c8620ae693983e38cdbb9f6371b">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-10.2.0_b1b7d80aabb0dabfd4185e640607d3a5f196a695.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_9057dcea4f108d3b74b2b4c6e19c70979181930f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_7a406b2256a2c8f8e7ba7797160f2e18c35107e7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_e642b911af0475503475f47fc936ccdaff9fc783.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_07b8db5ab765411083d66bcb6ad7bf196795dafb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_5fbf3fbefe47fb8232eea4b4136a91aeac7e0e0a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-24.2.1_0642b55706b4c7f2d22605bd68deb65654c4fedf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_21e6d429fc083faad122fc2502fb90d0d672ecfa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="3d6951cb416ebf8c66a32b9480808ca247b68344">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-10.2.0_b0eebf1e5011de1b9cea5a888e18ab3e5d878f3b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_0179fca42e1b24d7cdd9451bcf0248e19fda7495.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_8fc4562e3e3ca575ae35ae8d8f58d3e9611a7854.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_70d5506c2f7dfe85298cef565178493f957a954b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_edaf73e168a422cbcec21759dd50c76badd1da95.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="94fca868854457ede6df15c902938468c71d579e">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-database-10.2.0_9d26b90b0bcbd7cce8516e0849d39a97669a6dec.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.1_74b596c48963d7c2137b7aa9eca543ed72b5ef17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8e1d31656bc9f1889283836e025e6cb703acd38a">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-storage-10.2.0_7955c2dc1af82f1a87131173b4ace1480f0bfb30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0e301f24b283f14b564f660c9abe863af6be5896">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-database-connection-10.2.0_cb51af1493fca94c080533813f56fa191d7a4377.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_0a547971393a92d60676eadb65fb3413fc4c1eb2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_d42571e023a953c09c0dab64df82ce2dd4ec1eb7.jar" />
+    </item>
+
+</items>
