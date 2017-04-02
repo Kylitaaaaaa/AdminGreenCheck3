@@ -24,7 +24,30 @@
         </activity>
         <activity android:name=".Add.AddFacultyActivity" />
         <activity android:name=".ViewIndiv.ViewFacultyActivity" />
-        <activity android:name=".Add.AddEditFacultyActivity"></activity>
+        <activity android:name=".Add.AddEditFacultyActivity" />
+        <activity android:name=".Add.AddEditCourseOffering" />
+        <activity android:name=".View.CourseActivity" />
+        <activity android:name=".Add.AddEditCourseActivity" />
+        <activity android:name=".ViewIndiv.ViewCourseActivity" />
+        <activity android:name=".View.BuildingActivity" />
+        <activity android:name=".ViewIndiv.ViewBuildingActivity" />
+        <activity android:name=".Add.AddEditBldgActivity" />
+        <activity android:name=".Add.AddEditRoomActivity" />
+        <activity android:name=".GenListActivity" />
+        <activity android:name=".GenListAddTerm" />
+        <activity android:name=".AddCOCourse" />
+        <activity android:name=".AddCOFaculty" />
+        <activity android:name=".AddCOTerm" />
+        <activity android:name=".ViewIndiv.ViewRoomActivity" />
+        <activity android:name=".View.TermActivity" />
+        <activity android:name=".ViewIndiv.ViewAcademicYearActivity" />
+        <activity android:name=".Add.AddEditAcademicYearActivity" />
+        <activity android:name=".ViewIndiv.ViewTermActivity" />
+        <activity android:name=".Add.AddEditTermActivity" />
+        <activity android:name=".Add.AddEditCourseOffering" />
+        <activity android:name=".AddCOTimePicker" />
+        <activity android:name=".View.CourseOfferingActivity" />
+        <activity android:name=".ViewIndiv.ViewCourseOfferingActivity"></activity>
     </application>
 
 </manifest>
