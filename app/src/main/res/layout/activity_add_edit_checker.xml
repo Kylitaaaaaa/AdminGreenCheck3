@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_edit_checker"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.thea.admingreencheck3.Add.AddEditChecker">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:id="@+id/et_Email"
+        android:layout_alignParentEnd="true"
+        android:hint="Email" />
+
+    <Button
+        android:text="A"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/et_Email"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/round_button"
+        android:id="@+id/btn_A"
+        android:layout_marginRight="5dp" />
+
+    <Button
+        android:text="B"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@+id/btn_A"
+        android:layout_alignTop="@+id/btn_A"
+        android:background="@drawable/round_button"
+        android:id="@+id/btn_B"
+        android:layout_marginRight="5dp" />
+
+    <Button
+        android:text="C"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_button"
+        android:layout_toRightOf="@+id/btn_B"
+        android:layout_alignTop="@+id/btn_A"
+        android:id="@+id/btn_C"
+        android:layout_marginRight="5dp" />
+
+    <Button
+        android:text="D"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_button"
+        android:layout_toRightOf="@+id/btn_C"
+        android:layout_alignTop="@+id/btn_A"
+        android:id="@+id/btn_D"
+        android:layout_marginRight="5dp" />
+
+    <Button
+        android:text="E"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_button"
+        android:layout_toRightOf="@+id/btn_D"
+        android:layout_alignTop="@+id/btn_A"
+        android:id="@+id/btn_E"
+        android:layout_marginRight="5dp" />
+
+    <Button
+        android:text="F"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_button"
+        android:layout_toRightOf="@+id/btn_E"
+        android:layout_alignTop="@+id/btn_A"
+        android:id="@+id/btn_F"
+        android:layout_marginRight="5dp" />
+
+    <Button
+        android:text="G"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_button"
+        android:layout_toRightOf="@+id/btn_F"
+        android:layout_alignTop="@+id/btn_A"
+        android:id="@+id/btn_G" />
+
+    <Button
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_D"
+        android:layout_marginTop="59dp"
+        android:id="@+id/btn_Add"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_D"
+        android:layout_marginTop="59dp"
+        android:id="@+id/btn_Edit"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

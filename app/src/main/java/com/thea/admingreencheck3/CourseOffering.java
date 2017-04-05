@@ -5,37 +5,31 @@ package com.thea.admingreencheck3;
  */
 public class CourseOffering {
     public static final String TABLE_NAME = "CourseOffering";
-    public static final String COL_COURSEOFFERING_ID = "courseoffering_id";
-    public static final String COL_COURSEOFFERING_TIME_START = "time_start";
-    public static final String COL_COURSEOFFERING_TIME_END = "time_end";
-    public static final String COL_COURSEOFFERING_SECTION = "section";
-    public static final String COL_COURSEOFFERING_M = "day_M";
-    public static final String COL_COURSEOFFERING_T = "day_T";
-    public static final String COL_COURSEOFFERING_W = "day_W";
-    public static final String COL_COURSEOFFERING_H = "day_H";
-    public static final String COL_COURSEOFFERING_F = "day_F";
-    public static final String COL_COURSEOFFERING_S = "day_S";
-    public static final String COL_COURSEOFFERING_COURSECODE = "course_code";
+    public static final String COL_CO_ID = "courseoffering_id";
+    public static final String COL_START_HOUR = "start_hour";
+    public static final String COL_START_MIN = "start_min";
 
+    public static final String COL_END_HOUR = "end_hour";
+    public static final String COL_END_MIN = "end_min";
 
-
-    public static final String COL_ROOM = Room.TABLE_NAME;
-    public static final String COL_FACULTY = Faculty.TABLE_NAME;
-    public static final String COL_COURSE = Course.TABLE_NAME;
-    public static final String COL_TERM = Term.TABLE_NAME;
+    public static final String COL_SECTION = "section";
+    public static final String COL_C_ID = "course_id";
+    public static final String COL_F_ID = "faculty_id";
+    public static final String COL_R_ID = "room_id";
+    public static final String COL_B_ID = "building_id";
+    public static final String COL_DAYS = "days";
 
     private String courseoffering_id;
-    private String time_start;
-    private String time_end;
+    private int start_hour;
+    private int start_min;
+    private int end_hour;
+    private int end_min;
+    private String course_id;
+    private String faculty_id;
+    private String room_id;
+    private String building_id;
+    private String days;
     private String section;
-    private String course_code;
-    private Boolean day_M;
-    private Boolean day_T;
-    private Boolean day_W;
-    private Boolean day_H;
-    private Boolean day_F;
-    private Boolean day_S;
-
 
     public String getCourseoffering_id() {
         return courseoffering_id;
@@ -45,20 +39,37 @@ public class CourseOffering {
         this.courseoffering_id = courseoffering_id;
     }
 
-    public String getTime_start() {
-        return time_start;
+
+    public String getCourse_id() {
+        return course_id;
     }
 
-    public void setTime_start(String time_start) {
-        this.time_start = time_start;
+    public void setCourse_id(String course_id) {
+        this.course_id = course_id;
     }
 
-    public String getTime_end() {
-        return time_end;
+    public String getFaculty_id() {
+        return faculty_id;
     }
 
-    public void setTime_end(String time_end) {
-        this.time_end = time_end;
+    public void setFaculty_id(String faculty_id) {
+        this.faculty_id = faculty_id;
+    }
+
+    public String getRoom_id() {
+        return room_id;
+    }
+
+    public void setRoom_id(String room_id) {
+        this.room_id = room_id;
+    }
+
+    public String getDays() {
+        return days;
+    }
+
+    public void setDays(String days) {
+        this.days = days;
     }
 
     public String getSection() {
@@ -69,59 +80,47 @@ public class CourseOffering {
         this.section = section;
     }
 
-    public Boolean getDay_M() {
-        return day_M;
+    public String getBuilding_id() {
+        return building_id;
     }
 
-    public void setDay_M(Boolean day_M) {
-        this.day_M = day_M;
+    public void setBuilding_id(String building_id) {
+        this.building_id = building_id;
     }
 
-    public Boolean getDay_T() {
-        return day_T;
+    public static String getTableName() {
+        return TABLE_NAME;
     }
 
-    public void setDay_T(Boolean day_T) {
-        this.day_T = day_T;
+    public int getStart_hour() {
+        return start_hour;
     }
 
-    public Boolean getDay_W() {
-        return day_W;
+    public void setStart_hour(int start_hour) {
+        this.start_hour = start_hour;
     }
 
-    public void setDay_W(Boolean day_W) {
-        this.day_W = day_W;
+    public int getStart_min() {
+        return start_min;
     }
 
-    public Boolean getDay_H() {
-        return day_H;
+    public void setStart_min(int start_min) {
+        this.start_min = start_min;
     }
 
-    public void setDay_H(Boolean day_H) {
-        this.day_H = day_H;
+    public int getEnd_hour() {
+        return end_hour;
     }
 
-    public Boolean getDay_F() {
-        return day_F;
+    public void setEnd_hour(int end_hour) {
+        this.end_hour = end_hour;
     }
 
-    public void setDay_F(Boolean day_F) {
-        this.day_F = day_F;
+    public int getEnd_min() {
+        return end_min;
     }
 
-    public Boolean getDay_S() {
-        return day_S;
-    }
-
-    public void setDay_S(Boolean day_S) {
-        this.day_S = day_S;
-    }
-
-    public String getCourse_code() {
-        return course_code;
-    }
-
-    public void setCourse_code(String course_code) {
-        this.course_code = course_code;
+    public void setEnd_min(int end_min) {
+        this.end_min = end_min;
     }
 }

@@ -1,5 +1,8 @@
 package com.thea.admingreencheck3;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -16,9 +19,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.thea.admingreencheck3.Add.AddEditAcademicYearActivity;
 import com.thea.admingreencheck3.Add.AddEditBldgActivity;
+import com.thea.admingreencheck3.Add.AddEditChecker;
 import com.thea.admingreencheck3.Add.AddEditCourseActivity;
 import com.thea.admingreencheck3.Add.AddEditCourseOffering;
 import com.thea.admingreencheck3.Add.AddEditFacultyActivity;
@@ -27,12 +32,16 @@ import com.thea.admingreencheck3.Add.AddEditTermActivity;
 import com.thea.admingreencheck3.Add.AddFacultyActivity;
 import com.thea.admingreencheck3.View.AcademicYearActivity;
 import com.thea.admingreencheck3.View.BuildingActivity;
+import com.thea.admingreencheck3.View.CheckerActivity;
 import com.thea.admingreencheck3.View.CourseActivity;
 import com.thea.admingreencheck3.View.CourseOfferingActivity;
 import com.thea.admingreencheck3.View.FacultyActivity;
 import com.thea.admingreencheck3.View.RoomActivity;
 import com.thea.admingreencheck3.View.SubstituteActivity;
 import com.thea.admingreencheck3.View.TermActivity;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,15 +54,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -62,8 +62,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(1).setChecked(true);
+        
+        Fragment fragment = new FacultyActivity();
 
-        currActivity = R.id.nav_faculty;
+        if(fragment != null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
+
+        }
+
+
+        scheduleAlarm();
+
     }
 
     @Override
@@ -83,6 +95,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Fragment fragment = null;
@@ -106,13 +119,6 @@ public class MainActivity extends AppCompatActivity
                     i.putExtra("currProcess", 0 );
                     startActivity(i);
                     break;
-                case R.id.nav_substitute:
-                    fragment = new SubstituteActivity();
-                    break;
-                case R.id.nav_makeup_class:
-                    break;
-                case R.id.nav_unscheduled_class:
-                    break;
                 case R.id.nav_course:
                     i = new Intent(getBaseContext(), AddEditCourseActivity.class);
                     i.putExtra("currProcess", 0 );
@@ -133,19 +139,10 @@ public class MainActivity extends AppCompatActivity
                     i.putExtra("currProcess", 0 );
                     startActivity(i);
                     break;
-                case R.id.nav_academic_year:
-                    i = new Intent(getBaseContext(), AddEditAcademicYearActivity.class);
-                    i.putExtra("currProcess", 0 );
-                    startActivity(i);
-                    break;
-                case R.id.nav_term:
-                    i = new Intent(getBaseContext(), AddEditTermActivity.class);
-                    i.putExtra("currProcess", 0 );
-                    startActivity(i);
-                    break;
                 case R.id.nav_checker:
-                    break;
-                case R.id.nav_rotation:
+                    i = new Intent(getBaseContext(), AddEditChecker.class);
+                    i.putExtra("currProcess", 0 );
+                    startActivity(i);
                     break;
 
             }
@@ -163,6 +160,7 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+    */
 
      private void displaySelectedScreen(int id){
          Fragment fragment = null;
@@ -170,14 +168,6 @@ public class MainActivity extends AppCompatActivity
              case R.id.nav_faculty:
                  currActivity = R.id.nav_faculty;
                  fragment = new FacultyActivity();
-                 break;
-             case R.id.nav_substitute:
-                 currActivity = R.id.nav_substitute;
-                 fragment = new SubstituteActivity();
-                 break;
-             case R.id.nav_makeup_class:
-                 break;
-             case R.id.nav_unscheduled_class:
                  break;
              case R.id.nav_course:
                  currActivity = R.id.nav_course;
@@ -194,52 +184,17 @@ public class MainActivity extends AppCompatActivity
              case R.id.nav_room:
                  currActivity = R.id.nav_room;
                  fragment = new RoomActivity();
-
-//                 Intent i = new Intent(getBaseContext(), AddEditRoomActivity.class);
-//                 i.putExtra("currProcess", 0 );
-//                 startActivity(i);
-                 break;
-             case R.id.nav_academic_year:
-                 currActivity = R.id.nav_academic_year;
-                 fragment = new AcademicYearActivity();
-                 break;
-             case R.id.nav_term:
-                 currActivity = R.id.nav_term;
-                 fragment = new TermActivity();
                  break;
              case R.id.nav_checker:
+                 currActivity = R.id.nav_checker;
+                 fragment = new CheckerActivity();
                  break;
-             case R.id.nav_rotation:
+             default:
+                 currActivity = R.id.nav_faculty;
+                 fragment = new FacultyActivity();
                  break;
 
          }
-
-         /*
-         if (id == R.id.nav_faculty) {
-
-         } else if (id == R.id.nav_substitute) {
-
-         } else if (id == R.id.nav_makeup_class) {
-
-         } else if (id == R.id.nav_unscheduled_class) {
-
-         } else if (id == R.id.nav_course) {
-
-         } else if (id == R.id.nav_course_offering) {
-
-         } else if (id == R.id.nav_building) {
-
-         } else if (id == R.id.nav_room) {
-
-         } else if (id == R.id.nav_academic_year) {
-
-         } else if (id == R.id.nav_term) {
-
-         } else if (id == R.id.nav_checker) {
-
-         } else if (id == R.id.nav_rotation) {
-
-         } */
 
          if(fragment != null){
              FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -260,6 +215,37 @@ public class MainActivity extends AppCompatActivity
         displaySelectedScreen(id);
 
         return true;
+    }
+
+    public void scheduleAlarm()
+    {
+        //Long time = new GregorianCalendar().getTimeInMillis()+24*60*60*1000;
+        Long settime = new GregorianCalendar().getTimeInMillis()+1000;
+        /*
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH),
+                23,
+                27,
+                0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Long settime = calendar.getTimeInMillis();
+        */
+
+
+        Log.i("huh", "Starting");
+        Intent intentAlarm = new Intent(this, Receiver.class);
+
+        // create the object
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        //set the alarm for particular time
+        alarmManager.set(AlarmManager.RTC_WAKEUP, settime, PendingIntent.getBroadcast(this, 1, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
+        Toast.makeText(this, "Alarm Scheduled for Tommrrow", Toast.LENGTH_LONG).show();
+
     }
 
 

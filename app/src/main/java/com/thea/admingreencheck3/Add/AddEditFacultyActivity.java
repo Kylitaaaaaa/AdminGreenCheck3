@@ -36,7 +36,7 @@ public class AddEditFacultyActivity extends AppCompatActivity {
     Uri imageUri = null;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase, mDatabaseC, mDatabaseT, mDatabaseF, mDatabaseR;
     private int currProcess;
     private String faculty_id;
 

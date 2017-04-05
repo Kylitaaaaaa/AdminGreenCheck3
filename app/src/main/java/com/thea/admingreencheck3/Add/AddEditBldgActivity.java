@@ -120,13 +120,15 @@ public class AddEditBldgActivity extends AppCompatActivity {
             DatabaseReference newFaculty = mDatabase.push();
 
             newFaculty.child(Building.COL_NAME).setValue(name);
-            progress.dismiss();
 
-            startActivity(new Intent(getBaseContext(), MainActivity.class));
+            //startActivity(new Intent(getBaseContext(), MainActivity.class));
+
         }
 
         progress.dismiss();
-        Fragment fragment = new BuildingActivity();
+        //Fragment fragment = new BuildingActivity();
+        finish();
+        //Fragment fragment = new BuildingActivity();
 
     }
 

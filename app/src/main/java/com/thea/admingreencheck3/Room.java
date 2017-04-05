@@ -10,11 +10,13 @@ public class Room {
     public static final String COL_BUILDING_ID = "building_id";
     public static final String COL_BUILDING_NAME = "building_name";
     public static final String COL_NAME = "name";
+    public static final String COL_ROT_ID = "rot_id";
 
     private String room_id;
     private String building_id;
     private String building_name;
     private String name;
+    private String rot_id;
 
     public Room(){}
 
@@ -48,5 +50,13 @@ public class Room {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRot_id() {
+        return rot_id;
+    }
+
+    public void setRot_id(String rot_id) {
+        this.rot_id = rot_id;
     }
 }

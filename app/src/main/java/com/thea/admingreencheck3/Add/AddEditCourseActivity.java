@@ -122,7 +122,8 @@ public class AddEditCourseActivity extends AppCompatActivity {
             newFaculty.child(Course.COL_NAME).setValue(cname);
             progress.dismiss();
 
-            startActivity(new Intent(getBaseContext(), MainActivity.class));
+            //startActivity(new Intent(getBaseContext(), MainActivity.class));
+            finish();
         }
 
     }

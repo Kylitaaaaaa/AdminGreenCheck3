@@ -46,8 +46,13 @@
         <activity android:name=".Add.AddEditTermActivity" />
         <activity android:name=".Add.AddEditCourseOffering" />
         <activity android:name=".AddCOTimePicker" />
+        <activity android:name=".AddCORoom" />
         <activity android:name=".View.CourseOfferingActivity" />
-        <activity android:name=".ViewIndiv.ViewCourseOfferingActivity"></activity>
+        <activity android:name=".ViewIndiv.ViewCourseOfferingActivity" />
+        <activity android:name=".Add.AddEditChecker" />
+        <activity android:name=".View.CheckerActivity"></activity>
+
+        <receiver android:name=".Receiver" />
     </application>
 
 </manifest>

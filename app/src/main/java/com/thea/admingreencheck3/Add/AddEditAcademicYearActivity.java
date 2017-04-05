@@ -127,12 +127,15 @@ public class AddEditAcademicYearActivity extends AppCompatActivity {
             newThing.child(AcademicYear.COL_ACAD_START).setValue(start);
             newThing.child(AcademicYear.COL_ACAD_END).setValue(end);
 
+            progress.dismiss();
+            //Fragment fragment = new AcademicYearActivity();
+            //startActivity(new Intent(getBaseContext(), MainActivity.class));
+            Log.i("huh", "done adding!");
+            finish();
+
         }
 
-        progress.dismiss();
-        //Fragment fragment = new AcademicYearActivity();
-        //startActivity(new Intent(getBaseContext(), MainActivity.class));
-        finish();
+
 
     }
 

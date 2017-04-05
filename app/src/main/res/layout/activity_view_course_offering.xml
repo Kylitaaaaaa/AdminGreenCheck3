@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_add_edit_course_offering"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,184 +9,166 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.thea.admingreencheck3.Add.AddEditCourseOffering">
 
-    <TextView
-        android:text="Term:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView15"
-        android:layout_alignStart="@+id/textView15"
-        android:layout_marginTop="28dp"
-        android:id="@+id/textView16" />
-
-    <TextView
-        android:text="Faculty:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/textView17"
-        android:layout_below="@+id/textView16"
-        android:layout_alignStart="@+id/textView16" />
 
     <Button
-        android:text="F"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_F"
-        android:layout_alignBaseline="@+id/btn_H"
-        android:layout_alignBottom="@+id/btn_H"
-        android:layout_alignStart="@+id/btn_T" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView17"
-        android:text= "Select Term"
-        android:layout_alignStart="@+id/tv_ccode"
-        android:id="@+id/tv_Term" />
-
-    <TextView
-        android:text="Select Faculty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView18"
-        android:layout_alignStart="@+id/tv_Term"
-        android:id="@+id/tv_Faculty" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/tv_Faculty"
-        android:layout_alignStart="@+id/tv_Faculty"
-        android:layout_marginTop="19dp"
-        android:id="@+id/tv_Section"
-        android:text="Section here" />
-
-    <Button
-        android:text="S"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_S"
-        android:layout_alignBaseline="@+id/btn_F"
-        android:layout_alignBottom="@+id/btn_F"
-        android:layout_alignStart="@+id/btn_W" />
-
-    <TextView
-        android:text="Course Code:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:id="@+id/textView15"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Delete"
+        android:text="Save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_Delete"
+        android:id="@+id/btn_Add"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:text="End Time:"
-        android:layout_width="wrap_content"
+    <Button
+        android:text="Save"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView19"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/textView24" />
+        android:id="@+id/btn_Edit"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="H"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/btn_H"
+        android:background="@drawable/round_button"
+
+        android:layout_alignTop="@+id/btn_M"
+        android:layout_toRightOf="@+id/btn_W"
+        android:layout_marginRight="10dp" />
+
 
     <TextView
-        android:text="Select Start time"
-        android:layout_width="wrap_content"
+        android:text="Course Name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView24"
-        android:layout_alignStart="@+id/tv_Section"
-        android:id="@+id/tv_StartTime" />
+        android:id="@+id/tv_ccode"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:padding="5dp"
+        android:layout_marginBottom="2dp"
+        android:textSize="18sp" />
 
     <TextView
-        android:text="Select End time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="17dp"
+        android:id="@+id/tv_Section"
+        android:layout_below="@+id/tv_room"
+        android:layout_alignParentStart="true"
+        android:padding="5dp"
+        android:hint="Section"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="Faculty Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_Faculty"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:layout_below="@+id/tv_ccode"
+        android:layout_alignParentStart="true"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="Room Number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_room"
+        android:layout_marginTop="12dp"
+        android:padding="5dp"
+        android:layout_below="@+id/tv_Faculty"
+        android:layout_alignParentStart="true"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="Start Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView19"
-        android:layout_alignStart="@+id/tv_StartTime"
-        android:id="@+id/tv_EndTime" />
+        android:id="@+id/tv_StartTime"
+        android:padding="5dp"
+        android:layout_alignBaseline="@+id/tv_EndTime"
+        android:layout_alignBottom="@+id/tv_EndTime"
+        android:layout_alignParentStart="true"
+        android:textSize="18sp" />
 
     <TextView
         android:text="Days:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView20"
-        android:layout_below="@+id/textView19"
-        android:layout_alignStart="@+id/textView19"
-        android:layout_marginTop="16dp" />
-
-    <Button
-        android:text="H"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_H"
-        android:layout_below="@+id/btn_M"
-        android:layout_alignStart="@+id/btn_M" />
-
-    <Button
-        android:text="M"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_M"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/textView20"
-        android:layout_alignStart="@+id/textView20" />
+        android:layout_above="@+id/btn_T"
+        android:layout_alignParentStart="true"
+        android:textSize="18sp" />
 
     <Button
         android:text="T"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/btn_T"
-        android:layout_above="@+id/btn_F"
-        android:layout_centerHorizontal="true" />
+        android:background="@drawable/round_button"
+
+        android:layout_alignTop="@+id/btn_M"
+        android:layout_toRightOf="@+id/btn_M"
+        android:layout_marginRight="10dp" />
+
+    <Button
+        android:text="F"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/btn_F"
+        android:background="@drawable/round_button"
+
+        android:layout_alignTop="@+id/btn_M"
+        android:layout_toRightOf="@+id/btn_H"
+        android:layout_marginRight="10dp" />
 
     <Button
         android:text="W"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/btn_W"
-        android:layout_above="@+id/btn_S"
-        android:layout_alignParentEnd="true" />
+        android:background="@drawable/round_button"
+
+        android:layout_alignTop="@+id/btn_M"
+        android:layout_toRightOf="@+id/btn_T"
+        android:layout_marginRight="10dp" />
 
     <TextView
-        android:text="Select Course"
+        android:text="End Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_ccode"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/btn_S" />
-
-    <TextView
-        android:text="Section:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:id="@+id/textView18"
-        android:layout_below="@+id/textView17"
-        android:layout_alignStart="@+id/textView17" />
-
-    <TextView
-        android:text="Start Time:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView24"
-        android:layout_marginBottom="32dp"
-        android:layout_above="@+id/textView19"
-        android:layout_alignStart="@+id/textView18" />
+        android:id="@+id/tv_EndTime"
+        android:layout_marginStart="27dp"
+        android:padding="5dp"
+        android:layout_marginTop="12dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/tv_Section"
+        android:layout_toEndOf="@+id/tv_StartTime" />
 
     <Button
-        android:text="Edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_Edit"
-        android:layout_below="@+id/btn_F"
-        android:layout_centerHorizontal="true" />
+        android:text="S"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/btn_S"
+        android:background="@drawable/round_button"
+
+        android:layout_alignBottom="@+id/btn_F"
+        android:layout_toEndOf="@+id/btn_F" />
+
+    <Button
+        android:text="M"
+        android:layout_height="40dp"
+        android:id="@+id/btn_M"
+        android:background="@drawable/round_button"
+        android:textSize="10sp"
+        android:layout_width="40dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="49dp"
+        android:layout_below="@+id/tv_StartTime"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

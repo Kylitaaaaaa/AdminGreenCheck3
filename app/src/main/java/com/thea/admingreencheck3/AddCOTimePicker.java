@@ -28,12 +28,22 @@ public class AddCOTimePicker extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), AddEditCourseOffering.class);
-                int currentApiVersion = android.os.Build.VERSION.SDK_INT;
-                if (currentApiVersion > android.os.Build.VERSION_CODES.LOLLIPOP_MR1){
-                    i.putExtra("time", timePicker.getHour() + " : " + timePicker.getMinute());
+                int currentApiVersion = Build.VERSION.SDK_INT;
+                int hour;
+                int min;
+
+                if (currentApiVersion > Build.VERSION_CODES.LOLLIPOP_MR1){
+                    hour = timePicker.getHour();
+                    min = timePicker.getMinute();
                 } else {
-                    i.putExtra("time", timePicker.getCurrentHour() + " : " + timePicker.getCurrentMinute());
+                    hour = timePicker.getCurrentHour();
+                    min = timePicker.getCurrentMinute();
                 }
+
+                i.putExtra("time", hour + " : " + min);
+                i.putExtra("hour", hour + "");
+                i.putExtra("min", min + "");
+
                 setResult(RESULT_OK, i);
                 finish();
 
