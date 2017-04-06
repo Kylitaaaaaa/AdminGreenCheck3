@@ -8,6 +8,8 @@ package com.thea.admingreencheck3.Add;
         import android.os.Bundle;
         import android.text.TextUtils;
         import android.util.Log;
+        import android.view.Menu;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
@@ -32,7 +34,6 @@ package com.thea.admingreencheck3.Add;
 public class AddEditCourseActivity extends AppCompatActivity {
 
     EditText et_CourseCode, et_CourseName;
-    Button btn_addCourse, btn_editCourse;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
     private DatabaseReference mDatabase;
@@ -49,8 +50,6 @@ public class AddEditCourseActivity extends AppCompatActivity {
 
         et_CourseCode = (EditText) findViewById(R.id.et_CourseCode);
         et_CourseName = (EditText) findViewById(R.id.et_CourseName);
-        btn_addCourse = (Button) findViewById(R.id.btn_AddCourse);
-        btn_editCourse = (Button) findViewById(R.id.btn_EditCourse);
 
         //mProgress = new ProgressDialog(this.getApplicationContext());
 
@@ -58,14 +57,7 @@ public class AddEditCourseActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference().child(Course.TABLE_NAME);
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
-        if(currProcess == 0 ) {
-            //add
-            btn_addCourse.setVisibility(View.VISIBLE);
-            btn_editCourse.setVisibility(View.GONE);
-        }
-        else{
-            btn_addCourse.setVisibility(View.GONE);
-            btn_editCourse.setVisibility(View.VISIBLE);
+        if(currProcess == 1 ) {
 
             id = getIntent().getExtras().getString(Course.COL_ID);
 
@@ -86,22 +78,6 @@ public class AddEditCourseActivity extends AppCompatActivity {
                 }
             });
         }
-
-
-        btn_addCourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startAdding();
-            }
-        });
-
-        btn_editCourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startEditing();
-
-            }
-        });
     }
 
     public void startAdding(){
@@ -120,6 +96,7 @@ public class AddEditCourseActivity extends AppCompatActivity {
 
             newFaculty.child(Course.COL_CODE).setValue(ccode);
             newFaculty.child(Course.COL_NAME).setValue(cname);
+            newFaculty.child(Course.COL_ID).setValue(newFaculty.getKey());
             progress.dismiss();
 
             //startActivity(new Intent(getBaseContext(), MainActivity.class));
@@ -148,6 +125,26 @@ public class AddEditCourseActivity extends AppCompatActivity {
             startActivity(new Intent(getBaseContext(), MainActivity.class));
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_check) {
+            if(currProcess == 0)
+                startAdding();
+            else
+                startEditing();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

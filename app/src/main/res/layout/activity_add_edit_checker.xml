@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_edit_checker"
     android:layout_width="match_parent"
@@ -9,27 +10,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.thea.admingreencheck3.Add.AddEditChecker">
-
-    <EditText
+    <ImageButton
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/addFacImage"
         android:layout_alignParentTop="true"
-        android:id="@+id/et_Email"
-        android:layout_alignParentEnd="true"
-        android:hint="Email" />
-
-    <Button
-        android:text="A"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/et_Email"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp"
-        android:background="@drawable/round_button"
-        android:id="@+id/btn_A"
-        android:layout_marginRight="5dp" />
+        android:src="@mipmap/add_btn"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:layout_height="230dp" />
 
     <Button
         android:text="B"
@@ -39,7 +28,8 @@
         android:layout_alignTop="@+id/btn_A"
         android:background="@drawable/round_button"
         android:id="@+id/btn_B"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp" />
 
     <Button
         android:text="C"
@@ -90,20 +80,65 @@
         android:layout_alignTop="@+id/btn_A"
         android:id="@+id/btn_G" />
 
-    <Button
-        android:text="Save"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_D"
-        android:layout_marginTop="59dp"
-        android:id="@+id/btn_Add"
+        android:id="@+id/til_email"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView17">
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:text="A"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/round_button"
+        android:id="@+id/btn_A"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_below="@+id/imageView15"
         android:layout_alignParentStart="true" />
-    <Button
-        android:text="Save"
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_D"
-        android:layout_marginTop="59dp"
-        android:id="@+id/btn_Edit"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+
+        android:id="@+id/et_email"
+
+        android:hint="Email"
+        android:textSize="18sp"
+        android:layout_below="@+id/addFacImage"
+        android:layout_toEndOf="@+id/btn_A"
+        android:layout_marginTop="14dp" />
+
+    <TextView
+        android:text="Rotation ID:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView17"
+        android:textSize="16sp"
+        android:layout_below="@+id/et_email"
+        android:layout_alignStart="@+id/et_email"
+        android:layout_marginTop="18dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/ic_directions_walk_black_24dp"
+        android:id="@+id/imageView15"
+        android:layout_alignTop="@+id/textView17"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/ic_email_black_24dp"
+        android:id="@+id/imageView14"
+        android:layout_alignBottom="@+id/et_email"
         android:layout_alignParentStart="true" />
 </RelativeLayout>

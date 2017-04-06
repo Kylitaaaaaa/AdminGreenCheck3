@@ -4,6 +4,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.thea.admingreencheck3.Add.AddEditAcademicYearActivity;
 import com.thea.admingreencheck3.Add.AddEditBldgActivity;
 import com.thea.admingreencheck3.Add.AddEditChecker;
@@ -31,6 +35,7 @@ import com.thea.admingreencheck3.Add.AddEditRoomActivity;
 import com.thea.admingreencheck3.Add.AddEditTermActivity;
 import com.thea.admingreencheck3.Add.AddFacultyActivity;
 import com.thea.admingreencheck3.View.AcademicYearActivity;
+import com.thea.admingreencheck3.View.AttendanceActivity;
 import com.thea.admingreencheck3.View.BuildingActivity;
 import com.thea.admingreencheck3.View.CheckerActivity;
 import com.thea.admingreencheck3.View.CourseActivity;
@@ -46,13 +51,32 @@ import java.util.GregorianCalendar;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private int currActivity;
+    NavigationView navigationView;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser() == null){
+                    Log.i("huh", "bye bye");
+                    startActivity(new Intent(getBaseContext(), AdminSignInActivity.class));
+                }
+                else{
+                    Log.i("huh", "not bye bye" + firebaseAuth.getCurrentUser().toString());
+                }
+            }
+        };
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -60,11 +84,12 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().getItem(1).setChecked(true);
+        navigationView.getMenu().getItem(0).setChecked(true);
         
-        Fragment fragment = new FacultyActivity();
+        Fragment fragment = new AttendanceActivity();
+
 
         if(fragment != null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -165,32 +190,52 @@ public class MainActivity extends AppCompatActivity
      private void displaySelectedScreen(int id){
          Fragment fragment = null;
          switch (id){
+             case R.id.nav_attendance:
+                 currActivity = R.id.nav_attendance;
+                 navigationView.getMenu().getItem(0).setChecked(true);
+                 fragment = new AttendanceActivity();
+                 break;
              case R.id.nav_faculty:
                  currActivity = R.id.nav_faculty;
+                 navigationView.getMenu().getItem(1).setChecked(true);
                  fragment = new FacultyActivity();
+                 break;
+             case R.id.nav_checker:
+                 currActivity = R.id.nav_checker;
+                 navigationView.getMenu().getItem(2).setChecked(true);
+                 fragment = new CheckerActivity();
                  break;
              case R.id.nav_course:
                  currActivity = R.id.nav_course;
+                 navigationView.getMenu().getItem(3).setChecked(true);
                  fragment = new CourseActivity();
                  break;
              case R.id.nav_course_offering:
                  currActivity = R.id.nav_course_offering;
+                 navigationView.getMenu().getItem(4).setChecked(true);
                  fragment = new CourseOfferingActivity();
                  break;
              case R.id.nav_building:
                  currActivity = R.id.nav_building;
+                 navigationView.getMenu().getItem(5).setChecked(true);
                  fragment = new BuildingActivity();
                  break;
              case R.id.nav_room:
                  currActivity = R.id.nav_room;
+                 navigationView.getMenu().getItem(6).setChecked(true);
                  fragment = new RoomActivity();
                  break;
-             case R.id.nav_checker:
-                 currActivity = R.id.nav_checker;
-                 fragment = new CheckerActivity();
+
+             case R.id.nav_logout:
+                 currActivity = R.id.nav_logout;
+                 navigationView.getMenu().getItem(7).setChecked(true);
+                 mAuth.signOut();
+                 Log.i("huh", "Logged Out");
                  break;
+
              default:
                  currActivity = R.id.nav_faculty;
+                 navigationView.getMenu().getItem(0).setChecked(true);
                  fragment = new FacultyActivity();
                  break;
 
@@ -248,6 +293,9 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 }

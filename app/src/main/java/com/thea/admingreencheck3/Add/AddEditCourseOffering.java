@@ -7,11 +7,14 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -29,9 +32,11 @@ import com.google.firebase.storage.StorageReference;
 import com.thea.admingreencheck3.AddCOCourse;
 import com.thea.admingreencheck3.AddCOFaculty;
 import com.thea.admingreencheck3.AddCORoom;
+import com.thea.admingreencheck3.Building;
 import com.thea.admingreencheck3.Course;
 import com.thea.admingreencheck3.CourseOffering;
 import com.thea.admingreencheck3.Faculty;
+import com.thea.admingreencheck3.IDClass;
 import com.thea.admingreencheck3.MainActivity;
 import com.thea.admingreencheck3.R;
 import com.thea.admingreencheck3.Room;
@@ -52,12 +57,13 @@ public class AddEditCourseOffering extends AppCompatActivity {
     static TextView tv_EndTime;
     static TextView tv_StartTime;
     EditText et_Section;
-    Button btn_M, btn_T, btn_W, btn_H, btn_F, btn_S, btn_add, btn_edit;
+    Button btn_M, btn_T, btn_W, btn_H, btn_F, btn_S;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
-    private DatabaseReference mDatabase, mDatabaseC, mDatabaseT, mDatabaseF, mDatabaseR;
+    private DatabaseReference mDatabase, mDatabaseC, mDatabaseT, mDatabaseF, mDatabaseR, mDatabaseB;
     private int currProcess;
     private String id, c_id, c_name, t_id, t_name, f_id, f_name, s_time, e_time, r_id, b_id;
+    private String orig_c, orig_t, orig_f, orig_b, orig_r;
     Boolean m, t, w, h, f, s;
     static int startHour;
     static int startMin;
@@ -97,9 +103,6 @@ public class AddEditCourseOffering extends AppCompatActivity {
         s = false;
 
 
-        btn_add = (Button) findViewById(R.id.btn_Add);
-        btn_edit = (Button) findViewById(R.id.btn_Edit);
-
         //mProgress = new ProgressDialog(this.getApplicationContext());
 
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -108,16 +111,10 @@ public class AddEditCourseOffering extends AppCompatActivity {
         mDatabaseT = FirebaseDatabase.getInstance().getReference().child(Term.TABLE_NAME);
         mDatabaseF = FirebaseDatabase.getInstance().getReference().child(Faculty.TABLE_NAME);
         mDatabaseR = FirebaseDatabase.getInstance().getReference().child(Room.TABLE_NAME);
+        mDatabaseB = FirebaseDatabase.getInstance().getReference().child(Building.TABLE_NAME);
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
-        if(currProcess == 0 ) {
-            //add
-            btn_add.setVisibility(View.VISIBLE);
-            btn_edit.setVisibility(View.GONE);
-        }
-        else{
-            btn_add.setVisibility(View.GONE);
-            btn_edit.setVisibility(View.VISIBLE);
+        if(currProcess == 1 ) {
 
 
             id = getIntent().getExtras().getString(CourseOffering.COL_CO_ID);
@@ -127,92 +124,116 @@ public class AddEditCourseOffering extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     c_id = (String) dataSnapshot.child(CourseOffering.COL_C_ID).getValue();
-
-                    mDatabaseC.child(c_id).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            tv_ccode.setText((String) dataSnapshot.child(Course.COL_CODE).getValue());
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
                     f_id = (String) dataSnapshot.child(CourseOffering.COL_F_ID).getValue();
-                    mDatabaseF.child(f_id).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            tv_Faculty.setText((String) dataSnapshot.child(Faculty.COL_FNAME).getValue() + " " + (String) dataSnapshot.child(Faculty.COL_LNAME).getValue());
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
                     r_id = (String) dataSnapshot.child(CourseOffering.COL_R_ID).getValue();
                     b_id = (String) dataSnapshot.child(CourseOffering.COL_B_ID).getValue();
-
-                    mDatabaseR.child(r_id).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            tv_room.setText((String) dataSnapshot.child(Room.COL_NAME).getValue());
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    et_Section.setText((String) dataSnapshot.child(CourseOffering.COL_SECTION).getValue());
-                    tv_StartTime.setText((String) dataSnapshot.child(CourseOffering.COL_START_HOUR).getValue() + " : " + (String) dataSnapshot.child(CourseOffering.COL_START_MIN).getValue());
-                    tv_EndTime.setText((String) dataSnapshot.child(CourseOffering.COL_END_HOUR).getValue() + " : " + (String) dataSnapshot.child(CourseOffering.COL_END_MIN).getValue());
                     days = (String) dataSnapshot.child(CourseOffering.COL_DAYS).getValue();
 
-                    if(days.indexOf('M') >=0){
-                        btn_M.setPressed(true);
-                        btn_M.setBackgroundResource(R.drawable.round_button_green);
-                        btn_M.setTextColor(Color.parseColor("#ffffff"));
-                        m = true;
+                    orig_c = c_id;
+                    orig_f = f_id;
+                    orig_b = b_id;
+                    orig_r = r_id;
+                    orig_b = b_id;
+
+                    if(c_id != null &&
+                            f_id != null &&
+                            b_id != null &&
+                            r_id != null &&
+                            days != null) {
+
+                        mDatabaseC.child(c_id).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                tv_ccode.setText((String) dataSnapshot.child(Course.COL_CODE).getValue());
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                        mDatabaseF.child(f_id).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                tv_Faculty.setText((String) dataSnapshot.child(Faculty.COL_FNAME).getValue() + " " + (String) dataSnapshot.child(Faculty.COL_LNAME).getValue());
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                        mDatabaseR.child(r_id).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                tv_room.setText((String) dataSnapshot.child(Room.COL_NAME).getValue());
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        if(days.indexOf('M') >=0){
+                            btn_M.setPressed(true);
+                            btn_M.setBackgroundResource(R.drawable.round_button_green);
+                            btn_M.setTextColor(Color.parseColor("#ffffff"));
+                            m = true;
+                        }
+
+                        if(days.indexOf('T') >=0){
+                            btn_T.setPressed(true);
+                            btn_T.setBackgroundResource(R.drawable.round_button_green);
+                            btn_T.setTextColor(Color.parseColor("#ffffff"));
+                            t = true;
+                        }
+
+                        if(days.indexOf('W') >=0){
+                            btn_W.setPressed(true);
+                            btn_W.setBackgroundResource(R.drawable.round_button_green);
+                            btn_W.setTextColor(Color.parseColor("#ffffff"));
+                            w = true;
+                        }
+
+                        if(days.indexOf('H') >=0){
+                            btn_H.setPressed(true);
+                            btn_H.setBackgroundResource(R.drawable.round_button_green);
+                            btn_H.setTextColor(Color.parseColor("#ffffff"));
+                            h = true;
+                        }
+
+                        if(days.indexOf('F') >=0){
+                            btn_F.setPressed(true);
+                            btn_F.setBackgroundResource(R.drawable.round_button_green);
+                            btn_F.setTextColor(Color.parseColor("#ffffff"));
+                            f = true;
+                        }
+
+                        if(days.indexOf('S') >=0){
+                            btn_S.setPressed(true);
+                            btn_S.setBackgroundResource(R.drawable.round_button_green);
+                            btn_S.setTextColor(Color.parseColor("#ffffff"));
+                            s = true;
+                        }
                     }
 
-                    if(days.indexOf('T') >=0){
-                        btn_T.setPressed(true);
-                        btn_T.setBackgroundResource(R.drawable.round_button_green);
-                        btn_T.setTextColor(Color.parseColor("#ffffff"));
-                        t = true;
-                    }
+                    et_Section.setText((String) dataSnapshot.child(CourseOffering.COL_SECTION).getValue());
+                    String starth = dataSnapshot.child(CourseOffering.COL_START_HOUR).getValue() + "";
+                    String startm = dataSnapshot.child(CourseOffering.COL_START_MIN).getValue() + "";
+                    tv_StartTime.setText(starth + " : " + startm );
 
-                    if(days.indexOf('W') >=0){
-                        btn_W.setPressed(true);
-                        btn_W.setBackgroundResource(R.drawable.round_button_green);
-                        btn_W.setTextColor(Color.parseColor("#ffffff"));
-                        w = true;
-                    }
+                    String endh = dataSnapshot.child(CourseOffering.COL_END_HOUR).getValue() + "";
+                    String endm = dataSnapshot.child(CourseOffering.COL_END_MIN).getValue() + "";
 
-                    if(days.indexOf('H') >=0){
-                        btn_H.setPressed(true);
-                        btn_H.setBackgroundResource(R.drawable.round_button_green);
-                        btn_H.setTextColor(Color.parseColor("#ffffff"));
-                        h = true;
-                    }
+                    tv_EndTime.setText(endh + " : " + endm);
 
-                    if(days.indexOf('F') >=0){
-                        btn_F.setPressed(true);
-                        btn_F.setBackgroundResource(R.drawable.round_button_green);
-                        btn_F.setTextColor(Color.parseColor("#ffffff"));
-                        f = true;
-                    }
 
-                    if(days.indexOf('S') >=0){
-                        btn_S.setPressed(true);
-                        btn_S.setBackgroundResource(R.drawable.round_button_green);
-                        btn_S.setTextColor(Color.parseColor("#ffffff"));
-                        s = true;
-                    }
+
 
                 }
 
@@ -225,21 +246,6 @@ public class AddEditCourseOffering extends AppCompatActivity {
 
         }
 
-
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startAdding();
-            }
-        });
-
-        btn_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startEditing();
-
-            }
-        });
 
         tv_ccode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -554,6 +560,23 @@ public class AddEditCourseOffering extends AppCompatActivity {
             newThing.child(CourseOffering.COL_DAYS).setValue(days);
 
             newThing.child(CourseOffering.COL_SECTION).setValue(section);
+
+            //Add to course
+            DatabaseReference updateBuilding = mDatabaseC.child(c_id).child(CourseOffering.TABLE_NAME).child(newThing.getKey());
+            updateBuilding.child(IDClass.COL_ID).setValue(newThing.getKey());
+
+            //Add to facname
+            DatabaseReference updateFac = mDatabaseF.child(f_id).child(CourseOffering.TABLE_NAME).child(newThing.getKey());
+            updateFac.child(IDClass.COL_ID).setValue(newThing.getKey());
+
+            //Add to room
+            DatabaseReference updateR = mDatabaseR.child(r_id).child(CourseOffering.TABLE_NAME).child(newThing.getKey());
+            updateR.child(IDClass.COL_ID).setValue(newThing.getKey());
+
+            //Add to building
+            DatabaseReference updateB = mDatabaseB.child(b_id).child(CourseOffering.TABLE_NAME).child(newThing.getKey());
+            updateB.child(IDClass.COL_ID).setValue(newThing.getKey());
+
             Log.i("huh", "done adding!");
             progress.dismiss();
             finish();
@@ -626,7 +649,46 @@ public class AddEditCourseOffering extends AppCompatActivity {
             newThing.child(CourseOffering.COL_B_ID).setValue(b_id);
             newThing.child(CourseOffering.COL_DAYS).setValue(days);
 
-            newThing.child(CourseOffering.COL_SECTION).setValue(section);
+            //update course
+            if(!orig_c.equals(c_id)) {
+                DatabaseReference update = mDatabaseC.child(orig_c).child(CourseOffering.TABLE_NAME);
+                update.child(id).removeValue();
+            }
+
+            DatabaseReference updateBuilding = mDatabaseC.child(c_id).child(CourseOffering.TABLE_NAME).child(newThing.getKey());
+            updateBuilding.child(IDClass.COL_ID).setValue(newThing.getKey());
+
+            //udpate faculty
+            if(!orig_f.equals(f_id)) {
+                DatabaseReference update = mDatabaseF.child(orig_f).child(CourseOffering.TABLE_NAME);
+                update.child(id).removeValue();
+            }
+
+            DatabaseReference updateFac = mDatabaseF.child(f_id).child(CourseOffering.TABLE_NAME).child(newThing.getKey());
+            updateFac.child(IDClass.COL_ID).setValue(newThing.getKey());
+
+
+            //update Room
+            if(!orig_r.equals(r_id)) {
+                DatabaseReference update = mDatabaseR.child(orig_r).child(CourseOffering.TABLE_NAME);
+                update.child(id).removeValue();
+            }
+
+            DatabaseReference updateRoom = mDatabaseR.child(r_id).child(CourseOffering.TABLE_NAME).child(newThing.getKey());
+            updateRoom.child(IDClass.COL_ID).setValue(newThing.getKey());
+
+            //update Building
+            Log.i("huh", "b_id " + b_id);
+            Log.i("huh", "orig_b " + orig_b);
+            if(!orig_b.equals(b_id)) {
+                Log.i("huh", "orig_bb not equal");
+                DatabaseReference update = mDatabaseB.child(orig_b).child(CourseOffering.TABLE_NAME);
+                update.child(id).removeValue();
+            }
+
+            DatabaseReference updateB = mDatabaseB.child(b_id).child(CourseOffering.TABLE_NAME).child(newThing.getKey());
+            updateB.child(IDClass.COL_ID).setValue(newThing.getKey());
+
             progress.dismiss();
             finish();
         }
@@ -687,6 +749,26 @@ public class AddEditCourseOffering extends AppCompatActivity {
             AddEditCourseOffering.setEndTime();
 
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_check) {
+            if(currProcess == 0)
+                startAdding();
+            else
+                startEditing();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

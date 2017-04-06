@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_edit_course"
     android:layout_width="match_parent"
@@ -11,38 +12,25 @@
     tools:context="com.thea.admingreencheck3.Add.AddEditCourseActivity">
 
 
-    <Button
-        android:text="Delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/btn_Delete" />
-
-    <Button
-        android:text="Edit "
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_Edit"
-        android:layout_above="@+id/btn_Delete"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Building Name:"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
+        app:srcCompat="@mipmap/ic_business_black_24dp"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_alignParentStart="true"
+        android:id="@+id/imageView21" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/et_End"
+        android:id="@+id/tv_building"
+        android:text="bldg here"
+        android:textSize="18sp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="15dp" />
+        android:layout_toEndOf="@+id/imageView21"
+        android:layout_marginStart="17dp"
+        android:textStyle="normal|bold" />
 
 </RelativeLayout>

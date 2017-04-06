@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.andexert.library.RippleView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -20,11 +21,12 @@ public class AddCORoom extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private int currProcess = 0;
+    static RippleView rippleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gen_list);
+        setContentView(R.layout.recycler_no_boom);
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child(Room.TABLE_NAME);
 
@@ -45,19 +47,18 @@ public class AddCORoom extends AppCompatActivity {
 
                 viewHolder.setTitle(model.getName());
 
-                viewHolder.vView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
 
+                    @Override
+                    public void onComplete(RippleView rippleView) {
                         Intent i = new Intent(getBaseContext(), AddEditCourseOffering.class);
                         i.putExtra(Room.COL_ROOM_ID, stringPosition);
                         setResult(RESULT_OK, i);
                         finish();
-                        //startActivity(i);
-
-                        //firebaseRecyclerAdapter.getRef(position).removeValue();
                     }
+
                 });
+
             }
         };
 
@@ -70,6 +71,7 @@ public class AddCORoom extends AppCompatActivity {
         public CourseViewHolder(View itemView) {
             super(itemView);
             vView = itemView;
+            rippleView = (RippleView) vView.findViewById(R.id.rippleView);
         }
 
         public void setTitle(String name){

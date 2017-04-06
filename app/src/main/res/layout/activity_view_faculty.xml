@@ -12,36 +12,13 @@
     tools:context="com.thea.admingreencheck3.ViewIndiv.ViewFacultyActivity">
 
 
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/add_btn"
         android:id="@+id/imgFac"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="251dp" />
-
-
-    <TextView
-        android:text="Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:id="@+id/tv_Name"
-        android:textStyle="bold"
-        android:textSize="18sp" />
-
-    <TextView
-        android:text="College"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        android:id="@+id/tv_College"
-        android:layout_below="@+id/tv_Name"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/tv_Name"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -49,47 +26,97 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:gravity="center"
+        android:gravity="left"
         android:id="@+id/tv_Department"
+        android:textSize="16sp"
         android:layout_below="@+id/tv_College"
-        android:layout_alignParentStart="true" />
+        android:layout_alignStart="@+id/tv_College" />
 
     <TextView
         android:text="Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:gravity="center"
+        android:gravity="left"
         android:id="@+id/tv_Email"
+        android:textSize="16sp"
         android:layout_below="@+id/tv_Department"
-        android:layout_alignParentStart="true" />
+        android:layout_alignStart="@+id/tv_Department" />
 
     <TextView
         android:text="Mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="11dp"
         android:id="@+id/tv_Mobile"
-        android:gravity="center"
+        android:gravity="left"
+        android:textSize="16sp"
         android:layout_below="@+id/tv_Email"
+        android:layout_alignStart="@+id/tv_Email" />
+
+    <TextView
+        android:text="College"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="left"
+        android:id="@+id/tv_College"
+        android:textSize="16sp"
+        android:layout_marginStart="46dp"
+        android:layout_below="@+id/tv_Name"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Edit"
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:id="@+id/btn_Edit"
-        android:layout_below="@+id/tv_Mobile"
-        android:layout_centerHorizontal="true" />
+        app:srcCompat="@mipmap/ic_account_balance_black_24dp"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/tv_Department"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp" />
 
-    <Button
-        android:text="Delete"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_work_black_24dp"
+        android:id="@+id/imageView3"
+        android:layout_alignBottom="@+id/tv_Department"
+        android:layout_alignStart="@+id/imageView2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_email_black_24dp"
+        android:id="@+id/imageView4"
+        android:layout_above="@+id/tv_Mobile"
+        android:layout_alignStart="@+id/imageView3" />
+
+    <TextView
+        android:text="Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_Edit"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/btn_Delete" />
+        android:id="@+id/tv_Name"
+        android:textSize="20sp"
+        android:gravity="left"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/tv_College"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_local_library_black_24dp"
+        android:id="@+id/imageView6"
+        android:layout_below="@+id/imgFac"
+        android:layout_alignStart="@+id/imageView2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_phone_black_24dp"
+        android:id="@+id/imageView5"
+        android:layout_alignBottom="@+id/tv_Mobile"
+        android:layout_alignStart="@+id/imageView4" />
 
 
 </RelativeLayout>

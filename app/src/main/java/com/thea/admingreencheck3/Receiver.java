@@ -43,38 +43,41 @@ public class Receiver extends BroadcastReceiver
                     String days = huh.getDays();
                     Boolean isToday = false;
 
-                    switch (day) {
-                        //get for following day
-                        case Calendar.MONDAY:
-                            if(days.indexOf('M') >=0){
-                                isToday = true;
-                            }
-                            break;
-                        case Calendar.TUESDAY:
-                            if(days.indexOf('T') >=0){
-                                isToday = true;
-                            }
-                            break;
-                        case Calendar.WEDNESDAY:
-                            if(days.indexOf('W') >=0){
-                                isToday = true;
-                            }
-                            break;
-                        case Calendar.THURSDAY:
-                            if(days.indexOf('H') >=0){
-                                isToday = true;
-                            }
-                            break;
-                        case Calendar.FRIDAY:
-                            if(days.indexOf('F') >=0){
-                                isToday = true;
-                            }
-                            break;
-                        case Calendar.SATURDAY:
-                            if(days.indexOf('S') >=0){
-                                isToday = true;
-                            }
-                            break;
+                    if(days != null) {
+
+                        switch (day) {
+                            //get for following day
+                            case Calendar.MONDAY:
+                                if (days.indexOf('M') >= 0) {
+                                    isToday = true;
+                                }
+                                break;
+                            case Calendar.TUESDAY:
+                                if (days.indexOf('T') >= 0) {
+                                    isToday = true;
+                                }
+                                break;
+                            case Calendar.WEDNESDAY:
+                                if (days.indexOf('W') >= 0) {
+                                    isToday = true;
+                                }
+                                break;
+                            case Calendar.THURSDAY:
+                                if (days.indexOf('H') >= 0) {
+                                    isToday = true;
+                                }
+                                break;
+                            case Calendar.FRIDAY:
+                                if (days.indexOf('F') >= 0) {
+                                    isToday = true;
+                                }
+                                break;
+                            case Calendar.SATURDAY:
+                                if (days.indexOf('S') >= 0) {
+                                    isToday = true;
+                                }
+                                break;
+                        }
                     }
 
                     if(isToday){
@@ -167,11 +170,11 @@ public class Receiver extends BroadcastReceiver
 
                         });
 
-                        newThing.child(Attendance.COL_startHour).setValue(huh.getStart_hour());
-                        newThing.child(Attendance.COL_startMin).setValue(huh.getStart_min());
-
-                        newThing.child(Attendance.COL_endHour).setValue(huh.getEnd_hour());
-                        newThing.child(Attendance.COL_endMin).setValue(huh.getEnd_min());
+//                        newThing.child(Attendance.COL_startHour).setValue(huh.getStart_hour());
+//                        newThing.child(Attendance.COL_startMin).setValue(huh.getStart_min());
+//
+//                        newThing.child(Attendance.COL_endHour).setValue(huh.getEnd_hour());
+//                        newThing.child(Attendance.COL_endMin).setValue(huh.getEnd_min());
 
                         newThing.child(Attendance.COL_days).setValue(huh.getDays());
 

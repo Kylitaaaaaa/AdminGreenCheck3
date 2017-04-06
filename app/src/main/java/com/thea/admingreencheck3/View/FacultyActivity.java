@@ -2,6 +2,8 @@ package com.thea.admingreencheck3.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andexert.library.RippleView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -47,6 +50,7 @@ public class FacultyActivity extends Fragment {
 
     private DatabaseReference mDatabase;
     private BoomMenuButton bmb;
+    static RippleView rippleView;
 
 
     @Override
@@ -54,6 +58,10 @@ public class FacultyActivity extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         getActivity().setTitle("Faculty");
+
+//        ColorDrawable cd = new ColorDrawable(getActivity().getResources().getColor(
+//                R.color.gray));
+//        getActivity().getWindow().setBackgroundDrawable(cd);
     }
 
 
@@ -71,29 +79,14 @@ public class FacultyActivity extends Fragment {
         bmb =  (BoomMenuButton) currView.findViewById(R.id.bmb);
         bmb.setButtonEnum(ButtonEnum.TextInsideCircle);
 
-        bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_7_1);
+        bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_5_1);
 
-        bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_7_1);
+        bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_5_1);
 
         for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
             TextInsideCircleButton.Builder builder;
             switch(i){
                 case 0:
-                    builder = new TextInsideCircleButton.Builder()
-                            .listener(new OnBMClickListener() {
-                                @Override
-                                public void onBoomButtonClick(int index) {
-                                    // When the boom-button corresponding this builder is clicked.
-//                                    Intent intent = new Intent(getContext(), AddEditFacultyActivity.class);
-//                                    intent.putExtra("currProcess", 0 );
-//                                    startActivity(intent);
-                                }
-                            });
-                    builder.normalImageRes(R.drawable.ic_action_attendance);
-                    builder.normalText("Add Attendance");
-                    bmb.addBuilder(builder);
-                    break;
-                case 1:
                     builder = new TextInsideCircleButton.Builder()
                             .listener(new OnBMClickListener() {
                                 @Override
@@ -108,22 +101,7 @@ public class FacultyActivity extends Fragment {
                     builder.normalText("Add Faculty");
                     bmb.addBuilder(builder);
                     break;
-                case 2:
-                    builder = new TextInsideCircleButton.Builder()
-                            .listener(new OnBMClickListener() {
-                                @Override
-                                public void onBoomButtonClick(int index) {
-                                    // When the boom-button corresponding this builder is clicked.
-                                    Intent intent = new Intent(getContext(), AddEditChecker.class);
-                                    intent.putExtra("currProcess", 0 );
-                                    startActivity(intent);
-                                }
-                            });
-                    builder.normalImageRes(R.drawable.ic_action_checker);
-                    builder.normalText("Add Checker");
-                    bmb.addBuilder(builder);
-                    break;
-                case 3:
+                case 1:
                     builder = new TextInsideCircleButton.Builder()
                             .listener(new OnBMClickListener() {
                                 @Override
@@ -138,7 +116,7 @@ public class FacultyActivity extends Fragment {
                     builder.normalText("Add Course");
                     bmb.addBuilder(builder);
                     break;
-                case 4:
+                case 2:
                     builder = new TextInsideCircleButton.Builder()
                             .listener(new OnBMClickListener() {
                                 @Override
@@ -153,7 +131,7 @@ public class FacultyActivity extends Fragment {
                     builder.normalText("Add CourseOffering");
                     bmb.addBuilder(builder);
                     break;
-                case 5:
+                case 3:
                     builder = new TextInsideCircleButton.Builder()
                             .listener(new OnBMClickListener() {
                                 @Override
@@ -168,7 +146,7 @@ public class FacultyActivity extends Fragment {
                     builder.normalText("Add Building");
                     bmb.addBuilder(builder);
                     break;
-                case 6:
+                case 4:
                     builder = new TextInsideCircleButton.Builder()
                             .listener(new OnBMClickListener() {
                                 @Override
@@ -191,6 +169,7 @@ public class FacultyActivity extends Fragment {
 
 
 
+
         return currView;
     }
 
@@ -204,26 +183,37 @@ public class FacultyActivity extends Fragment {
             protected void populateViewHolder(FacultyViewHolder viewHolder, final Faculty model, final int position) {
                 final String fac_position = getRef(position).getKey();
 
-                viewHolder.setName(model.getFirst_name() + model.getLast_name());
+                viewHolder.setName(model.getFirst_name() + " " + model.getLast_name());
+                viewHolder.setCollege(model.getCollege());
                 viewHolder.setImage(currView.getContext(), model.getPic());
                 Log.i("huh", "huahdfuhasdf");
                 Log.i("huh", "model: " + model.getFirst_name());
 
-                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
 
+//                rippleView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        //TODO: onRippleViewClick
+//                        Log.i("Sample", "pressed");
+//                        Intent i = new Intent(currView.getContext(), ViewFacultyActivity.class);
+//                        i.putExtra(Faculty.COL_ID, fac_position );
+//                        Log.i("idmodel", "model:  " + model.getId());
+//                        startActivity(i);
+//                    }
+//                });
+
+                rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+
+                    @Override
+                    public void onComplete(RippleView rippleView) {
+                        Log.i("Sample", "pressed");
                         Intent i = new Intent(currView.getContext(), ViewFacultyActivity.class);
                         i.putExtra(Faculty.COL_ID, fac_position );
                         Log.i("idmodel", "model:  " + model.getId());
                         startActivity(i);
-
-                        //firebaseRecyclerAdapter.getRef(position).removeValue();
                     }
+
                 });
-
-
-
             }
         };
         Log.i("huh", "huhhh");
@@ -240,10 +230,19 @@ public class FacultyActivity extends Fragment {
         public FacultyViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
+
+            rippleView = (RippleView) mView.findViewById(R.id.rippleView);
+
+
         }
 
         public void setName(String name){
             TextView fac_name = (TextView) mView.findViewById(R.id.facName);
+            fac_name.setText(name);
+        }
+
+        public void setCollege(String name){
+            TextView fac_name = (TextView) mView.findViewById(R.id.tv2);
             fac_name.setText(name);
         }
 

@@ -5,21 +5,23 @@ package com.thea.admingreencheck3;
  */
 
 public class Checker {
-    public static final String TABLE_NAME = "Checker";
-    public static final String COL_EMAIL = "email";
+    public static final String TABLE_NAME = "Users";
+    public static final String COL_NAME = "name";
     public static final String COL_ROT_ID = "rotation_id";
     public static final String COL_C_ID = "checker_id";
+    public static final String COL_PIC = "image";
 
-    private String email;
+    private String name;
     private String rotation_id;
     private String checker_id;
+    private String image;
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getRotation_id() {
@@ -36,5 +38,13 @@ public class Checker {
 
     public void setChecker_id(String checker_id) {
         this.checker_id = checker_id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

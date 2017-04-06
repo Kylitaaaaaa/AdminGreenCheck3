@@ -8,6 +8,8 @@ package com.thea.admingreencheck3.Add;
         import android.os.Bundle;
         import android.text.TextUtils;
         import android.util.Log;
+        import android.view.Menu;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
@@ -36,7 +38,6 @@ package com.thea.admingreencheck3.Add;
 public class AddEditBldgActivity extends AppCompatActivity {
 
     EditText et_BldgName;
-    Button btn_add, btn_edit;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
     private DatabaseReference mDatabase, mDatabaseRoom;
@@ -52,8 +53,6 @@ public class AddEditBldgActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_bldg);
 
         et_BldgName = (EditText) findViewById(R.id.et_name);
-        btn_add = (Button) findViewById(R.id.btn_Add);
-        btn_edit = (Button) findViewById(R.id.btn_Edit);
 
         //mProgress = new ProgressDialog(this.getApplicationContext());
 
@@ -63,14 +62,7 @@ public class AddEditBldgActivity extends AppCompatActivity {
 
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
-        if(currProcess == 0 ) {
-            //add
-            btn_add.setVisibility(View.VISIBLE);
-            btn_edit.setVisibility(View.GONE);
-        }
-        else{
-            btn_add.setVisibility(View.GONE);
-            btn_edit.setVisibility(View.VISIBLE);
+        if(currProcess == 1 ) {
 
             id = getIntent().getExtras().getString(Building.COL_ID);
 
@@ -88,22 +80,6 @@ public class AddEditBldgActivity extends AppCompatActivity {
                 }
             });
         }
-
-
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startAdding();
-            }
-        });
-
-        btn_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startEditing();
-
-            }
-        });
     }
 
     public void startAdding(){
@@ -120,6 +96,7 @@ public class AddEditBldgActivity extends AppCompatActivity {
             DatabaseReference newFaculty = mDatabase.push();
 
             newFaculty.child(Building.COL_NAME).setValue(name);
+            newFaculty.child(Building.COL_ID).setValue(newFaculty.getKey());
 
             //startActivity(new Intent(getBaseContext(), MainActivity.class));
 
@@ -190,14 +167,30 @@ public class AddEditBldgActivity extends AppCompatActivity {
                 }
             });
 
-
-            progress.dismiss();
-
-            startActivity(new Intent(getBaseContext(), MainActivity.class));
         }
         progress.dismiss();
-        Fragment fragment = new BuildingActivity();
+        finish();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_check) {
+            if(currProcess == 0)
+                startAdding();
+            else
+                startEditing();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

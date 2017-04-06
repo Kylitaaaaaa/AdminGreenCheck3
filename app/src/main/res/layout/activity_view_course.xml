@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_edit_course"
     android:layout_width="match_parent"
@@ -11,48 +12,34 @@
     tools:context="com.thea.admingreencheck3.Add.AddEditCourseActivity">
 
 
-    <Button
-        android:text="Delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/btn_Delete" />
-
-    <Button
-        android:text="Edit Course"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_Edit"
-        android:layout_above="@+id/btn_Delete"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Course Code:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
+    <ImageView
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/ic_note_black_24dp"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_alignParentStart="true"
+        android:id="@+id/imageView19"
+        android:layout_width="30dp" />
 
-    <TextView
-        android:text="Course Name:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_marginStart="19dp"
-        android:layout_alignBaseline="@+id/tv_Term"
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/ic_class_black_24dp"
+        android:id="@+id/imageView20"
         android:layout_alignBottom="@+id/tv_Term"
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/tv_CourseCode"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/tv_Term" />
+        android:text="Course Code here"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:layout_above="@+id/tv_Term"
+        android:layout_toEndOf="@+id/imageView19"
+        android:layout_marginStart="12dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,10 +47,11 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/tv_Term"
-        android:layout_marginEnd="28dp"
-        android:layout_marginTop="17dp"
-        android:layout_below="@+id/tv_CourseCode"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="28dp"
+        android:text="Course Name here"
+        android:textSize="16sp"
+        android:layout_below="@+id/imageView19"
+        android:layout_alignStart="@+id/tv_CourseCode" />
 
 
 </RelativeLayout>

@@ -13,16 +13,31 @@ package com.thea.admingreencheck3.View;
         import android.view.ViewGroup;
         import android.widget.ImageView;
         import android.widget.TextView;
+        import android.widget.Toast;
 
+        import com.andexert.library.RippleView;
         import com.firebase.ui.database.FirebaseRecyclerAdapter;
         import com.google.firebase.database.DatabaseReference;
         import com.google.firebase.database.FirebaseDatabase;
+        import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
+        import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
+        import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
+        import com.nightonke.boommenu.BoomMenuButton;
+        import com.nightonke.boommenu.ButtonEnum;
+        import com.nightonke.boommenu.Piece.PiecePlaceEnum;
         import com.squareup.picasso.Picasso;
+        import com.thea.admingreencheck3.Add.AddEditBldgActivity;
+        import com.thea.admingreencheck3.Add.AddEditCourseActivity;
+        import com.thea.admingreencheck3.Add.AddEditCourseOffering;
+        import com.thea.admingreencheck3.Add.AddEditFacultyActivity;
+        import com.thea.admingreencheck3.Add.AddEditRoomActivity;
         import com.thea.admingreencheck3.Building;
+        import com.thea.admingreencheck3.Checker;
         import com.thea.admingreencheck3.Course;
         import com.thea.admingreencheck3.Faculty;
         import com.thea.admingreencheck3.R;
         import com.thea.admingreencheck3.ViewIndiv.ViewBuildingActivity;
+        import com.thea.admingreencheck3.ViewIndiv.ViewCheckerActivity;
         import com.thea.admingreencheck3.ViewIndiv.ViewCourseActivity;
         import com.thea.admingreencheck3.ViewIndiv.ViewFacultyActivity;
 
@@ -37,6 +52,9 @@ public class BuildingActivity extends Fragment {
 
     private DatabaseReference mDatabase;
     private int currProcess = 0;
+
+    private BoomMenuButton bmb;
+    static RippleView rippleView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -59,6 +77,95 @@ public class BuildingActivity extends Fragment {
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(currView.getContext()));
 
+        bmb =  (BoomMenuButton) currView.findViewById(R.id.bmb);
+        bmb.setButtonEnum(ButtonEnum.TextInsideCircle);
+
+        bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_5_1);
+
+        bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_5_1);
+
+        for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
+            TextInsideCircleButton.Builder builder;
+            switch(i){
+                case 0:
+                    builder = new TextInsideCircleButton.Builder()
+                            .listener(new OnBMClickListener() {
+                                @Override
+                                public void onBoomButtonClick(int index) {
+                                    // When the boom-button corresponding this builder is clicked.
+                                    Intent intent = new Intent(getContext(), AddEditFacultyActivity.class);
+                                    intent.putExtra("currProcess", 0 );
+                                    startActivity(intent);
+                                }
+                            });
+                    builder.normalImageRes(R.drawable.ic_action_faculty);
+                    builder.normalText("Add Faculty");
+                    bmb.addBuilder(builder);
+                    break;
+                case 1:
+                    builder = new TextInsideCircleButton.Builder()
+                            .listener(new OnBMClickListener() {
+                                @Override
+                                public void onBoomButtonClick(int index) {
+                                    // When the boom-button corresponding this builder is clicked.
+                                    Intent intent = new Intent(getContext(), AddEditCourseActivity.class);
+                                    intent.putExtra("currProcess", 0 );
+                                    startActivity(intent);
+                                }
+                            });
+                    builder.normalImageRes(R.drawable.ic_action_course);
+                    builder.normalText("Add Course");
+                    bmb.addBuilder(builder);
+                    break;
+                case 2:
+                    builder = new TextInsideCircleButton.Builder()
+                            .listener(new OnBMClickListener() {
+                                @Override
+                                public void onBoomButtonClick(int index) {
+                                    // When the boom-button corresponding this builder is clicked.
+                                    Intent intent = new Intent(getContext(), AddEditCourseOffering.class);
+                                    intent.putExtra("currProcess", 0 );
+                                    startActivity(intent);
+                                }
+                            });
+                    builder.normalImageRes(R.drawable.ic_action_courseoffering);
+                    builder.normalText("Add CourseOffering");
+                    bmb.addBuilder(builder);
+                    break;
+                case 3:
+                    builder = new TextInsideCircleButton.Builder()
+                            .listener(new OnBMClickListener() {
+                                @Override
+                                public void onBoomButtonClick(int index) {
+                                    // When the boom-button corresponding this builder is clicked.
+                                    Intent intent = new Intent(getContext(), AddEditBldgActivity.class);
+                                    intent.putExtra("currProcess", 0 );
+                                    startActivity(intent);
+                                }
+                            });
+                    builder.normalImageRes(R.drawable.ic_action_building);
+                    builder.normalText("Add Building");
+                    bmb.addBuilder(builder);
+                    break;
+                case 4:
+                    builder = new TextInsideCircleButton.Builder()
+                            .listener(new OnBMClickListener() {
+                                @Override
+                                public void onBoomButtonClick(int index) {
+                                    // When the boom-button corresponding this builder is clicked.
+                                    Intent intent = new Intent(getContext(), AddEditRoomActivity.class);
+                                    intent.putExtra("currProcess", 0 );
+                                    startActivity(intent);
+                                }
+                            });
+                    builder.normalImageRes(R.drawable.ic_action_room);
+                    builder.normalText("Add Room");
+                    bmb.addBuilder(builder);
+                    break;
+            }
+
+        }
+
         return currView;
     }
 
@@ -71,18 +178,20 @@ public class BuildingActivity extends Fragment {
             protected void populateViewHolder(BuildingViewHolder viewHolder, Building model, int position) {
                 final String stringPosition = getRef(position).getKey();
 
+                if(stringPosition == null)
+                    Toast.makeText(getActivity(), "This is my Toast message!", Toast.LENGTH_LONG).show();
+
                 viewHolder.setTitle(model.getName());
 
-                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
 
+                    @Override
+                    public void onComplete(RippleView rippleView) {
                         Intent i = new Intent(currView.getContext(), ViewBuildingActivity.class);
                         i.putExtra(Building.COL_ID, stringPosition);
                         startActivity(i);
-
-                        //firebaseRecyclerAdapter.getRef(position).removeValue();
                     }
+
                 });
             }
         };
@@ -98,6 +207,7 @@ public class BuildingActivity extends Fragment {
         public BuildingViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
+            rippleView = (RippleView) mView.findViewById(R.id.rippleView);
         }
 
         public void setTitle(String name){
@@ -107,5 +217,7 @@ public class BuildingActivity extends Fragment {
 
 
     }
+
+
 }
 

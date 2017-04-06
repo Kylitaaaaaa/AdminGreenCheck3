@@ -3,11 +3,12 @@ package com.thea.admingreencheck3.Add;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -22,19 +23,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.thea.admingreencheck3.Building;
-import com.thea.admingreencheck3.Checker;
 import com.thea.admingreencheck3.GenListActivity;
+import com.thea.admingreencheck3.IDClass;
 import com.thea.admingreencheck3.Joint;
-import com.thea.admingreencheck3.MainActivity;
 import com.thea.admingreencheck3.R;
 import com.thea.admingreencheck3.Room;
-import com.thea.admingreencheck3.Term;
 
 public class AddEditRoomActivity extends AppCompatActivity {
 
     EditText et_RoomNum;
     TextView tv_BldgName;
-    Button btn_add, btn_edit, btn_A, btn_B, btn_C, btn_D, btn_E, btn_F, btn_G;
+    Button btn_A, btn_B, btn_C, btn_D, btn_E, btn_F, btn_G;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
     private DatabaseReference mDatabase;
@@ -60,11 +59,8 @@ public class AddEditRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_room);
 
-        tv_BldgName = (TextView) findViewById(R.id.et_End);
-        tv_BldgName.setText("huh");
-        et_RoomNum = (EditText) findViewById(R.id.et_Start);
-        btn_add = (Button) findViewById(R.id.btn_Add);
-        btn_edit = (Button) findViewById(R.id.btn_Edit);
+        tv_BldgName = (TextView) findViewById(R.id.tv_building);
+        et_RoomNum = (EditText) findViewById(R.id.tv_roomNumber);
 
         btn_A = (Button) findViewById(R.id.btn_A);
         btn_B = (Button) findViewById(R.id.btn_B);
@@ -79,16 +75,7 @@ public class AddEditRoomActivity extends AppCompatActivity {
         mDatabaseBuilding = FirebaseDatabase.getInstance().getReference().child(Building.TABLE_NAME);
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
-        if(currProcess == 0 ) {
-            //add
-            btn_add.setVisibility(View.VISIBLE);
-            btn_edit.setVisibility(View.GONE);
-        }
-
-        else{
-
-            btn_add.setVisibility(View.GONE);
-            btn_edit.setVisibility(View.VISIBLE);
+        if(currProcess == 1 ) {
 
             roomID = getIntent().getExtras().getString(Room.COL_ROOM_ID);
 
@@ -100,58 +87,72 @@ public class AddEditRoomActivity extends AppCompatActivity {
                     bldgID = (String) dataSnapshot.child(Room.COL_BUILDING_ID).getValue();
                     origID = (String) dataSnapshot.child(Room.COL_BUILDING_ID).getValue();
 
+                    mDatabaseBuilding.child(bldgID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String bldgName = (String) dataSnapshot.child(Building.COL_NAME).getValue();
+                            tv_BldgName.setText(bldgName);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
                     et_RoomNum.setText(name);
-                    tv_BldgName.setText(bldgName);
 
                     String r_id= (String) dataSnapshot.child(Room.COL_ROT_ID).getValue();
+                    if(r_id !=null) {
 
-                    if(r_id.indexOf('A') >=0){
-                        btn_A.setPressed(true);
-                        btn_A.setBackgroundResource(R.drawable.round_button_green);
-                        btn_A.setTextColor(Color.parseColor("#ffffff"));
-                        a = true;
-                    }
+                        if (r_id.indexOf('A') >= 0) {
+                            btn_A.setPressed(true);
+                            btn_A.setBackgroundResource(R.drawable.round_button_green);
+                            btn_A.setTextColor(Color.parseColor("#ffffff"));
+                            a = true;
+                        }
 
-                    if(r_id.indexOf('B') >=0){
-                        btn_B.setPressed(true);
-                        btn_B.setBackgroundResource(R.drawable.round_button_green);
-                        btn_B.setTextColor(Color.parseColor("#ffffff"));
-                        b = true;
-                    }
+                        if (r_id.indexOf('B') >= 0) {
+                            btn_B.setPressed(true);
+                            btn_B.setBackgroundResource(R.drawable.round_button_green);
+                            btn_B.setTextColor(Color.parseColor("#ffffff"));
+                            b = true;
+                        }
 
-                    if(r_id.indexOf('C') >=0){
-                        btn_C.setPressed(true);
-                        btn_C.setBackgroundResource(R.drawable.round_button_green);
-                        btn_C.setTextColor(Color.parseColor("#ffffff"));
-                        c = true;
-                    }
+                        if (r_id.indexOf('C') >= 0) {
+                            btn_C.setPressed(true);
+                            btn_C.setBackgroundResource(R.drawable.round_button_green);
+                            btn_C.setTextColor(Color.parseColor("#ffffff"));
+                            c = true;
+                        }
 
-                    if(r_id.indexOf('D') >=0){
-                        btn_D.setPressed(true);
-                        btn_D.setBackgroundResource(R.drawable.round_button_green);
-                        btn_D.setTextColor(Color.parseColor("#ffffff"));
-                        d = true;
-                    }
+                        if (r_id.indexOf('D') >= 0) {
+                            btn_D.setPressed(true);
+                            btn_D.setBackgroundResource(R.drawable.round_button_green);
+                            btn_D.setTextColor(Color.parseColor("#ffffff"));
+                            d = true;
+                        }
 
-                    if(r_id.indexOf('E') >=0){
-                        btn_E.setPressed(true);
-                        btn_E.setBackgroundResource(R.drawable.round_button_green);
-                        btn_E.setTextColor(Color.parseColor("#ffffff"));
-                        e = true;
-                    }
+                        if (r_id.indexOf('E') >= 0) {
+                            btn_E.setPressed(true);
+                            btn_E.setBackgroundResource(R.drawable.round_button_green);
+                            btn_E.setTextColor(Color.parseColor("#ffffff"));
+                            e = true;
+                        }
 
-                    if(r_id.indexOf('F') >=0){
-                        btn_F.setPressed(true);
-                        btn_F.setBackgroundResource(R.drawable.round_button_green);
-                        btn_F.setTextColor(Color.parseColor("#ffffff"));
-                        f = true;
-                    }
+                        if (r_id.indexOf('F') >= 0) {
+                            btn_F.setPressed(true);
+                            btn_F.setBackgroundResource(R.drawable.round_button_green);
+                            btn_F.setTextColor(Color.parseColor("#ffffff"));
+                            f = true;
+                        }
 
-                    if(r_id.indexOf('G') >=0){
-                        btn_G.setPressed(true);
-                        btn_G.setBackgroundResource(R.drawable.round_button_green);
-                        btn_G.setTextColor(Color.parseColor("#ffffff"));
-                        g = true;
+                        if (r_id.indexOf('G') >= 0) {
+                            btn_G.setPressed(true);
+                            btn_G.setBackgroundResource(R.drawable.round_button_green);
+                            btn_G.setTextColor(Color.parseColor("#ffffff"));
+                            g = true;
+                        }
                     }
 
                 }
@@ -166,21 +167,6 @@ public class AddEditRoomActivity extends AppCompatActivity {
         }
 
 
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startAdding();
-            }
-        });
-
-        btn_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startEditing();
-
-            }
-        });
-
         tv_BldgName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -193,6 +179,7 @@ public class AddEditRoomActivity extends AppCompatActivity {
         btn_A.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                Log.i("huh", "Pressed A " + a );
                 if(btn_A.isPressed()) {
                     btn_A.setPressed(false);
                     btn_A.setBackgroundResource(R.drawable.round_button);
@@ -333,19 +320,22 @@ public class AddEditRoomActivity extends AppCompatActivity {
 
                 Log.i("got", bldgID);
 
-                mDatabaseBuilding.child(bldgID).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        bldgName = (String) dataSnapshot.child(Building.COL_NAME).getValue();
-                        Log.i("got", bldgName);
-                        tv_BldgName.setText(bldgName);
-                    }
+                if(bldgID != null) {
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    mDatabaseBuilding.child(bldgID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            bldgName = (String) dataSnapshot.child(Building.COL_NAME).getValue();
+                            Log.i("got", bldgName + "");
+                            tv_BldgName.setText(bldgName);
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
             }
         }
     }
@@ -367,9 +357,8 @@ public class AddEditRoomActivity extends AppCompatActivity {
 
             DatabaseReference newRoom = mDatabase.push();
             newRoom.child(Room.COL_NAME).setValue(roomNum);
-            newRoom.child(Room.COL_BUILDING_NAME).setValue(bldgName);
             newRoom.child(Room.COL_BUILDING_ID).setValue(bldgID);
-
+            newRoom.child(Room.COL_ROOM_ID).setValue(newRoom.getKey());
 
             rotid = "";
 
@@ -396,11 +385,8 @@ public class AddEditRoomActivity extends AppCompatActivity {
 
             newRoom.child(Room.COL_ROT_ID).setValue(rotid);
 
-            DatabaseReference updateBuilding = mDatabaseBuilding.child(bldgID).child(Building.COL_ROOM).child(newRoom.getKey());
-            updateBuilding.child(Room.COL_ROOM_ID).setValue(newRoom.getKey());
-            updateBuilding.child(Room.COL_NAME).setValue(roomNum);
-            updateBuilding.child(Room.COL_BUILDING_NAME).setValue(bldgName);
-            updateBuilding.child(Room.COL_BUILDING_ID).setValue(bldgID);
+            DatabaseReference updateBuilding = mDatabaseBuilding.child(bldgID).child(Room.TABLE_NAME).child(newRoom.getKey());
+            updateBuilding.child(IDClass.COL_ID).setValue(newRoom.getKey());
         }
 
         progress.dismiss();
@@ -427,15 +413,42 @@ public class AddEditRoomActivity extends AppCompatActivity {
             newRoom.child(Room.COL_BUILDING_ID).setValue(bldgID);
 
 
+            rotid = "";
+
+            Log.i("huh", a + "");
+            if(a) {
+                rotid = rotid.concat("A");
+
+            }
+
+            if(b)
+                rotid = rotid.concat("B");
+
+            if(c)
+                rotid = rotid.concat("C");
+
+            if(d)
+                rotid = rotid.concat("D");
+
+            if(e)
+                rotid = rotid.concat("E");
+
+            if(f)
+                rotid = rotid.concat("F");
+
+            if(g)
+                rotid = rotid.concat("G");
+
+            newRoom.child(Room.COL_ROT_ID).setValue(rotid);
+
+
             if(!origID.equals(bldgID)) {
-                DatabaseReference update = mDatabaseBuilding.child(origID).child(Building.COL_ROOM);
+                DatabaseReference update = mDatabaseBuilding.child(origID).child(Room.TABLE_NAME);
                 update.child(roomID).removeValue();
             }
 
-            DatabaseReference update2 = mDatabaseBuilding.child(bldgID).child(Building.COL_ROOM).child(roomID);
-            update2.child(Room.COL_NAME).setValue(roomNum);
-            update2.child(Room.COL_BUILDING_NAME).setValue(bldgName);
-            update2.child(Room.COL_BUILDING_ID).setValue(bldgID);
+            DatabaseReference updateBuilding = mDatabaseBuilding.child(bldgID).child(Room.TABLE_NAME).child(newRoom.getKey());
+            updateBuilding.child(IDClass.COL_ID).setValue(newRoom.getKey());
 
 
         }
@@ -443,6 +456,26 @@ public class AddEditRoomActivity extends AppCompatActivity {
         progress.dismiss();
         finish();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_check) {
+            if(currProcess == 0)
+                startAdding();
+            else
+                startEditing();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

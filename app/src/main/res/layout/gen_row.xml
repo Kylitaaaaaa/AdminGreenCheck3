@@ -5,28 +5,38 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <!-- A CardView that contains a TextView -->
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
+    <com.andexert.library.RippleView
+        android:id="@+id/rippleView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        android:layout_margin="20dp">
+        android:layout_toLeftOf="@+id/more2"
+        android:layout_margin="5dp"
+        rv_centered="true">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
+            card_view:cardCornerRadius="4dp"
+            android:layout_margin="1dp"
+            android:elevation="3sp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/title"
-                android:text="Building here"
-                android:textSize="16sp"
-                android:textStyle="normal|bold"
-                android:padding="10dp" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title"
+                    android:text="Text here"
+                    android:textSize="18sp"
+                    android:textStyle="normal|bold"
+                    android:padding="10dp" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </com.andexert.library.RippleView>
 
 </LinearLayout>

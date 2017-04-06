@@ -16,34 +16,29 @@
             android:id="@+id/nav_checker"
             android:icon="@mipmap/ic_face_black_24dp"
             android:title="Checker" />
+
+        <item
+            android:id="@+id/nav_course"
+            android:icon="@mipmap/ic_note_black_24dp"
+            android:title="Courses" />
+        <item
+            android:id="@+id/nav_course_offering"
+            android:icon="@mipmap/ic_today_black_24dp"
+            android:title="Course Offering" />
+
+        <item
+            android:id="@+id/nav_building"
+            android:icon="@mipmap/ic_business_black_24dp"
+            android:title="Building" />
+        <item
+            android:id="@+id/nav_room"
+            android:icon="@mipmap/ic_satellite_black_24dp"
+            android:title="Room" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@mipmap/ic_exit_to_app_black_24dp"
+            android:title="Log Out" />
     </group>
-
-
-    <item android:title="Courses">
-        <menu>
-            <item
-                android:id="@+id/nav_course"
-                android:icon="@mipmap/ic_note_black_24dp"
-                android:title="Courses" />
-            <item
-                android:id="@+id/nav_course_offering"
-                android:icon="@mipmap/ic_today_black_24dp"
-                android:title="Course Offering" />
-        </menu>
-    </item>
-
-
-    <item android:title="Infrastructures">
-        <menu>
-            <item
-                android:id="@+id/nav_building"
-                android:icon="@mipmap/ic_business_black_24dp"
-                android:title="Building" />
-            <item
-                android:id="@+id/nav_room"
-                android:icon="@mipmap/ic_satellite_black_24dp"
-                android:title="Room" />
-        </menu>
-    </item>
 
 </menu>

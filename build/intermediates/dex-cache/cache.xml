@@ -12,12 +12,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.nightonke/boommenu/2.0.8/jars/classes.jar"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/10.2.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.3"
-        sha1="17770eaf935b4f01a8f4a1c48709a9664d45ebc2">
-        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.nightonke-boommenu-2.0.8_b112cff80d25e48f5804a095ba831e60e628ef04.jar" />
+        sha1="4e01b82d664e1a8253b2b9658e74b5da35c8771d">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-base-10.2.0_f942c85f75b87a0cff63f5bb3c064c603f9d7db2.jar" />
     </item>
     <item
         is-multidex="false"
@@ -36,6 +36,15 @@
         revision="24.0.3"
         sha1="c76f6507a42aec274953e882bf3c49a570843ef5">
         <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.firebaseui-firebase-ui-database-0.4.0_16d54221c5db9fab1830016ea6c172bd454e51c0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.nightonke/boommenu/2.0.8/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="17770eaf935b4f01a8f4a1c48709a9664d45ebc2">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.nightonke-boommenu-2.0.8_b112cff80d25e48f5804a095ba831e60e628ef04.jar" />
     </item>
     <item
         is-multidex="false"
@@ -111,6 +120,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="3d13e510077b35fe8e49930a627dd849ad5da0dc">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-10.2.0_0f5cda59a345880a7ea2d74feb5be8c87f2d533e.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.2.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -126,6 +144,15 @@
         revision="24.0.3"
         sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
         <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_9057dcea4f108d3b74b2b4c6e19c70979181930f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.github.traex.rippleeffect/library/1.3/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="ee17feb34ce104bc17d1a1e64346d7f779ebb066">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.github.traex.rippleeffect-library-1.3_3218c677090f3862e2db77ad0c66a3bf004f7d35.jar" />
     </item>
     <item
         is-multidex="false"
@@ -180,6 +207,15 @@
         revision="24.0.3"
         sha1="867dad63c33388ff8c7644b236579355036d075f">
         <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_21e6d429fc083faad122fc2502fb90d0d672ecfa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="48532a016bb0dfbe7970c147ce784598a515406b">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-auth-10.2.0_db3ae03eb93e624cee0a62c4567ace560acb4cb4.jar" />
     </item>
     <item
         is-multidex="false"
@@ -252,6 +288,15 @@
         revision="24.0.3"
         sha1="8e1d31656bc9f1889283836e025e6cb703acd38a">
         <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-storage-10.2.0_7955c2dc1af82f1a87131173b4ace1480f0bfb30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b831d3902674d096189451d46fce219e2c2904b7">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-10.2.0_7bc3e0d855690b5861e693e16aed22c809380066.jar" />
     </item>
     <item
         is-multidex="false"
