@@ -16,8 +16,11 @@ import android.widget.TextView;
 
 import com.andexert.library.RippleView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
@@ -54,6 +57,7 @@ public class CheckerActivity extends Fragment {
     private int currProcess = 0;
     private BoomMenuButton bmb;
     static RippleView rippleView;
+    private TextView emptyView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -67,6 +71,8 @@ public class CheckerActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         currView =inflater.inflate(R.layout.activity_gen_list, container, false);
+
+        emptyView = (TextView) currView.findViewById(R.id.empty_view);
 
 
 
@@ -172,13 +178,35 @@ public class CheckerActivity extends Fragment {
     public void onStart() {
         super.onStart();
 
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getChildrenCount() == 0) {
+
+                    list.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                    emptyView.setText("No registered checkers yet");
+                }
+                else{
+                    list.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         firebaseRecyclerAdapter= new FirebaseRecyclerAdapter<Checker, BuildingViewHolder>(Checker.class, R.layout.faculty_row, BuildingViewHolder.class, mDatabase) {
             @Override
             protected void populateViewHolder(BuildingViewHolder viewHolder, Checker model, int position) {
                 final String stringPosition = getRef(position).getKey();
 
                 viewHolder.setName(model.getName());
-                viewHolder.setRot(model.getRotation_id());
+                viewHolder.setRot(model.getRotationId());
                 viewHolder.setImage(currView.getContext(), model.getImage());
 
                 rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {

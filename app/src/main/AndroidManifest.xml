@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AdminSignInActivity"
+            android:name=".SplashScreen"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,16 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Add.AddFacultyActivity" />
+        <!-- <activity android:name=".Add.AddFacultyActivity" /> -->
         <activity android:name=".ViewIndiv.ViewFacultyActivity" />
-        <activity
-            android:name=".Add.AddEditFacultyActivity"
-            android:parentActivityName=".View.FacultyActivity" />
+        <activity android:name=".Add.AddEditFacultyActivity" />
+        <!-- android:parentActivityName=".View.FacultyActivity" /> -->
         <activity android:name=".Add.AddEditCourseOffering" />
-        <activity android:name=".View.CourseActivity" />
+        <!-- <activity android:name=".View.CourseActivity" /> -->
         <activity android:name=".Add.AddEditCourseActivity" />
         <activity android:name=".ViewIndiv.ViewCourseActivity" />
-        <activity android:name=".View.BuildingActivity" />
+        <!-- <activity android:name=".View.BuildingActivity" /> -->
         <activity android:name=".ViewIndiv.ViewBuildingActivity" />
         <activity android:name=".Add.AddEditBldgActivity" />
         <activity android:name=".Add.AddEditRoomActivity" />
@@ -41,24 +40,31 @@
         <activity android:name=".AddCOFaculty" />
         <activity android:name=".AddCOTerm" />
         <activity android:name=".ViewIndiv.ViewRoomActivity" />
-        <activity android:name=".View.TermActivity" />
-        <activity android:name=".View.FacultyActivity" />
+        <!-- <activity android:name=".View.TermActivity" /> -->
+        <!-- <activity android:name=".View.FacultyActivity" /> -->
         <activity android:name=".ViewIndiv.ViewAcademicYearActivity" />
+        <activity android:name=".ViewIndiv.ViewAttendanceActivity" />
         <activity android:name=".Add.AddEditAcademicYearActivity" />
         <activity android:name=".ViewIndiv.ViewTermActivity" />
         <activity android:name=".Add.AddEditTermActivity" />
-        <activity android:name=".Add.AddEditCourseOffering" />
+        <!-- <activity android:name=".Add.AddEditCourseOffering" /> -->
         <activity android:name=".AddCOTimePicker" />
         <activity android:name=".AddCORoom" />
-        <activity android:name=".View.CourseOfferingActivity" />
+        <!-- <activity android:name=".View.CourseOfferingActivity" /> -->
         <activity android:name=".ViewIndiv.ViewCourseOfferingActivity" />
+        <activity android:name=".ViewIndiv.ViewReportActivity" />
         <activity android:name=".Add.AddEditChecker" />
-        <activity android:name=".View.CheckerActivity" />
+        <!-- <activity android:name=".View.CheckerActivity" /> -->
 
         <receiver android:name=".Receiver" />
 
         <activity android:name=".ViewIndiv.ViewCheckerActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Add.AddEditAttendanceActivity" />
+        <activity android:name=".AdminSignInActivity" />
+        <activity android:name=".View.ViewReportActivity"></activity>
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ package com.thea.admingreencheck3.Add;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageButton;
+        import android.widget.Toast;
 
         import com.google.android.gms.tasks.OnSuccessListener;
         import com.google.firebase.database.DataSnapshot;
@@ -85,13 +86,11 @@ public class AddEditBldgActivity extends AppCompatActivity {
     public void startAdding(){
         final ProgressDialog progress = new ProgressDialog(this);
 
-        progress.setMessage("Adding Course");
-        progress.show();
-
-
         final String name = et_BldgName.getText().toString();
 
         if(!TextUtils.isEmpty(name)){
+            progress.setMessage("Adding Course");
+            progress.show();
 
             DatabaseReference newFaculty = mDatabase.push();
 
@@ -100,24 +99,29 @@ public class AddEditBldgActivity extends AppCompatActivity {
 
             //startActivity(new Intent(getBaseContext(), MainActivity.class));
 
-        }
+            progress.dismiss();
+            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+            finish();
+            //Fragment fragment = new BuildingActivity();
 
-        progress.dismiss();
-        //Fragment fragment = new BuildingActivity();
-        finish();
-        //Fragment fragment = new BuildingActivity();
+        }
+        else
+            Toast.makeText(getBaseContext(), "Please complete fields", Toast.LENGTH_LONG).show();
+
+
 
     }
 
     public void startEditing(){
         final ProgressDialog progress = new ProgressDialog(this);
 
-        progress.setMessage("Saving Changes");
-        progress.show();
+
 
         final String name = et_BldgName.getText().toString();
 
         if(!TextUtils.isEmpty(name)){
+            progress.setMessage("Saving Changes");
+            progress.show();
 
             DatabaseReference newCourse = mDatabase.child(id);
 
@@ -151,25 +155,14 @@ public class AddEditBldgActivity extends AppCompatActivity {
                 }
 
             });
-
-
-
-            mDatabaseRoom.child(Room.COL_BUILDING_ID).equalTo(id).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String name = (String) dataSnapshot.child(Room.COL_BUILDING_NAME).getValue();
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+            progress.dismiss();
+            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+            finish();
 
         }
-        progress.dismiss();
-        finish();
+        else
+            Toast.makeText(getBaseContext(), "Please complete fields", Toast.LENGTH_LONG).show();
+
 
     }
 

@@ -170,11 +170,11 @@ public class Receiver extends BroadcastReceiver
 
                         });
 
-//                        newThing.child(Attendance.COL_startHour).setValue(huh.getStart_hour());
-//                        newThing.child(Attendance.COL_startMin).setValue(huh.getStart_min());
-//
-//                        newThing.child(Attendance.COL_endHour).setValue(huh.getEnd_hour());
-//                        newThing.child(Attendance.COL_endMin).setValue(huh.getEnd_min());
+                        newThing.child(Attendance.COL_startHour).setValue(huh.getStart_hour());
+                        newThing.child(Attendance.COL_startMin).setValue(huh.getStart_min());
+
+                        newThing.child(Attendance.COL_endHour).setValue(huh.getEnd_hour());
+                        newThing.child(Attendance.COL_endMin).setValue(huh.getEnd_min());
 
                         newThing.child(Attendance.COL_days).setValue(huh.getDays());
 
@@ -217,7 +217,7 @@ public class Receiver extends BroadcastReceiver
 
         });
 
-        Toast.makeText(context, "Done Creating Attendance for Today", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Successfully Created Attendance for Today", Toast.LENGTH_LONG).show();
 
 
 

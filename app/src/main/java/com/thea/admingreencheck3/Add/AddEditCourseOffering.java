@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -65,11 +66,12 @@ public class AddEditCourseOffering extends AppCompatActivity {
     private String id, c_id, c_name, t_id, t_name, f_id, f_name, s_time, e_time, r_id, b_id;
     private String orig_c, orig_t, orig_f, orig_b, orig_r;
     Boolean m, t, w, h, f, s;
-    static int startHour;
-    static int startMin;
-    static int endHour;
-    static int endMin;
-    String days;
+    static int startHour = -1;
+    static int startMin = -1;
+    static int endHour = -1;
+    static int endMin = -1;
+    String days = "";
+    String starth = "", startm = "", endh = "", endm = "";
 
 
 
@@ -222,13 +224,14 @@ public class AddEditCourseOffering extends AppCompatActivity {
                         }
                     }
 
+
                     et_Section.setText((String) dataSnapshot.child(CourseOffering.COL_SECTION).getValue());
-                    String starth = dataSnapshot.child(CourseOffering.COL_START_HOUR).getValue() + "";
-                    String startm = dataSnapshot.child(CourseOffering.COL_START_MIN).getValue() + "";
+                    starth = dataSnapshot.child(CourseOffering.COL_START_HOUR).getValue() + "";
+                    startm = dataSnapshot.child(CourseOffering.COL_START_MIN).getValue() + "";
                     tv_StartTime.setText(starth + " : " + startm );
 
-                    String endh = dataSnapshot.child(CourseOffering.COL_END_HOUR).getValue() + "";
-                    String endm = dataSnapshot.child(CourseOffering.COL_END_MIN).getValue() + "";
+                    endh = dataSnapshot.child(CourseOffering.COL_END_HOUR).getValue() + "";
+                    endm = dataSnapshot.child(CourseOffering.COL_END_MIN).getValue() + "";
 
                     tv_EndTime.setText(endh + " : " + endm);
 
@@ -297,125 +300,108 @@ public class AddEditCourseOffering extends AppCompatActivity {
             }
         });
 
-        btn_M.setOnTouchListener(new View.OnTouchListener() {
+        btn_M.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_M.isPressed()) {
-                    btn_M.setPressed(false);
+            public void onClick(View v) {
+                if(m) {
                     btn_M.setBackgroundResource(R.drawable.round_button);
                     btn_M.setTextColor(Color.parseColor("#0f0f0f"));
                     m = false;
                 }
                 else {
-                    btn_M.setPressed(true);
                     btn_M.setBackgroundResource(R.drawable.round_button_green);
                     btn_M.setTextColor(Color.parseColor("#ffffff"));
 
                     m = true;
                     Log.i("huh", "pressed m " + m);
                 }
-                return true;
             }
         });
 
-        btn_T.setOnTouchListener(new View.OnTouchListener() {
+        btn_T.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_T.isPressed()) {
-                    btn_T.setPressed(false);
+            public void onClick(View v) {
+                if(t) {
                     btn_T.setBackgroundResource(R.drawable.round_button);
                     btn_T.setTextColor(Color.parseColor("#0f0f0f"));
                     t = false;
                 }
                 else {
-                    btn_T.setPressed(true);
                     btn_T.setBackgroundResource(R.drawable.round_button_green);
                     btn_T.setTextColor(Color.parseColor("#ffffff"));
+
                     t = true;
                 }
-                return true;
             }
         });
 
-        btn_W.setOnTouchListener(new View.OnTouchListener() {
+        btn_W.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_W.isPressed()) {
-                    btn_W.setPressed(false);
+            public void onClick(View v) {
+                if(w) {
                     btn_W.setBackgroundResource(R.drawable.round_button);
                     btn_W.setTextColor(Color.parseColor("#0f0f0f"));
                     w = false;
                 }
                 else {
-                    btn_W.setPressed(true);
                     btn_W.setBackgroundResource(R.drawable.round_button_green);
                     btn_W.setTextColor(Color.parseColor("#ffffff"));
+
                     w = true;
                 }
-                return true;
             }
         });
 
-        btn_H.setOnTouchListener(new View.OnTouchListener() {
+        btn_H.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_H.isPressed()) {
-                    btn_H.setPressed(false);
+            public void onClick(View v) {
+                if(h) {
                     btn_H.setBackgroundResource(R.drawable.round_button);
                     btn_H.setTextColor(Color.parseColor("#0f0f0f"));
                     h = false;
                 }
                 else {
-                    btn_H.setPressed(true);
-
                     btn_H.setBackgroundResource(R.drawable.round_button_green);
                     btn_H.setTextColor(Color.parseColor("#ffffff"));
-                    h= true;
+
+                    h = true;
                 }
-                return true;
             }
         });
 
-        btn_F.setOnTouchListener(new View.OnTouchListener() {
+        btn_F.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_F.isPressed()) {
-                    btn_F.setPressed(false);
+            public void onClick(View v) {
+                if(f) {
                     btn_F.setBackgroundResource(R.drawable.round_button);
                     btn_F.setTextColor(Color.parseColor("#0f0f0f"));
                     f = false;
                 }
                 else {
-                    btn_F.setPressed(true);
-
                     btn_F.setBackgroundResource(R.drawable.round_button_green);
                     btn_F.setTextColor(Color.parseColor("#ffffff"));
+
                     f = true;
                 }
-                return true;
             }
         });
 
-        btn_S.setOnTouchListener(new View.OnTouchListener() {
+        btn_S.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_S.isPressed()) {
-                    btn_S.setPressed(false);
+            public void onClick(View v) {
+                if(s) {
                     btn_S.setBackgroundResource(R.drawable.round_button);
                     btn_S.setTextColor(Color.parseColor("#0f0f0f"));
                     s = false;
                 }
                 else {
-                    btn_S.setPressed(true);
-
                     btn_S.setBackgroundResource(R.drawable.round_button_green);
                     btn_S.setTextColor(Color.parseColor("#ffffff"));
+
                     s = true;
                 }
-                return true;
             }
         });
-
     }
 
 
@@ -430,25 +416,6 @@ public class AddEditCourseOffering extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             c_name = (String) dataSnapshot.child(Course.COL_CODE).getValue();
                             tv_ccode.setText(c_name);
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                }
-
-                else if(requestCode == RESULT_T ){
-                    t_id = data.getStringExtra(Term.COL_TERM_ID);
-
-                    mDatabaseT.child(t_id).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            String start = (String) dataSnapshot.child(Term.COL_ACAD_START).getValue();
-                            String end = (String) dataSnapshot.child(Term.COL_ACAD_END).getValue();
-
-                            t_name = (String) dataSnapshot.child(Term.COL_TERM_NUM).getValue();
                         }
 
                         @Override
@@ -481,6 +448,8 @@ public class AddEditCourseOffering extends AppCompatActivity {
 
                     startHour = Integer.parseInt(data.getStringExtra("hour"));
                     startMin = Integer.parseInt(data.getStringExtra("min"));
+                    starth = startHour + "";
+                    startm = startMin + "";
                     tv_StartTime.setText(data.getStringExtra("time"));
 
                 }
@@ -488,6 +457,8 @@ public class AddEditCourseOffering extends AppCompatActivity {
                 else if(requestCode == RESULT_ET ){
                     endHour = Integer.parseInt(data.getStringExtra("hour"));
                     endMin = Integer.parseInt(data.getStringExtra("min"));
+                    endh = endHour + "";
+                    endm = endMin + "";
                     tv_EndTime.setText(data.getStringExtra("time"));
                 }
 
@@ -517,42 +488,47 @@ public class AddEditCourseOffering extends AppCompatActivity {
         final ProgressDialog progress = new ProgressDialog(this);
 
         final String section = et_Section.getText().toString();
+        days = "";
+
+
+        if(m)
+            days = days.concat("M");
+
+        if(t)
+            days = days.concat("T");
+
+        if(w)
+            days = days.concat("W");
+
+        if(h)
+            days = days.concat("H");
+
+        if(f)
+            days = days.concat("F");
+
+        if(s)
+            days = days.concat("S");
 
         if(!TextUtils.isEmpty(section) &&
                 !TextUtils.isEmpty(c_id) &&
-                !TextUtils.isEmpty(f_id)){
+                !TextUtils.isEmpty(f_id) &&
+                !TextUtils.isEmpty(r_id) &&
+                starth != "" &&
+                startm != ""  &&
+                endh != ""  &&
+                endm != ""  &&
+                days != ""){
 
             progress.setMessage("Adding Course Offering");
             progress.show();
 
-            days = "";
-
-
-            if(m)
-                days = days.concat("M");
-
-            if(t)
-                days = days.concat("T");
-
-            if(w)
-                days = days.concat("W");
-
-            if(h)
-                days = days.concat("H");
-
-            if(f)
-                days = days.concat("F");
-
-            if(s)
-                days = days.concat("S");
-
             final DatabaseReference newThing = mDatabase.push();
 
             newThing.child(CourseOffering.COL_CO_ID).setValue(newThing.getKey().toString());
-            newThing.child(CourseOffering.COL_START_HOUR).setValue(startHour);
-            newThing.child(CourseOffering.COL_START_MIN).setValue(startMin);
-            newThing.child(CourseOffering.COL_END_HOUR).setValue(endHour);
-            newThing.child(CourseOffering.COL_END_MIN).setValue(endMin);
+            newThing.child(CourseOffering.COL_START_HOUR).setValue(Integer.parseInt(starth));
+            newThing.child(CourseOffering.COL_START_MIN).setValue(Integer.parseInt(startm));
+            newThing.child(CourseOffering.COL_END_HOUR).setValue(Integer.parseInt(endh));
+            newThing.child(CourseOffering.COL_END_MIN).setValue(Integer.parseInt(endm));
             newThing.child(CourseOffering.COL_C_ID).setValue(c_id);
             newThing.child(CourseOffering.COL_F_ID).setValue(f_id);
             newThing.child(CourseOffering.COL_R_ID).setValue(r_id);
@@ -579,10 +555,14 @@ public class AddEditCourseOffering extends AppCompatActivity {
 
             Log.i("huh", "done adding!");
             progress.dismiss();
+            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
             finish();
             //startActivity(new Intent(getBaseContext(), MainActivity.class));
 
         }
+        else
+            Toast.makeText(getBaseContext(), "Please complete fields", Toast.LENGTH_LONG).show();
+
 
 
 
@@ -606,43 +586,49 @@ public class AddEditCourseOffering extends AppCompatActivity {
         final ProgressDialog progress = new ProgressDialog(this);
 
         final String section = et_Section.getText().toString();
+        days = "";
+
+
+        if(m) {
+            days = days.concat("M");
+        }
+
+        if(t)
+            days = days.concat("T");
+
+        if(w)
+            days = days.concat("W");
+
+        if(h)
+            days = days.concat("H");
+
+        if(f)
+            days = days.concat("F");
+
+        if(s)
+            days = days.concat("S");
 
         if(!TextUtils.isEmpty(section) &&
                 !TextUtils.isEmpty(c_id) &&
-                !TextUtils.isEmpty(f_id)){
+                !TextUtils.isEmpty(f_id) &&
+                !TextUtils.isEmpty(r_id) &&
+                starth != "" &&
+                startm != ""  &&
+                endh != ""  &&
+                endm != ""  &&
+                days != ""){
+            Log.i("huh", "start " + starth);
 
             progress.setMessage("Adding Course Offering");
             progress.show();
 
-            days = "";
-
-
-            if(m) {
-                days = days.concat("M");
-            }
-
-            if(t)
-                days = days.concat("T");
-
-            if(w)
-                days = days.concat("W");
-
-            if(h)
-                days = days.concat("H");
-
-            if(f)
-                days = days.concat("F");
-
-            if(s)
-                days = days.concat("S");
-
             final DatabaseReference newThing = mDatabase.child(id);
 
             newThing.child(CourseOffering.COL_CO_ID).setValue(newThing.getKey().toString());
-            newThing.child(CourseOffering.COL_START_HOUR).setValue(startHour);
-            newThing.child(CourseOffering.COL_START_MIN).setValue(startMin);
-            newThing.child(CourseOffering.COL_END_HOUR).setValue(endHour);
-            newThing.child(CourseOffering.COL_END_MIN).setValue(endMin);
+            newThing.child(CourseOffering.COL_START_HOUR).setValue(Integer.parseInt(starth));
+            newThing.child(CourseOffering.COL_START_MIN).setValue(Integer.parseInt(startm));
+            newThing.child(CourseOffering.COL_END_HOUR).setValue(Integer.parseInt(endh));
+            newThing.child(CourseOffering.COL_END_MIN).setValue(Integer.parseInt(endm));
             newThing.child(CourseOffering.COL_C_ID).setValue(c_id);
             newThing.child(CourseOffering.COL_F_ID).setValue(f_id);
             newThing.child(CourseOffering.COL_R_ID).setValue(r_id);
@@ -690,8 +676,11 @@ public class AddEditCourseOffering extends AppCompatActivity {
             updateB.child(IDClass.COL_ID).setValue(newThing.getKey());
 
             progress.dismiss();
+            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
             finish();
         }
+        else
+            Toast.makeText(getBaseContext(), "Please complete fields", Toast.LENGTH_LONG).show();
     }
 
 
@@ -717,7 +706,9 @@ public class AddEditCourseOffering extends AppCompatActivity {
             Log.i("huh", "hourofday " + hourOfDay);
 
             startHour = hourOfDay;
+            starth = startHour + "";
             startMin = minute;
+            startm = startMin + "";
             AddEditCourseOffering.setStartTime();
 
         }
@@ -745,7 +736,9 @@ public class AddEditCourseOffering extends AppCompatActivity {
             Log.i("huh", "hourofday " + hourOfDay);
 
             endHour = hourOfDay;
+            endh = endHour + "";
             endMin = minute;
+            endm = endMin + "";
             AddEditCourseOffering.setEndTime();
 
         }

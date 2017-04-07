@@ -30,10 +30,12 @@ public class AdminSignInActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    String idTokenString = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_sign_in);
+        setContentView(R.layout.login);
 
         mGoogleBtn = (SignInButton) findViewById(R.id.googleBtn);
 
@@ -98,19 +100,20 @@ public class AdminSignInActivity extends AppCompatActivity {
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        idTokenString = acct.getIdToken();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("huh", "signInWithCredential:onComplete:" + task.isSuccessful());
+                        Log.i("huh", "signInWithCredential:onComplete:" + task.isSuccessful());
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Log.w("huh", "signInWithCredential", task.getException());
+                            Log.i("huh", "signInWithCredential", task.getException());
                             Toast.makeText(AdminSignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }

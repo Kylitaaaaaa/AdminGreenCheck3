@@ -63,8 +63,6 @@ public class ViewCourseActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     @Override

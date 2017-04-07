@@ -16,8 +16,11 @@ import android.widget.TextView;
 
 import com.andexert.library.RippleView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
@@ -42,6 +45,8 @@ import com.thea.admingreencheck3.ViewIndiv.ViewCourseActivity;
 import com.thea.admingreencheck3.ViewIndiv.ViewFacultyActivity;
 import com.thea.admingreencheck3.ViewIndiv.ViewRoomActivity;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Thea on 28/03/2017.
  */
@@ -55,6 +60,7 @@ public class RoomActivity extends Fragment {
 
     private BoomMenuButton bmb;
     static RippleView rippleView;
+    private TextView emptyView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -70,6 +76,7 @@ public class RoomActivity extends Fragment {
         currView =inflater.inflate(R.layout.activity_building, container, false);
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child(Room.TABLE_NAME);
+        emptyView = (TextView) currView.findViewById(R.id.empty_view);
 
         list = (RecyclerView) currView.findViewById(R.id.list);
         list.setHasFixedSize(true);
@@ -170,6 +177,27 @@ public class RoomActivity extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getChildrenCount() == 0) {
+
+                    list.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                    emptyView.setText("No rooms yet");
+                }
+                else{
+                    list.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         firebaseRecyclerAdapter= new FirebaseRecyclerAdapter<Room, RoomViewHolder>(Room.class, R.layout.gen_row, RoomViewHolder.class, mDatabase) {
             @Override

@@ -14,6 +14,7 @@ package com.thea.admingreencheck3.Add;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageButton;
+        import android.widget.Toast;
 
         import com.google.android.gms.tasks.OnSuccessListener;
         import com.google.firebase.database.DataSnapshot;
@@ -83,14 +84,15 @@ public class AddEditCourseActivity extends AppCompatActivity {
     public void startAdding(){
         final ProgressDialog progress = new ProgressDialog(this);
 
-        progress.setMessage("Adding Course");
-        progress.show();
+
 
 
         final String ccode = et_CourseCode.getText().toString();
         final String cname = et_CourseName.getText().toString();
 
         if(!TextUtils.isEmpty(ccode) && !TextUtils.isEmpty(cname)){
+            progress.setMessage("Adding Course");
+            progress.show();
 
             DatabaseReference newFaculty = mDatabase.push();
 
@@ -99,31 +101,36 @@ public class AddEditCourseActivity extends AppCompatActivity {
             newFaculty.child(Course.COL_ID).setValue(newFaculty.getKey());
             progress.dismiss();
 
-            //startActivity(new Intent(getBaseContext(), MainActivity.class));
+            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
             finish();
         }
+        else
+            Toast.makeText(getBaseContext(), "Please complete fields", Toast.LENGTH_LONG).show();
 
     }
 
     public void startEditing(){
         final ProgressDialog progress = new ProgressDialog(this);
 
-        progress.setMessage("Saving Changes");
-        progress.show();
+
 
         final String ccode = et_CourseCode.getText().toString();
         final String cname = et_CourseName.getText().toString();
 
         if(!TextUtils.isEmpty(ccode) && !TextUtils.isEmpty(cname)){
+            progress.setMessage("Saving Changes");
+            progress.show();
 
             DatabaseReference newCourse = mDatabase.child(id);
 
             newCourse.child(Course.COL_CODE).setValue(ccode);
             newCourse.child(Course.COL_NAME).setValue(cname);
             progress.dismiss();
-
-            startActivity(new Intent(getBaseContext(), MainActivity.class));
+            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+            finish();
         }
+        else
+            Toast.makeText(getBaseContext(), "Please complete fields", Toast.LENGTH_LONG).show();
 
     }
 

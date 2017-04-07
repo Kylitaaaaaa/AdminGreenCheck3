@@ -19,8 +19,11 @@ import android.widget.Toast;
 
 import com.andexert.library.RippleView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nightonke.boommenu.BoomButtons.BoomButton;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -51,13 +54,14 @@ public class FacultyActivity extends Fragment {
     private DatabaseReference mDatabase;
     private BoomMenuButton bmb;
     static RippleView rippleView;
-
+    private TextView emptyView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         getActivity().setTitle("Faculty");
+        emptyView = (TextView) currView.findViewById(R.id.empty_view);
 
 //        ColorDrawable cd = new ColorDrawable(getActivity().getResources().getColor(
 //                R.color.gray));
@@ -176,6 +180,28 @@ public class FacultyActivity extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getChildrenCount() == 0) {
+
+                    facultyList.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                    emptyView.setText("No registered faculty members yet");
+                }
+                else{
+                    facultyList.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         firebaseRecyclerAdapter= new FirebaseRecyclerAdapter<Faculty, FacultyViewHolder>(Faculty.class, R.layout.faculty_row, FacultyViewHolder.class, mDatabase)
         {

@@ -16,8 +16,11 @@ package com.thea.admingreencheck3.View;
 
         import com.andexert.library.RippleView;
         import com.firebase.ui.database.FirebaseRecyclerAdapter;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
         import com.google.firebase.database.DatabaseReference;
         import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
         import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
         import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
         import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
@@ -51,12 +54,14 @@ public class CourseActivity extends Fragment {
 
     private BoomMenuButton bmb;
     static RippleView rippleView;
+    private TextView emptyView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         getActivity().setTitle("Course");
+        emptyView = (TextView) currView.findViewById(R.id.empty_view);
     }
 
 
@@ -168,6 +173,28 @@ public class CourseActivity extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getChildrenCount() == 0) {
+
+                    courseList.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                    emptyView.setText("No courses yet");
+                }
+                else{
+                    courseList.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         firebaseRecyclerAdapter= new FirebaseRecyclerAdapter<Course, CourseViewHolder>(Course.class, R.layout.course_row, CourseViewHolder.class, mDatabase) {
             @Override

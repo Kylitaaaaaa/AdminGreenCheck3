@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +40,7 @@ public class AddEditFacultyActivity extends AppCompatActivity {
     Uri imageUri = null;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference mDatabase, mDatabaseC, mDatabaseT, mDatabaseF, mDatabaseR;
     private int currProcess;
     private String faculty_id;
@@ -65,7 +67,7 @@ public class AddEditFacultyActivity extends AppCompatActivity {
         //mProgress = new ProgressDialog(this.getApplicationContext());
 
         mStorage = FirebaseStorage.getInstance().getReference();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(Faculty.TABLE_NAME);
+        mDatabase = database.getReference().child(Faculty.TABLE_NAME);
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
         if(currProcess == 1) {
@@ -116,8 +118,7 @@ public class AddEditFacultyActivity extends AppCompatActivity {
     public void startAdding(){
         final ProgressDialog progress = new ProgressDialog(this);
 
-        progress.setMessage("Adding Faculty");
-        progress.show();
+
 
 
         final String fname = et_first_name.getText().toString();
@@ -129,51 +130,54 @@ public class AddEditFacultyActivity extends AppCompatActivity {
         final String dept = et_department.getText().toString();
 
 
+        if(imageUri == null)
+            Toast.makeText(getBaseContext(), "Please choose a picture", Toast.LENGTH_LONG).show();
+        else {
+            if (!TextUtils.isEmpty(fname) &&
+                    !TextUtils.isEmpty(lname) &&
+                    !TextUtils.isEmpty(college) &&
+                    !TextUtils.isEmpty(email) &&
+                    !TextUtils.isEmpty(mobnum) &&
+                    !TextUtils.isEmpty(dept)) {
+                progress.setMessage("Adding Faculty");
+                progress.show();
 
-        if(!TextUtils.isEmpty(fname) &&
-                !TextUtils.isEmpty(lname) &&
-                !TextUtils.isEmpty(college) &&
-                !TextUtils.isEmpty(email) &&
-                !TextUtils.isEmpty(mobnum) &&
-                !TextUtils.isEmpty(dept) &&
-                imageUri != null){
+                StorageReference filepath = mStorage.child("Fac_Images").child(imageUri.getLastPathSegment());
 
-            StorageReference filepath = mStorage.child("Fac_Images").child(imageUri.getLastPathSegment());
+                filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
-            filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.i("change", "huh");
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        DatabaseReference newFaculty = mDatabase.push();
 
-                    DatabaseReference newFaculty = mDatabase.push();
+                        newFaculty.child(Faculty.COL_FNAME).setValue(fname);
+                        newFaculty.child(Faculty.COL_LNAME).setValue(lname);
+                        newFaculty.child(Faculty.COL_COLLEGE).setValue(college);
+                        newFaculty.child(Faculty.COL_EMAIL).setValue(email);
 
-                    newFaculty.child(Faculty.COL_FNAME).setValue(fname);
-                    newFaculty.child(Faculty.COL_LNAME).setValue(lname);
-                    newFaculty.child(Faculty.COL_COLLEGE).setValue(college);
-                    newFaculty.child(Faculty.COL_EMAIL).setValue(email);
+                        newFaculty.child(Faculty.COL_PIC).setValue(downloadUrl.toString());
 
-                    newFaculty.child(Faculty.COL_PIC).setValue(downloadUrl.toString());
+                        newFaculty.child(Faculty.COL_MOBNUM).setValue(mobnum);
+                        newFaculty.child(Faculty.COL_DEPT).setValue(dept);
 
-                    newFaculty.child(Faculty.COL_MOBNUM).setValue(mobnum);
-                    newFaculty.child(Faculty.COL_DEPT).setValue(dept);
-                    progress.dismiss();
+                    }
+                });
+                progress.dismiss();
+                Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+                finish();
 
-                    finish();
-                }
-            });
-
+            }
+            else
+                Toast.makeText(getBaseContext(), "Please complete the fields", Toast.LENGTH_LONG).show();
         }
+
 
     }
 
 
     public void startEditing(){
         final ProgressDialog progress = new ProgressDialog(this);
-
-        progress.setMessage("Saving Changes");
-        progress.show();
-
         final String fname = et_first_name.getText().toString();
         Log.i("change", fname);
         final String lname = et_last_name.getText().toString();
@@ -182,18 +186,16 @@ public class AddEditFacultyActivity extends AppCompatActivity {
         final String mobnum = et_mobile_number.getText().toString();
         final String dept = et_department.getText().toString();
 
-        /*
+        if(imageUri != null) {
+            if (!TextUtils.isEmpty(fname) &&
+                    !TextUtils.isEmpty(lname) &&
+                    !TextUtils.isEmpty(college) &&
+                    !TextUtils.isEmpty(email) &&
+                    !TextUtils.isEmpty(mobnum) &&
+                    !TextUtils.isEmpty(dept)) {
+                progress.setMessage("Saving Changes");
+                progress.show();
 
-        Log.i("change", "imageUri " + imageUri);
-
-        if(!TextUtils.isEmpty(fname) &&
-                !TextUtils.isEmpty(lname) &&
-                !TextUtils.isEmpty(college) &&
-                !TextUtils.isEmpty(email) &&
-                !TextUtils.isEmpty(mobnum) &&
-                !TextUtils.isEmpty(dept)){
-
-            if(imageUri != null){
                 StorageReference filepath = mStorage.child("Fac_Images").child(imageUri.getLastPathSegment());
 
                 filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -202,86 +204,54 @@ public class AddEditFacultyActivity extends AppCompatActivity {
                         Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
                         DatabaseReference newFaculty = mDatabase.child(faculty_id);
-                        Log.i("change", "huh");
+
+                        newFaculty.child(Faculty.COL_FNAME).setValue(fname);
+                        newFaculty.child(Faculty.COL_LNAME).setValue(lname);
+                        newFaculty.child(Faculty.COL_COLLEGE).setValue(college);
+                        newFaculty.child(Faculty.COL_EMAIL).setValue(email);
 
                         newFaculty.child(Faculty.COL_PIC).setValue(downloadUrl.toString());
 
+                        newFaculty.child(Faculty.COL_MOBNUM).setValue(mobnum);
+                        newFaculty.child(Faculty.COL_DEPT).setValue(dept);
+                        progress.dismiss();
+                        Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+
+                        finish();
                     }
                 });
+
             }
-
-            DatabaseReference newFaculty = mDatabase.child(faculty_id);
-            Log.i("change", "huh");
-
-            newFaculty.child(Faculty.COL_FNAME).setValue(fname);
-            newFaculty.child(Faculty.COL_LNAME).setValue(lname);
-            newFaculty.child(Faculty.COL_COLLEGE).setValue(college);
-            newFaculty.child(Faculty.COL_EMAIL).setValue(email);
-
-
-            newFaculty.child(Faculty.COL_MOBNUM).setValue(mobnum);
-            newFaculty.child(Faculty.COL_DEPT).setValue(dept);
-            progress.dismiss();
-
-            //Fragment fragment = new FacultyActivity();
-            startActivity(new Intent(getBaseContext(), MainActivity.class));
-
-        }
-        */
-
-
-
-
-        if(!TextUtils.isEmpty(fname) &&
-                !TextUtils.isEmpty(lname) &&
-                !TextUtils.isEmpty(college) &&
-                !TextUtils.isEmpty(email) &&
-                !TextUtils.isEmpty(mobnum) &&
-                !TextUtils.isEmpty(dept) &&
-                imageUri != null){
-
-            StorageReference filepath = mStorage.child("Fac_Images").child(imageUri.getLastPathSegment());
-
-            filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
-
-                    DatabaseReference newFaculty = mDatabase.child(faculty_id);
-                    Log.i("change", "huh");
-
-                    newFaculty.child(Faculty.COL_FNAME).setValue(fname);
-                    newFaculty.child(Faculty.COL_LNAME).setValue(lname);
-                    newFaculty.child(Faculty.COL_COLLEGE).setValue(college);
-                    newFaculty.child(Faculty.COL_EMAIL).setValue(email);
-
-                    newFaculty.child(Faculty.COL_PIC).setValue(downloadUrl.toString());
-
-                    newFaculty.child(Faculty.COL_MOBNUM).setValue(mobnum);
-                    newFaculty.child(Faculty.COL_DEPT).setValue(dept);
-                    progress.dismiss();
-
-                    startActivity(new Intent(getBaseContext(), MainActivity.class));
-                }
-            });
-
+            else
+                Toast.makeText(getBaseContext(), "Please Complete the fields", Toast.LENGTH_LONG).show();
         }
 
-        else{
-            DatabaseReference newFaculty = mDatabase.child(faculty_id);
-            Log.i("change", "huh");
+        else {
+            if (!TextUtils.isEmpty(fname) &&
+                    !TextUtils.isEmpty(lname) &&
+                    !TextUtils.isEmpty(college) &&
+                    !TextUtils.isEmpty(email) &&
+                    !TextUtils.isEmpty(mobnum) &&
+                    !TextUtils.isEmpty(dept)) {
+                progress.setMessage("Saving Changes");
+                progress.show();
 
-            newFaculty.child(Faculty.COL_FNAME).setValue(fname);
-            newFaculty.child(Faculty.COL_LNAME).setValue(lname);
-            newFaculty.child(Faculty.COL_COLLEGE).setValue(college);
-            newFaculty.child(Faculty.COL_EMAIL).setValue(email);
+                DatabaseReference newFaculty = mDatabase.child(faculty_id);
+
+                newFaculty.child(Faculty.COL_FNAME).setValue(fname);
+                newFaculty.child(Faculty.COL_LNAME).setValue(lname);
+                newFaculty.child(Faculty.COL_COLLEGE).setValue(college);
+                newFaculty.child(Faculty.COL_EMAIL).setValue(email);
 
 
-            newFaculty.child(Faculty.COL_MOBNUM).setValue(mobnum);
-            newFaculty.child(Faculty.COL_DEPT).setValue(dept);
-            progress.dismiss();
-
-            startActivity(new Intent(getBaseContext(), MainActivity.class));
+                newFaculty.child(Faculty.COL_MOBNUM).setValue(mobnum);
+                newFaculty.child(Faculty.COL_DEPT).setValue(dept);
+                progress.dismiss();
+                Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+            else
+                Toast.makeText(getBaseContext(), "Please Complete the fields", Toast.LENGTH_LONG).show();
         }
 
 

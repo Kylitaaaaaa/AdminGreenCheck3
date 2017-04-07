@@ -85,8 +85,102 @@ public class ViewCheckerActivity extends AppCompatActivity {
 
                 r_id= (String) dataSnapshot.child(Checker.COL_ROT_ID).getValue();
                 String pic = (String) dataSnapshot.child(Checker.COL_PIC).getValue();
-                updateButtons();
-                Log.i("huh", "radsf " + r_id);
+                if(r_id != null) {
+                    a = false;
+                    b = false;
+                    c = false;
+                    d = false;
+                    e = false;
+                    f = false;
+                    g = false;
+                    Log.i("huh", "radsf " + r_id);
+
+                    if (r_id.indexOf('A') >= 0) {
+                        btn_A.setPressed(true);
+                        btn_A.setBackgroundResource(R.drawable.round_button_green);
+                        btn_A.setTextColor(Color.parseColor("#ffffff"));
+                        a = true;
+                    }
+                    else {
+                        btn_A.setBackgroundResource(R.drawable.round_button);
+                        btn_A.setTextColor(Color.parseColor("#0f0f0f"));
+                        a = false;
+                    }
+
+                    if (r_id.indexOf('B') >= 0) {
+                        btn_B.setPressed(true);
+                        btn_B.setBackgroundResource(R.drawable.round_button_green);
+                        btn_B.setTextColor(Color.parseColor("#ffffff"));
+                        b = true;
+                    }
+                    else{
+                        btn_B.setBackgroundResource(R.drawable.round_button);
+                        btn_B.setTextColor(Color.parseColor("#0f0f0f"));
+                        b = false;
+                    }
+
+                    if (r_id.indexOf('C') >= 0) {
+                        btn_C.setPressed(true);
+                        btn_C.setBackgroundResource(R.drawable.round_button_green);
+                        btn_C.setTextColor(Color.parseColor("#ffffff"));
+                        c = true;
+                    }
+                    else{
+                        btn_C.setBackgroundResource(R.drawable.round_button);
+                        btn_C.setTextColor(Color.parseColor("#0f0f0f"));
+                        c = false;
+                    }
+
+                    if (r_id.indexOf('D') >= 0) {
+                        btn_D.setPressed(true);
+                        btn_D.setBackgroundResource(R.drawable.round_button_green);
+                        btn_D.setTextColor(Color.parseColor("#ffffff"));
+                        d = true;
+                    }
+                    else{
+                        btn_D.setBackgroundResource(R.drawable.round_button);
+                        btn_D.setTextColor(Color.parseColor("#0f0f0f"));
+                        d = false;
+                    }
+
+                    if (r_id.indexOf('E') >= 0) {
+                        btn_E.setPressed(true);
+                        btn_E.setBackgroundResource(R.drawable.round_button_green);
+                        btn_E.setTextColor(Color.parseColor("#ffffff"));
+                        e = true;
+                    }
+                    else{
+                        btn_E.setBackgroundResource(R.drawable.round_button);
+                        btn_E.setTextColor(Color.parseColor("#0f0f0f"));
+                        e = false;
+                    }
+
+                    if (r_id.indexOf('F') >= 0) {
+                        btn_F.setPressed(true);
+                        btn_F.setBackgroundResource(R.drawable.round_button_green);
+                        btn_F.setTextColor(Color.parseColor("#ffffff"));
+                        f = true;
+                    }
+                    else{
+                        btn_F.setBackgroundResource(R.drawable.round_button);
+                        btn_F.setTextColor(Color.parseColor("#0f0f0f"));
+                        f = false;
+                    }
+
+                    if (r_id.indexOf('G') >= 0) {
+                        btn_G.setPressed(true);
+                        btn_G.setBackgroundResource(R.drawable.round_button_green);
+                        btn_G.setTextColor(Color.parseColor("#ffffff"));
+                        g = true;
+                    }
+                    else{
+                        btn_G.setBackgroundResource(R.drawable.round_button);
+                        btn_G.setTextColor(Color.parseColor("#0f0f0f"));
+                        g = false;
+                    }
+                }
+
+
 
                 Picasso.with(getBaseContext()).load(pic).into(imgFac);
 
@@ -103,59 +197,6 @@ public class ViewCheckerActivity extends AppCompatActivity {
 
     }
 
-    public void updateButtons(){
-        Log.i("huh", "r " + r_id);
-        if(r_id != null) {
-            if (r_id.indexOf('A') >= 0) {
-                btn_A.setPressed(true);
-                btn_A.setBackgroundResource(R.drawable.round_button_green);
-                btn_A.setTextColor(Color.parseColor("#ffffff"));
-                a = true;
-            }
-
-            if (r_id.indexOf('B') >= 0) {
-                btn_B.setPressed(true);
-                btn_B.setBackgroundResource(R.drawable.round_button_green);
-                btn_B.setTextColor(Color.parseColor("#ffffff"));
-                b = true;
-            }
-
-            if (r_id.indexOf('C') >= 0) {
-                btn_C.setPressed(true);
-                btn_C.setBackgroundResource(R.drawable.round_button_green);
-                btn_C.setTextColor(Color.parseColor("#ffffff"));
-                c = true;
-            }
-
-            if (r_id.indexOf('D') >= 0) {
-                btn_D.setPressed(true);
-                btn_D.setBackgroundResource(R.drawable.round_button_green);
-                btn_D.setTextColor(Color.parseColor("#ffffff"));
-                d = true;
-            }
-
-            if (r_id.indexOf('E') >= 0) {
-                btn_E.setPressed(true);
-                btn_E.setBackgroundResource(R.drawable.round_button_green);
-                btn_E.setTextColor(Color.parseColor("#ffffff"));
-                e = true;
-            }
-
-            if (r_id.indexOf('F') >= 0) {
-                btn_F.setPressed(true);
-                btn_F.setBackgroundResource(R.drawable.round_button_green);
-                btn_F.setTextColor(Color.parseColor("#ffffff"));
-                f = true;
-            }
-
-            if (r_id.indexOf('G') >= 0) {
-                btn_G.setPressed(true);
-                btn_G.setBackgroundResource(R.drawable.round_button_green);
-                btn_G.setTextColor(Color.parseColor("#ffffff"));
-                g = true;
-            }
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -182,6 +223,8 @@ public class ViewCheckerActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
 
 

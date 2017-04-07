@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -168,138 +169,289 @@ public class AddEditChecker extends AppCompatActivity {
             }
         });
 
-        btn_A.setOnTouchListener(new View.OnTouchListener() {
+        btn_A.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_A.isPressed()) {
-                    btn_A.setPressed(false);
-                    btn_A.setBackgroundResource(R.drawable.round_button);
-                    btn_A.setTextColor(Color.parseColor("#0f0f0f"));
-                    a = false;
-                }
-                else {
-                    btn_A.setPressed(true);
-                    btn_A.setBackgroundResource(R.drawable.round_button_green);
+            public void onClick(View v) {
+                btn_A.setBackgroundResource(R.drawable.round_button_green);
                     btn_A.setTextColor(Color.parseColor("#ffffff"));
+
                     a = true;
-                }
-                return true;
+                    unpressOthers("A");
             }
         });
 
-        btn_B.setOnTouchListener(new View.OnTouchListener() {
+        btn_B.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_B.isPressed()) {
-                    btn_B.setPressed(false);
-                    btn_B.setBackgroundResource(R.drawable.round_button);
-                    btn_B.setTextColor(Color.parseColor("#0f0f0f"));
-                    b = false;
-                }
-                else {
-                    btn_B.setPressed(true);
-                    btn_B.setBackgroundResource(R.drawable.round_button_green);
+            public void onClick(View v) {
+                btn_B.setBackgroundResource(R.drawable.round_button_green);
                     btn_B.setTextColor(Color.parseColor("#ffffff"));
+
                     b = true;
-                }
-                return true;
+                    unpressOthers("B");
             }
         });
 
-        btn_C.setOnTouchListener(new View.OnTouchListener() {
+        btn_C.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_C.isPressed()) {
-                    btn_C.setPressed(false);
-                    btn_C.setBackgroundResource(R.drawable.round_button);
-                    btn_C.setTextColor(Color.parseColor("#0f0f0f"));
-                    c = false;
-                }
-                else {
-                    btn_C.setPressed(true);
-                    btn_C.setBackgroundResource(R.drawable.round_button_green);
+            public void onClick(View v) {
+                 btn_C.setBackgroundResource(R.drawable.round_button_green);
                     btn_C.setTextColor(Color.parseColor("#ffffff"));
+
                     c = true;
-                }
-                return true;
+                    unpressOthers("C");
             }
         });
 
-        btn_D.setOnTouchListener(new View.OnTouchListener() {
+        btn_D.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_D.isPressed()) {
-                    btn_D.setPressed(false);
-                    btn_D.setBackgroundResource(R.drawable.round_button);
-                    btn_D.setTextColor(Color.parseColor("#0f0f0f"));
-                    d = false;
-                }
-                else {
-                    btn_D.setPressed(true);
-                    btn_D.setBackgroundResource(R.drawable.round_button_green);
+            public void onClick(View v) {
+                btn_D.setBackgroundResource(R.drawable.round_button_green);
                     btn_D.setTextColor(Color.parseColor("#ffffff"));
+
                     d = true;
-                }
-                return true;
+                    unpressOthers("D");
             }
         });
 
-        btn_E.setOnTouchListener(new View.OnTouchListener() {
+        btn_E.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_E.isPressed()) {
-                    btn_E.setPressed(false);
-                    btn_E.setBackgroundResource(R.drawable.round_button);
-                    btn_E.setTextColor(Color.parseColor("#0f0f0f"));
-                    e = false;
-                }
-                else {
-                    btn_E.setPressed(true);
-                    btn_E.setBackgroundResource(R.drawable.round_button_green);
+            public void onClick(View v) {
+                btn_E.setBackgroundResource(R.drawable.round_button_green);
                     btn_E.setTextColor(Color.parseColor("#ffffff"));
+
                     e = true;
-                }
-                return true;
+                    unpressOthers("E");
             }
         });
 
-        btn_F.setOnTouchListener(new View.OnTouchListener() {
+        btn_F.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_F.isPressed()) {
-                    btn_F.setPressed(false);
-                    btn_F.setBackgroundResource(R.drawable.round_button);
-                    btn_F.setTextColor(Color.parseColor("#0f0f0f"));
-                    f = false;
-                }
-                else {
-                    btn_F.setPressed(true);
-                    btn_F.setBackgroundResource(R.drawable.round_button_green);
+            public void onClick(View v) {
+               btn_F.setBackgroundResource(R.drawable.round_button_green);
                     btn_F.setTextColor(Color.parseColor("#ffffff"));
+
                     f = true;
-                }
-                return true;
+                    unpressOthers("F");
             }
         });
 
-        btn_G.setOnTouchListener(new View.OnTouchListener() {
+        btn_G.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(btn_G.isPressed()) {
-                    btn_G.setPressed(false);
-                    btn_G.setBackgroundResource(R.drawable.round_button);
-                    btn_G.setTextColor(Color.parseColor("#0f0f0f"));
-                    g = false;
-                }
-                else {
-                    btn_G.setPressed(true);
-                    btn_G.setBackgroundResource(R.drawable.round_button_green);
+            public void onClick(View v) {
+                btn_G.setBackgroundResource(R.drawable.round_button_green);
                     btn_G.setTextColor(Color.parseColor("#ffffff"));
+
                     g = true;
-                }
-                return true;
+                    unpressOthers("G");
             }
         });
+
+    }
+
+    public void unpressOthers(String s){
+        if(s.equals("A")){
+            btn_A.setBackgroundResource(R.drawable.round_button_green);
+            btn_A.setTextColor(Color.parseColor("#ffffff"));
+            a = true;
+
+            btn_B.setBackgroundResource(R.drawable.round_button);
+            btn_B.setTextColor(Color.parseColor("#0f0f0f"));
+            b = false;
+
+            btn_C.setBackgroundResource(R.drawable.round_button);
+            btn_C.setTextColor(Color.parseColor("#0f0f0f"));
+            c = false;
+
+            btn_D.setBackgroundResource(R.drawable.round_button);
+            btn_D.setTextColor(Color.parseColor("#0f0f0f"));
+            d = false;
+
+            btn_E.setBackgroundResource(R.drawable.round_button);
+            btn_E.setTextColor(Color.parseColor("#0f0f0f"));
+            e = false;
+
+            btn_F.setBackgroundResource(R.drawable.round_button);
+            btn_F.setTextColor(Color.parseColor("#0f0f0f"));
+            f = false;
+
+            btn_G.setBackgroundResource(R.drawable.round_button);
+            btn_G.setTextColor(Color.parseColor("#0f0f0f"));
+            g = false;
+        }
+        else if(s.equals("B")){
+            btn_A.setBackgroundResource(R.drawable.round_button);
+            btn_A.setTextColor(Color.parseColor("#0f0f0f"));
+            a = false;
+
+            btn_B.setBackgroundResource(R.drawable.round_button_green);
+            btn_B.setTextColor(Color.parseColor("#ffffff"));
+            b = true;
+
+            btn_C.setBackgroundResource(R.drawable.round_button);
+            btn_C.setTextColor(Color.parseColor("#0f0f0f"));
+            c = false;
+
+            btn_D.setBackgroundResource(R.drawable.round_button);
+            btn_D.setTextColor(Color.parseColor("#0f0f0f"));
+            d = false;
+
+            btn_E.setBackgroundResource(R.drawable.round_button);
+            btn_E.setTextColor(Color.parseColor("#0f0f0f"));
+            e = false;
+
+            btn_F.setBackgroundResource(R.drawable.round_button);
+            btn_F.setTextColor(Color.parseColor("#0f0f0f"));
+            f = false;
+
+            btn_G.setBackgroundResource(R.drawable.round_button);
+            btn_G.setTextColor(Color.parseColor("#0f0f0f"));
+            g = false;
+        }
+        else if(s.equals("C")){
+            btn_A.setBackgroundResource(R.drawable.round_button);
+            btn_A.setTextColor(Color.parseColor("#0f0f0f"));
+            a = false;
+
+            btn_B.setBackgroundResource(R.drawable.round_button);
+            btn_B.setTextColor(Color.parseColor("#0f0f0f"));
+            b = false;
+
+            btn_C.setBackgroundResource(R.drawable.round_button_green);
+            btn_C.setTextColor(Color.parseColor("#ffffff"));
+            c = true;
+
+            btn_D.setBackgroundResource(R.drawable.round_button);
+            btn_D.setTextColor(Color.parseColor("#0f0f0f"));
+            d = false;
+
+            btn_E.setBackgroundResource(R.drawable.round_button);
+            btn_E.setTextColor(Color.parseColor("#0f0f0f"));
+            e = false;
+
+            btn_F.setBackgroundResource(R.drawable.round_button);
+            btn_F.setTextColor(Color.parseColor("#0f0f0f"));
+            f = false;
+
+            btn_G.setBackgroundResource(R.drawable.round_button);
+            btn_G.setTextColor(Color.parseColor("#0f0f0f"));
+            g = false;
+        }
+        else if(s.equals("D")){
+            btn_A.setBackgroundResource(R.drawable.round_button);
+            btn_A.setTextColor(Color.parseColor("#0f0f0f"));
+            a = false;
+
+            btn_B.setBackgroundResource(R.drawable.round_button);
+            btn_B.setTextColor(Color.parseColor("#0f0f0f"));
+            b = false;
+
+            btn_C.setBackgroundResource(R.drawable.round_button);
+            btn_C.setTextColor(Color.parseColor("#0f0f0f"));
+            c = false;
+
+            btn_D.setBackgroundResource(R.drawable.round_button_green);
+            btn_D.setTextColor(Color.parseColor("#ffffff"));
+            d = true;
+
+            btn_E.setBackgroundResource(R.drawable.round_button);
+            btn_E.setTextColor(Color.parseColor("#0f0f0f"));
+            e = false;
+
+            btn_F.setBackgroundResource(R.drawable.round_button);
+            btn_F.setTextColor(Color.parseColor("#0f0f0f"));
+            f = false;
+
+            btn_G.setBackgroundResource(R.drawable.round_button);
+            btn_G.setTextColor(Color.parseColor("#0f0f0f"));
+            g = false;
+        }
+        else if(s.equals("E")){
+            btn_A.setBackgroundResource(R.drawable.round_button);
+            btn_A.setTextColor(Color.parseColor("#0f0f0f"));
+            a = false;
+
+            btn_B.setBackgroundResource(R.drawable.round_button);
+            btn_B.setTextColor(Color.parseColor("#0f0f0f"));
+            b = false;
+
+            btn_C.setBackgroundResource(R.drawable.round_button);
+            btn_C.setTextColor(Color.parseColor("#0f0f0f"));
+            c = false;
+
+            btn_D.setBackgroundResource(R.drawable.round_button);
+            btn_D.setTextColor(Color.parseColor("#0f0f0f"));
+            d = false;
+
+            btn_E.setBackgroundResource(R.drawable.round_button_green);
+            btn_E.setTextColor(Color.parseColor("#ffffff"));
+            e = true;
+
+            btn_F.setBackgroundResource(R.drawable.round_button);
+            btn_F.setTextColor(Color.parseColor("#0f0f0f"));
+            f = false;
+
+            btn_G.setBackgroundResource(R.drawable.round_button);
+            btn_G.setTextColor(Color.parseColor("#0f0f0f"));
+            g = false;
+        }
+        else if(s.equals("F")){
+            btn_A.setBackgroundResource(R.drawable.round_button);
+            btn_A.setTextColor(Color.parseColor("#0f0f0f"));
+            a = false;
+
+            btn_B.setBackgroundResource(R.drawable.round_button);
+            btn_B.setTextColor(Color.parseColor("#0f0f0f"));
+            b = false;
+
+            btn_C.setBackgroundResource(R.drawable.round_button);
+            btn_C.setTextColor(Color.parseColor("#0f0f0f"));
+            c = false;
+
+            btn_D.setBackgroundResource(R.drawable.round_button);
+            btn_D.setTextColor(Color.parseColor("#0f0f0f"));
+            d = false;
+
+            btn_E.setBackgroundResource(R.drawable.round_button);
+            btn_E.setTextColor(Color.parseColor("#0f0f0f"));
+            e = false;
+
+            btn_F.setBackgroundResource(R.drawable.round_button_green);
+            btn_F.setTextColor(Color.parseColor("#ffffff"));
+            f = true;
+
+            btn_G.setBackgroundResource(R.drawable.round_button);
+            btn_G.setTextColor(Color.parseColor("#0f0f0f"));
+            g = false;
+        }
+        else if(s.equals("G")){
+            btn_A.setBackgroundResource(R.drawable.round_button);
+            btn_A.setTextColor(Color.parseColor("#0f0f0f"));
+            a = false;
+
+            btn_B.setBackgroundResource(R.drawable.round_button);
+            btn_B.setTextColor(Color.parseColor("#0f0f0f"));
+            b = false;
+
+            btn_C.setBackgroundResource(R.drawable.round_button);
+            btn_C.setTextColor(Color.parseColor("#0f0f0f"));
+            c = false;
+
+            btn_D.setBackgroundResource(R.drawable.round_button);
+            btn_D.setTextColor(Color.parseColor("#0f0f0f"));
+            d = false;
+
+            btn_E.setBackgroundResource(R.drawable.round_button);
+            btn_E.setTextColor(Color.parseColor("#0f0f0f"));
+            e = false;
+
+            btn_F.setBackgroundResource(R.drawable.round_button);
+            btn_F.setTextColor(Color.parseColor("#0f0f0f"));
+            f = false;
+
+            btn_G.setBackgroundResource(R.drawable.round_button_green);
+            btn_G.setTextColor(Color.parseColor("#ffffff"));
+            g = true;
+        }
     }
 
     public void getUnavailableRotId(){
@@ -317,8 +469,7 @@ public class AddEditChecker extends AppCompatActivity {
 
                     Log.i("huh", "checker: " + huh.getName());
 
-                    Log.i("huh", "tempS " + huh.getRotation_id());
-                    String tempS = huh.getRotation_id();
+                    String tempS = huh.getRotationId();
                     Log.i("huh", "tempS2 " + tempS);
 
 
@@ -346,136 +497,86 @@ public class AddEditChecker extends AppCompatActivity {
 
     }
 
-
-
-    public void startAdding(){
-        final ProgressDialog progress = new ProgressDialog(this);
-
-        final String name = et_Email.getText().toString();
-
-        if(!TextUtils.isEmpty(name)){
-            progress.setMessage("Updating Checker");
-            progress.show();
-
-            rotid = "";
-
-            if(a)
-                rotid = rotid.concat("A");
-
-            if(b)
-                rotid = rotid.concat("B");
-
-            if(c)
-                rotid = rotid.concat("C");
-
-            if(d)
-                rotid = rotid.concat("D");
-
-            if(e)
-                rotid = rotid.concat("E");
-
-            if(f)
-                rotid = rotid.concat("F");
-
-            if(g)
-                rotid = rotid.concat("G");
-
-
-            StorageReference filepath = mStorage.child("Fac_Images").child(imageUri.getLastPathSegment());
-
-            filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.i("change", "huh");
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
-
-                    DatabaseReference newThing = mDatabase.push();
-
-
-
-                    newThing.child(Checker.COL_NAME).setValue(name);
-                    newThing.child(Checker.COL_ROT_ID).setValue(rotid);
-                    newThing.child(Checker.COL_C_ID).setValue(newThing.getKey());
-                    newThing.child(Checker.COL_PIC).setValue(downloadUrl.toString());
-                    progress.dismiss();
-                    Log.i("huh", "HERE");
-                    //startActivity(new Intent(getBaseContext(), MainActivity.class));
-                    finish();
-                }
-            });
-
-
-
-        }
-    }
-
     public void startEditing(){
 
         final ProgressDialog progress = new ProgressDialog(this);
 
         final String name = et_Email.getText().toString();
+        rotid = "";
+        if (a)
+            rotid = rotid.concat("A");
 
-        if(!TextUtils.isEmpty(name)){
-            progress.setMessage("Saving Changes");
-            progress.show();
+        if (b)
+            rotid = rotid.concat("B");
 
-            if(imageUri != null){
-                StorageReference filepath = mStorage.child("profile_images").child(imageUri.getLastPathSegment());
+        if (c)
+            rotid = rotid.concat("C");
 
-                filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+        if (d)
+            rotid = rotid.concat("D");
 
-                        rotid = "";
+        if (e)
+            rotid = rotid.concat("E");
 
+        if (f)
+            rotid = rotid.concat("F");
 
-                        if(a)
-                            rotid = rotid.concat("A");
+        if (g)
+            rotid = rotid.concat("G");
 
-                        if(b)
-                            rotid = rotid.concat("B");
+            if(imageUri != null) {
+                if (!TextUtils.isEmpty(name) &&
+                        rotid != "") {
+                    progress.setMessage("Saving Changes");
+                    progress.show();
 
-                        if(c)
-                            rotid = rotid.concat("C");
+                    StorageReference filepath = mStorage.child("profile_images").child(imageUri.getLastPathSegment());
 
-                        if(d)
-                            rotid = rotid.concat("D");
+                    filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
-                        if(e)
-                            rotid = rotid.concat("E");
+                            DatabaseReference newThing = mDatabase.child(id);
+                            Log.i("change", "huh");
 
-                        if(f)
-                            rotid = rotid.concat("F");
+                            newThing.child(Checker.COL_PIC).setValue(downloadUrl.toString());
 
-                        if(g)
-                            rotid = rotid.concat("G");
+                            newThing.child(Checker.COL_NAME).setValue(name);
+                            newThing.child(Checker.COL_ROT_ID).setValue(rotid);
 
+                        }
+                    });
+                    progress.dismiss();
+                    Log.i("huh", "HERE");
+                    //startActivity(new Intent(getBaseContext(), MainActivity.class));
+                    finish();
+                }
+                else
+                    Toast.makeText(getBaseContext(), "Please complete the fields", Toast.LENGTH_LONG).show();
+            }
+            else{
+                if (!TextUtils.isEmpty(name) &&
+                        rotid != "") {
+                    progress.setMessage("Saving Changes");
+                    progress.show();
 
+                    DatabaseReference newThing = mDatabase.child(id);
+                    newThing.child(Checker.COL_NAME).setValue(name);
+                    newThing.child(Checker.COL_ROT_ID).setValue(rotid);
 
-                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
-
-                        DatabaseReference newThing = mDatabase.child(id);
-                        Log.i("change", "huh");
-
-                        newThing.child(Checker.COL_PIC).setValue(downloadUrl.toString());
-
-                        newThing.child(Checker.COL_NAME).setValue(name);
-                        newThing.child(Checker.COL_ROT_ID).setValue(rotid);
-
-                        progress.dismiss();
-                        Log.i("huh", "HERE");
-                        //startActivity(new Intent(getBaseContext(), MainActivity.class));
-                        finish();
-
-                    }
-                });
+                    progress.dismiss();
+                    finish();
+                }
+                else
+                    Toast.makeText(getBaseContext(), "Please complete the fields", Toast.LENGTH_LONG).show();
             }
 
 
 
         }
 
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -488,10 +589,7 @@ public class AddEditChecker extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_check) {
-            if(currProcess == 0)
-                startAdding();
-            else
-                startEditing();
+            startEditing();
 
         }
         return super.onOptionsItemSelected(item);

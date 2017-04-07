@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,9 +21,12 @@ import android.widget.Toast;
 
 import com.andexert.library.RippleView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.nightonke.boommenu.BoomButtons.BoomButton;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -39,7 +44,10 @@ import com.thea.admingreencheck3.Add.AddEditRoomActivity;
 import com.thea.admingreencheck3.Attendance;
 import com.thea.admingreencheck3.Faculty;
 import com.thea.admingreencheck3.R;
+import com.thea.admingreencheck3.ViewIndiv.ViewAttendanceActivity;
 import com.thea.admingreencheck3.ViewIndiv.ViewFacultyActivity;
+
+import static android.R.attr.id;
 
 /**
  * Created by Thea on 28/03/2017.
@@ -54,13 +62,15 @@ public class AttendanceActivity extends Fragment {
     private BoomMenuButton bmb;
     static RippleView rippleView;
     Query recentMessages;
+    private TextView emptyView;
 
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("Attendance");
+         getActivity().setTitle("Attendance");
+        emptyView = (TextView) currView.findViewById(R.id.empty_view);
 
 //        ColorDrawable cd = new ColorDrawable(getActivity().getResources().getColor(
 //                R.color.gray));
@@ -176,6 +186,28 @@ public class AttendanceActivity extends Fragment {
     public void onStart() {
         super.onStart();
 
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getChildrenCount() == 0) {
+
+                    facultyList.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                    emptyView.setText("No submitted attendance yet");
+                }
+                else{
+                    facultyList.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         firebaseRecyclerAdapter= new FirebaseRecyclerAdapter<Attendance, FacultyViewHolder>(Attendance.class, R.layout.faculty_row, FacultyViewHolder.class, recentMessages)
         {
             @Override
@@ -194,8 +226,8 @@ public class AttendanceActivity extends Fragment {
                         @Override
                         public void onComplete(RippleView rippleView) {
                             Log.i("Sample", "pressed");
-                            Intent i = new Intent(currView.getContext(), ViewFacultyActivity.class);
-                            i.putExtra(Faculty.COL_ID, fac_position);
+                            Intent i = new Intent(currView.getContext(), ViewAttendanceActivity.class);
+                            i.putExtra(Attendance.COL_attendance_template_id, fac_position);
                             startActivity(i);
                         }
 
@@ -207,6 +239,9 @@ public class AttendanceActivity extends Fragment {
 
         facultyList.setAdapter(firebaseRecyclerAdapter);
     }
+
+
+
 
     public static class FacultyViewHolder extends RecyclerView.ViewHolder{
         View mView;
@@ -236,4 +271,6 @@ public class AttendanceActivity extends Fragment {
 
 
     }
+
+
 }

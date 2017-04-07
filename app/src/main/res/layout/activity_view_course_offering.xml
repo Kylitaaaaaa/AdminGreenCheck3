@@ -32,7 +32,8 @@
 
         android:layout_alignTop="@+id/btn_M"
         android:layout_toRightOf="@+id/btn_M"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp" />
 
     <Button
         android:text="F"
@@ -115,14 +116,16 @@
 
     <TextView
         android:text="Faculty Name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_Faculty"
         android:padding="5dp"
         android:textSize="18sp"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/tv_ccode"
-        android:layout_alignEnd="@+id/tv_ccode" />
+        android:layout_alignEnd="@+id/tv_ccode"
+        android:layout_toEndOf="@+id/imageView31"
+        android:layout_alignStart="@+id/tv_ccode" />
 
     <Button
         android:text="M"
@@ -137,40 +140,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="23dp" />
 
-    <TextView
-        android:text="Course Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_ccode"
-        android:padding="5dp"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/btn_H" />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:srcCompat="@mipmap/ic_note_black_24dp"
-        android:layout_above="@+id/tv_Faculty"
-        android:layout_alignParentStart="true"
-        android:id="@+id/imageView30" />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:srcCompat="@mipmap/ic_local_library_black_24dp"
-        android:layout_above="@+id/tv_room"
-        android:layout_alignParentStart="true"
-        android:id="@+id/imageView31" />
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:srcCompat="@mipmap/ic_satellite_black_24dp"
-        android:id="@+id/imageView32"
-        android:layout_alignTop="@+id/tv_room"
-        android:layout_alignParentStart="true" />
-
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -179,12 +148,47 @@
         android:layout_alignEnd="@+id/imageView32"
         android:id="@+id/imageView33" />
 
+    <TextView
+        android:text="Course Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_ccode"
+        android:padding="5dp"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/btn_M" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/ic_note_black_24dp"
+        android:id="@+id/imageView30"
+        android:layout_above="@+id/tv_Faculty"
+        android:layout_alignStart="@+id/btn_M" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/ic_local_library_black_24dp"
+        android:id="@+id/imageView31"
+        android:layout_above="@+id/tv_room"
+        android:layout_alignStart="@+id/imageView30" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/ic_satellite_black_24dp"
+        android:id="@+id/imageView32"
+        android:layout_above="@+id/tv_Section"
+        android:layout_alignStart="@+id/imageView31" />
+
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:srcCompat="@drawable/ic_access_time_black_24dp"
+        android:id="@+id/imageView34"
         android:layout_alignTop="@+id/tv_StartTime"
-        android:layout_alignParentStart="true"
-        android:id="@+id/imageView34" />
+        android:layout_alignStart="@+id/imageView33" />
 
 </RelativeLayout>

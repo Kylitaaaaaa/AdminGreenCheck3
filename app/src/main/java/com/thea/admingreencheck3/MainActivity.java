@@ -41,6 +41,7 @@ import com.thea.admingreencheck3.View.CheckerActivity;
 import com.thea.admingreencheck3.View.CourseActivity;
 import com.thea.admingreencheck3.View.CourseOfferingActivity;
 import com.thea.admingreencheck3.View.FacultyActivity;
+import com.thea.admingreencheck3.View.ReportActivity;
 import com.thea.admingreencheck3.View.RoomActivity;
 import com.thea.admingreencheck3.View.SubstituteActivity;
 import com.thea.admingreencheck3.View.TermActivity;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -191,6 +192,7 @@ public class MainActivity extends AppCompatActivity
          Fragment fragment = null;
          switch (id){
              case R.id.nav_attendance:
+                 Log.i("huh", "pressing attendance");
                  currActivity = R.id.nav_attendance;
                  navigationView.getMenu().getItem(0).setChecked(true);
                  fragment = new AttendanceActivity();
@@ -225,18 +227,23 @@ public class MainActivity extends AppCompatActivity
                  navigationView.getMenu().getItem(6).setChecked(true);
                  fragment = new RoomActivity();
                  break;
+             case R.id.nav_report:
+                 currActivity = R.id.nav_report;
+                 navigationView.getMenu().getItem(7).setChecked(true);
+                 fragment = new ReportActivity();
+                 break;
 
              case R.id.nav_logout:
                  currActivity = R.id.nav_logout;
-                 navigationView.getMenu().getItem(7).setChecked(true);
+                 navigationView.getMenu().getItem(8).setChecked(true);
                  mAuth.signOut();
                  Log.i("huh", "Logged Out");
                  break;
 
              default:
-                 currActivity = R.id.nav_faculty;
+                 currActivity = R.id.nav_attendance;
                  navigationView.getMenu().getItem(0).setChecked(true);
-                 fragment = new FacultyActivity();
+                 fragment = new AttendanceActivity();
                  break;
 
          }
@@ -265,20 +272,20 @@ public class MainActivity extends AppCompatActivity
     public void scheduleAlarm()
     {
         //Long time = new GregorianCalendar().getTimeInMillis()+24*60*60*1000;
-        Long settime = new GregorianCalendar().getTimeInMillis()+1000;
-        /*
+        //Long settime = new GregorianCalendar().getTimeInMillis()+1000;
+
 
         Calendar calendar = Calendar.getInstance();
 
         calendar.set(calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH),
-                23,
-                27,
+                3,
+                50,
                 0);
         calendar.set(Calendar.MILLISECOND, 0);
         Long settime = calendar.getTimeInMillis();
-        */
+
 
 
         Log.i("huh", "Starting");
@@ -289,7 +296,7 @@ public class MainActivity extends AppCompatActivity
 
         //set the alarm for particular time
         alarmManager.set(AlarmManager.RTC_WAKEUP, settime, PendingIntent.getBroadcast(this, 1, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
-        Toast.makeText(this, "Alarm Scheduled for Tommrrow", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Alarm Scheduled for Tommrrow", Toast.LENGTH_LONG).show();
 
     }
 

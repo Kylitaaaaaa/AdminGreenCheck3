@@ -55,12 +55,14 @@ public class CourseOfferingActivity extends Fragment {
 
     private BoomMenuButton bmb;
     static RippleView rippleView;
+    private TextView emptyView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         getActivity().setTitle("CourseOffering");
+        emptyView = (TextView) currView.findViewById(R.id.empty_view);
     }
 
 
@@ -85,6 +87,28 @@ public class CourseOfferingActivity extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getChildrenCount() == 0) {
+
+                    facultyList.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                    emptyView.setText("No course offerings yet");
+                }
+                else{
+                    facultyList.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         firebaseRecyclerAdapter= new FirebaseRecyclerAdapter<CourseOffering, FacultyViewHolder>(CourseOffering.class, R.layout.course_row, FacultyViewHolder.class, mDatabase)
         {

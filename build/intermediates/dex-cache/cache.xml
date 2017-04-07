@@ -192,6 +192,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="4b868b833b0887aa48c4e581558eef4f1196f6a2">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/de.hdodenhof-circleimageview-1.2.1_91247061764f7a783dc5c5a29382ca2cd47f6d8b.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
