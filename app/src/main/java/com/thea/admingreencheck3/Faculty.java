@@ -15,8 +15,10 @@ public class Faculty {
     public static final String COL_PIC = "pic";
     public static final String COL_MOBNUM = "mobile_number";
     public static final String COL_DEPT = "department";
+    public static final String COL_IS_ENABLED = "isEnabled";
 
     private String first_name, middle_name, last_name, college, email, pic, mobile_number, department, id;
+    private Boolean isEnabled;
 
     public Faculty() {
     }
@@ -102,5 +104,13 @@ public class Faculty {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Boolean getEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        isEnabled = enabled;
     }
 }

@@ -38,7 +38,10 @@ import com.thea.admingreencheck3.Add.AddEditCourseActivity;
 import com.thea.admingreencheck3.Add.AddEditCourseOffering;
 import com.thea.admingreencheck3.Add.AddEditFacultyActivity;
 import com.thea.admingreencheck3.Add.AddEditRoomActivity;
+import com.thea.admingreencheck3.Course;
+import com.thea.admingreencheck3.CourseOffering;
 import com.thea.admingreencheck3.Faculty;
+import com.thea.admingreencheck3.IDClass;
 import com.thea.admingreencheck3.R;
 import com.thea.admingreencheck3.ViewIndiv.ViewFacultyActivity;
 
@@ -51,10 +54,12 @@ public class FacultyActivity extends Fragment {
     private View currView;
     FirebaseRecyclerAdapter<Faculty, FacultyViewHolder> firebaseRecyclerAdapter;
 
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase, mDatabaseCO;
     private BoomMenuButton bmb;
     static RippleView rippleView;
     private TextView emptyView;
+    private String faculty_id;
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -75,6 +80,7 @@ public class FacultyActivity extends Fragment {
         currView =inflater.inflate(R.layout.faculty, container, false);
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Faculty");
+        mDatabaseCO = FirebaseDatabase.getInstance().getReference().child(CourseOffering.TABLE_NAME);
 
         facultyList = (RecyclerView) currView.findViewById(R.id.faculty_list);
         facultyList.setHasFixedSize(true);
@@ -177,6 +183,8 @@ public class FacultyActivity extends Fragment {
         return currView;
     }
 
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -208,11 +216,11 @@ public class FacultyActivity extends Fragment {
             @Override
             protected void populateViewHolder(FacultyViewHolder viewHolder, final Faculty model, final int position) {
                 final String fac_position = getRef(position).getKey();
+                faculty_id = fac_position;
 
                 viewHolder.setName(model.getFirst_name() + " " + model.getLast_name());
                 viewHolder.setCollege(model.getCollege());
                 viewHolder.setImage(currView.getContext(), model.getPic());
-                Log.i("huh", "huahdfuhasdf");
                 Log.i("huh", "model: " + model.getFirst_name());
 
 
@@ -259,7 +267,6 @@ public class FacultyActivity extends Fragment {
 
             rippleView = (RippleView) mView.findViewById(R.id.rippleView);
 
-
         }
 
         public void setName(String name){
@@ -279,4 +286,8 @@ public class FacultyActivity extends Fragment {
 
 
     }
+
+
+
+
 }

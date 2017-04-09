@@ -52,6 +52,8 @@ public class ViewAttendanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_attendance);
 
+        getSupportActionBar().setTitle("Attendance");
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child(Attendance.TABLE_NAME_ADMIN);
 
         huh_id = getIntent().getExtras().getString(Attendance.COL_attendance_template_id);

@@ -37,6 +37,7 @@ public class AddEditFacultyActivity extends AppCompatActivity {
 
     ImageButton addFacImage;
     EditText et_first_name, et_middle_name, et_last_name, et_college, et_email, et_mobile_number, et_department;
+    Boolean isEnabled;
     Uri imageUri = null;
     private StorageReference mStorage;
     private ProgressDialog mProgress;
@@ -71,6 +72,7 @@ public class AddEditFacultyActivity extends AppCompatActivity {
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
         if(currProcess == 1) {
+            getSupportActionBar().setTitle("Edit Faculty");
 
             faculty_id = getIntent().getExtras().getString(Faculty.COL_ID);
 
@@ -102,6 +104,8 @@ public class AddEditFacultyActivity extends AppCompatActivity {
                 }
             });
         }
+        else
+            getSupportActionBar().setTitle("Add Faculty");
 
 
         addFacImage.setOnClickListener(new View.OnClickListener() {
@@ -160,12 +164,15 @@ public class AddEditFacultyActivity extends AppCompatActivity {
 
                         newFaculty.child(Faculty.COL_MOBNUM).setValue(mobnum);
                         newFaculty.child(Faculty.COL_DEPT).setValue(dept);
+                        newFaculty.child(Faculty.COL_IS_ENABLED).setValue(true);
+
+                        progress.dismiss();
+                        Toast.makeText(getBaseContext(), "Successfully Added Faculty!", Toast.LENGTH_LONG).show();
+                        finish();
 
                     }
                 });
-                progress.dismiss();
-                Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
-                finish();
+
 
             }
             else

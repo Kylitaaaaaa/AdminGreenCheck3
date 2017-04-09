@@ -57,6 +57,30 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        FirebaseModel.saveState(this);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        FirebaseModel.saveState(this);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        FirebaseModel.resumeState(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -218,6 +242,7 @@ public class MainActivity extends AppCompatActivity
                  fragment = new CourseOfferingActivity();
                  break;
              case R.id.nav_building:
+                 Log.i("huh", "pressing building");
                  currActivity = R.id.nav_building;
                  navigationView.getMenu().getItem(5).setChecked(true);
                  fragment = new BuildingActivity();
@@ -275,13 +300,14 @@ public class MainActivity extends AppCompatActivity
         //Long settime = new GregorianCalendar().getTimeInMillis()+1000;
 
 
+
         Calendar calendar = Calendar.getInstance();
 
         calendar.set(calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH),
-                3,
-                50,
+                7,
+                0,
                 0);
         calendar.set(Calendar.MILLISECOND, 0);
         Long settime = calendar.getTimeInMillis();
@@ -300,9 +326,5 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
+
 }

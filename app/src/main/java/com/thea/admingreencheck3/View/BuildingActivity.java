@@ -204,6 +204,7 @@ public class BuildingActivity extends Fragment {
             @Override
             protected void populateViewHolder(BuildingViewHolder viewHolder, Building model, int position) {
                 final String stringPosition = getRef(position).getKey();
+                Log.i("huh", "here " + model.getName());
 
                 if(stringPosition == null)
                     Toast.makeText(getActivity(), "This is my Toast message!", Toast.LENGTH_LONG).show();

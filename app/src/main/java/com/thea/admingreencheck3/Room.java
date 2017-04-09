@@ -11,12 +11,14 @@ public class Room {
     public static final String COL_BUILDING_NAME = "building_name";
     public static final String COL_NAME = "name";
     public static final String COL_ROT_ID = "rot_id";
+    public static final String COL_IS_ENABLED = "isEnabled";
 
     private String room_id;
     private String building_id;
     private String building_name;
     private String name;
     private String rot_id;
+    private Boolean isEnabled;
 
     public Room(){}
 
@@ -58,5 +60,13 @@ public class Room {
 
     public void setRot_id(String rot_id) {
         this.rot_id = rot_id;
+    }
+
+    public Boolean getEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        isEnabled = enabled;
     }
 }

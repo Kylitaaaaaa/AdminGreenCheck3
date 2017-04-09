@@ -64,6 +64,7 @@ public class AddEditBldgActivity extends AppCompatActivity {
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
         if(currProcess == 1 ) {
+            getSupportActionBar().setTitle("Edit Building");
 
             id = getIntent().getExtras().getString(Building.COL_ID);
 
@@ -71,6 +72,7 @@ public class AddEditBldgActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     String name = (String) dataSnapshot.child(Building.COL_NAME).getValue();
+
 
                     et_BldgName.setText(name);
                 }
@@ -81,6 +83,8 @@ public class AddEditBldgActivity extends AppCompatActivity {
                 }
             });
         }
+        else
+            getSupportActionBar().setTitle("Add Building");
     }
 
     public void startAdding(){
@@ -100,7 +104,7 @@ public class AddEditBldgActivity extends AppCompatActivity {
             //startActivity(new Intent(getBaseContext(), MainActivity.class));
 
             progress.dismiss();
-            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Successfully Added Building!", Toast.LENGTH_LONG).show();
             finish();
             //Fragment fragment = new BuildingActivity();
 

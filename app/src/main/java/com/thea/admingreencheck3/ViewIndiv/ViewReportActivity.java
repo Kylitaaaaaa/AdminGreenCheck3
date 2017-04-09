@@ -45,6 +45,8 @@ public class ViewReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_report);
 
+        getSupportActionBar().setTitle("Report");
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child(Attendance.TABLE_NAME_ADMIN);
         mDatabaseF = FirebaseDatabase.getInstance().getReference().child(Faculty.TABLE_NAME);
 
@@ -72,28 +74,33 @@ public class ViewReportActivity extends AppCompatActivity {
                 for (DataSnapshot ty : tryChildren) {
 
                     Attendance huh = ty.getValue(Attendance.class);
-                    if(huh.getF_id().equals(id) &&
-                            huh.getStatus().equals("SUBMITTED") ) {
-                        Log.i("huh", "Attendance " + huh.getName());
-                        if (huh.getCode().equals("Absent"))
-                            a++;
-                        else if (huh.getCode().equals("Early Dismissal"))
-                            ed++;
-                        else if (huh.getCode().equals("Late"))
-                            l++;
-                        else if (huh.getCode().equals("Present"))
-                            p++;
-                        else if (huh.getCode().equals("Substitute"))
-                            s++;
-                        else if (huh.getCode().equals("Seatwork"))
-                            sw++;
-                        else if (huh.getCode().equals("Unscheduled"))
-                            us++;
-                        else if (huh.getCode().equals("Vacant Room"))
-                            vr++;
-                        else if (huh.getCode().equals("CHECKERERROR"))
-                            ce++;
-                        Log.i("huh", "ce " + ce);
+                    String tempID = huh.getF_id();
+                    String tempStatus = huh.getStatus();
+                    if(tempID != null &&
+                            tempStatus != null) {
+                        if (tempID.equals(id) &&
+                        tempStatus.equals("SUBMITTED")){
+                            Log.i("huh", "Attendance " + huh.getName());
+                            if (huh.getCode().equals("Absent"))
+                                a++;
+                            else if (huh.getCode().equals("Early Dismissal"))
+                                ed++;
+                            else if (huh.getCode().equals("Late"))
+                                l++;
+                            else if (huh.getCode().equals("Present"))
+                                p++;
+                            else if (huh.getCode().equals("Substitute"))
+                                s++;
+                            else if (huh.getCode().equals("Seatwork"))
+                                sw++;
+                            else if (huh.getCode().equals("Unscheduled"))
+                                us++;
+                            else if (huh.getCode().equals("Vacant Room"))
+                                vr++;
+                            else if (huh.getCode().equals("CHECKERERROR"))
+                                ce++;
+                            Log.i("huh", "ce " + ce);
+                        }
                     }
 
 

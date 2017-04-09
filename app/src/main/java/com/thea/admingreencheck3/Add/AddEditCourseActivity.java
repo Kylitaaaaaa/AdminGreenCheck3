@@ -59,6 +59,7 @@ public class AddEditCourseActivity extends AppCompatActivity {
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
         if(currProcess == 1 ) {
+            getSupportActionBar().setTitle("Edit Course");
 
             id = getIntent().getExtras().getString(Course.COL_ID);
 
@@ -79,14 +80,12 @@ public class AddEditCourseActivity extends AppCompatActivity {
                 }
             });
         }
+        else
+            getSupportActionBar().setTitle("Add Course");
     }
 
     public void startAdding(){
         final ProgressDialog progress = new ProgressDialog(this);
-
-
-
-
         final String ccode = et_CourseCode.getText().toString();
         final String cname = et_CourseName.getText().toString();
 
@@ -99,9 +98,10 @@ public class AddEditCourseActivity extends AppCompatActivity {
             newFaculty.child(Course.COL_CODE).setValue(ccode);
             newFaculty.child(Course.COL_NAME).setValue(cname);
             newFaculty.child(Course.COL_ID).setValue(newFaculty.getKey());
+            newFaculty.child(Course.COL_IS_ENABLED).setValue(true);
             progress.dismiss();
 
-            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Successfully Added Course!", Toast.LENGTH_LONG).show();
             finish();
         }
         else

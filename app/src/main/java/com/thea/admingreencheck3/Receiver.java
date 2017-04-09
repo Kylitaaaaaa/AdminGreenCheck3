@@ -152,13 +152,16 @@ public class Receiver extends BroadcastReceiver
 
                         });
 
-                        String b_id = huh.getRoom_id();
+                        String b_id = huh.getBuilding_id();
                         newThing.child(Attendance.COL_b_id).setValue(b_id);
+
+                        Log.i("huh", "bldg id" + b_id);
 
                         mDatabaseB.child(b_id).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 String bldg = (String) dataSnapshot.child(Building.COL_NAME).getValue();
+                                Log.i("huh", "bldg " + bldg);
 
                                 newThing.child(Attendance.COL_building).setValue(bldg);
                             }
@@ -217,6 +220,9 @@ public class Receiver extends BroadcastReceiver
 
         });
 
+
+        //here
+        //crucru5
         Toast.makeText(context, "Successfully Created Attendance for Today", Toast.LENGTH_LONG).show();
 
 

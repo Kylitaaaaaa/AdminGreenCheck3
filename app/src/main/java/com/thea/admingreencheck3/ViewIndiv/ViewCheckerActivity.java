@@ -1,8 +1,10 @@
 package com.thea.admingreencheck3.ViewIndiv;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,6 +57,8 @@ public class ViewCheckerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_checker);
+
+        getSupportActionBar().setTitle("Checker");
 
         et_Email = (TextView) findViewById(R.id.et_email);
         btn_add = (Button) findViewById(R.id.btn_Add);
@@ -216,12 +221,48 @@ public class ViewCheckerActivity extends AppCompatActivity {
             i.putExtra(Checker.COL_C_ID, id);
             startActivity(i);
 
-        } else if (itemid == R.id.action_delete) {
-            mDatabase.child(id).removeValue();
-            finish();
+        }
+        else if (itemid == R.id.action_delete) {
+            AlertDialog diaBox = AskOption();
+            diaBox.show();
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void delete(){
+        mDatabase.child(id).removeValue();
+    }
+
+    private AlertDialog AskOption()
+    {
+        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
+                //set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Are you sure you want to delete?")
+                .setIcon(R.drawable.ic_delete_black_24dp)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        delete();
+                        dialog.dismiss();
+                        finish();
+                        Toast.makeText(getBaseContext(), "Successfully Deleted!", Toast.LENGTH_LONG).show();
+                    }
+
+                })
+
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        return myQuittingDialogBox;
+
     }
 
 

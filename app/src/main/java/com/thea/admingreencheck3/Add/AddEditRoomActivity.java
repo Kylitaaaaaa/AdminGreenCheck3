@@ -77,6 +77,7 @@ public class AddEditRoomActivity extends AppCompatActivity {
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
         if(currProcess == 1 ) {
+            getSupportActionBar().setTitle("Edit Room");
 
             roomID = getIntent().getExtras().getString(Room.COL_ROOM_ID);
 
@@ -166,6 +167,8 @@ public class AddEditRoomActivity extends AppCompatActivity {
             });
 
         }
+        else
+            getSupportActionBar().setTitle("Add Room");
 
 
         tv_BldgName.setOnClickListener(new View.OnClickListener() {
@@ -539,7 +542,7 @@ public class AddEditRoomActivity extends AppCompatActivity {
             DatabaseReference updateBuilding = mDatabaseBuilding.child(bldgID).child(Room.TABLE_NAME).child(newRoom.getKey());
             updateBuilding.child(IDClass.COL_ID).setValue(newRoom.getKey());
             progress.dismiss();
-            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Successfully Added Room!", Toast.LENGTH_LONG).show();
             finish();
         }
         else

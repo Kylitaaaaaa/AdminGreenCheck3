@@ -89,6 +89,7 @@ public class AddEditAttendanceActivity extends AppCompatActivity {
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
         if(currProcess == 1 ) {
+            getSupportActionBar().setTitle("Edit Attendance");
 
 
             mDatabase.child(id).addValueEventListener(new ValueEventListener() {
@@ -175,6 +176,9 @@ public class AddEditAttendanceActivity extends AppCompatActivity {
 
             });
 
+        }
+        else{
+            getSupportActionBar().setTitle("Add Attendance");
         }
 
 

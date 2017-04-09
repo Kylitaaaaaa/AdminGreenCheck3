@@ -11,10 +11,12 @@ public class Checker {
     public static final String COL_C_ID = "checker_id";
     public static final String COL_PIC = "image";
 
+
     private String name;
     private String rotationId;
     private String checker_id;
     private String image;
+
 
     public String getName() {
         return name;

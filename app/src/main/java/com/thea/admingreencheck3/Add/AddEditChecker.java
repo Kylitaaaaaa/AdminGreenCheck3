@@ -82,6 +82,7 @@ public class AddEditChecker extends AppCompatActivity {
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
         if(currProcess == 1 ) {
+            getSupportActionBar().setTitle("Edit Checker");
 
             id = getIntent().getExtras().getString(Checker.COL_C_ID);
 
@@ -548,7 +549,7 @@ public class AddEditChecker extends AppCompatActivity {
                         }
                     });
                     progress.dismiss();
-                    Log.i("huh", "HERE");
+                    Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
                     //startActivity(new Intent(getBaseContext(), MainActivity.class));
                     finish();
                 }

@@ -117,6 +117,7 @@ public class AddEditCourseOffering extends AppCompatActivity {
 
         currProcess = getIntent().getIntExtra("currProcess", -1);
         if(currProcess == 1 ) {
+            getSupportActionBar().setTitle("Edit Course Offering");
 
 
             id = getIntent().getExtras().getString(CourseOffering.COL_CO_ID);
@@ -248,6 +249,8 @@ public class AddEditCourseOffering extends AppCompatActivity {
 
 
         }
+        else
+            getSupportActionBar().setTitle("Add Course Offering");
 
 
         tv_ccode.setOnClickListener(new View.OnClickListener() {
@@ -555,7 +558,7 @@ public class AddEditCourseOffering extends AppCompatActivity {
 
             Log.i("huh", "done adding!");
             progress.dismiss();
-            Toast.makeText(getBaseContext(), "Changes Saved!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Successfully Added Course Offering!", Toast.LENGTH_LONG).show();
             finish();
             //startActivity(new Intent(getBaseContext(), MainActivity.class));
 

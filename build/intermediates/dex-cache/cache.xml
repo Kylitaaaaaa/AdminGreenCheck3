@@ -120,15 +120,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="3d13e510077b35fe8e49930a627dd849ad5da0dc">
-        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-10.2.0_0f5cda59a345880a7ea2d74feb5be8c87f2d533e.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.2.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -144,6 +135,15 @@
         revision="24.0.3"
         sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
         <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_9057dcea4f108d3b74b2b4c6e19c70979181930f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="3d13e510077b35fe8e49930a627dd849ad5da0dc">
+        <dex dex="/Users/Thea/AndroidStudioProjects/AdminGreenCheck3/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-10.2.0_0f5cda59a345880a7ea2d74feb5be8c87f2d533e.jar" />
     </item>
     <item
         is-multidex="false"

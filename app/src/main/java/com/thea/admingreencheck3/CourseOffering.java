@@ -19,6 +19,9 @@ public class CourseOffering {
     public static final String COL_B_ID = "building_id";
     public static final String COL_DAYS = "days";
 
+    public static final String COL_IS_ENABLED = "isEnabled";
+    public static final String COL_IS_ENABLED_INDIV = "isEnabledIndiv";
+
     private String courseoffering_id;
     private int start_hour;
     private int start_min;
@@ -30,6 +33,8 @@ public class CourseOffering {
     private String building_id;
     private String days;
     private String section;
+    private Boolean isEnabled;
+    private Boolean isEnabledIndiv;
 
     public String getCourseoffering_id() {
         return courseoffering_id;
@@ -122,5 +127,21 @@ public class CourseOffering {
 
     public void setEnd_min(int end_min) {
         this.end_min = end_min;
+    }
+
+    public Boolean getEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public Boolean getEnabledIndiv() {
+        return isEnabledIndiv;
+    }
+
+    public void setEnabledIndiv(Boolean enabledIndiv) {
+        isEnabledIndiv = enabledIndiv;
     }
 }

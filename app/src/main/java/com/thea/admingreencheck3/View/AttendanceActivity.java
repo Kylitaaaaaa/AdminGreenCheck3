@@ -85,7 +85,7 @@ public class AttendanceActivity extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child(Attendance.TABLE_NAME_ADMIN);
         //recentMessages = mDatabase.limitToLast(2);
-        recentMessages = mDatabase.orderByChild(Attendance.COL_status).equalTo("PENDING");
+        recentMessages = mDatabase.orderByChild(Attendance.COL_status).equalTo("SUBMITTED");
 
         facultyList = (RecyclerView) currView.findViewById(R.id.faculty_list);
         facultyList.setHasFixedSize(true);
@@ -186,7 +186,7 @@ public class AttendanceActivity extends Fragment {
     public void onStart() {
         super.onStart();
 
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        recentMessages.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getChildrenCount() == 0) {

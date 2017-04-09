@@ -1,6 +1,8 @@
 package com.thea.admingreencheck3.ViewIndiv;
 
+        import android.content.DialogInterface;
         import android.content.Intent;
+        import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.util.Log;
@@ -9,6 +11,7 @@ package com.thea.admingreencheck3.ViewIndiv;
         import android.view.View;
         import android.widget.Button;
         import android.widget.TextView;
+        import android.widget.Toast;
 
         import com.google.firebase.database.DataSnapshot;
         import com.google.firebase.database.DatabaseError;
@@ -37,6 +40,8 @@ public class ViewCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_course);
 
+        getSupportActionBar().setTitle("Course");
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child(Course.TABLE_NAME);
         mDatabaseCO = FirebaseDatabase.getInstance().getReference().child(CourseOffering.TABLE_NAME);
         mDatabaseF = FirebaseDatabase.getInstance().getReference().child(Faculty.TABLE_NAME);
@@ -63,7 +68,12 @@ public class ViewCourseActivity extends AppCompatActivity {
 
             }
         });
+
+
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,11 +93,12 @@ public class ViewCourseActivity extends AppCompatActivity {
             i.putExtra(Faculty.COL_ID, id);
             startActivity(i);
 
-        } else if (itemid == R.id.action_delete) {
+        }
+        else if (itemid == R.id.action_delete) {
             //mDatabase.child(id).removeValue();
 
-            delete();
-            finish();
+            AlertDialog diaBox = AskOption();
+            diaBox.show();
 
         }
         return super.onOptionsItemSelected(item);
@@ -115,19 +126,18 @@ public class ViewCourseActivity extends AppCompatActivity {
                                 Log.i("huh", "tempID1 " + tempID);
                                 mDatabaseB.child(tempID).child(CourseOffering.TABLE_NAME).child(idCO).removeValue();
                             }
-
+                            tempID = (String) dataSnapshot2.child(CourseOffering.COL_F_ID).getValue();
                             if(tempID != null) {
-                                tempID = (String) dataSnapshot2.child(CourseOffering.COL_R_ID).getValue();
-                                Log.i("huh", "tempID2 " + tempID);
-                                mDatabaseR.child(tempID).child(CourseOffering.TABLE_NAME).child(idCO).removeValue();
-                            }
-
-                            if(tempID != null) {
-                                tempID = (String) dataSnapshot2.child(CourseOffering.COL_F_ID).getValue();
                                 Log.i("huh", "tempID2 " + tempID);
                                 mDatabaseF.child(tempID).child(CourseOffering.TABLE_NAME).child(idCO).removeValue();
                             }
 
+                            tempID = (String) dataSnapshot2.child(CourseOffering.COL_R_ID).getValue();
+
+                            if(tempID != null) {
+                                Log.i("huh", "tempID2 " + tempID);
+                                mDatabaseR.child(tempID).child(CourseOffering.TABLE_NAME).child(idCO).removeValue();
+                            }
                         }
 
                         @Override
@@ -136,8 +146,9 @@ public class ViewCourseActivity extends AppCompatActivity {
                         }
 
                     });
+                    mDatabaseCO.child(idCO).removeValue();
 
-                    mDatabaseCO.child(idc.getId()).removeValue();
+
                 }
             }
 
@@ -151,6 +162,37 @@ public class ViewCourseActivity extends AppCompatActivity {
 
 
         mDatabase.child(id).removeValue();
+    }
+
+    private AlertDialog AskOption()
+    {
+        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
+                //set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Are you sure you want to delete?")
+                .setIcon(R.drawable.ic_delete_black_24dp)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        delete();
+                        dialog.dismiss();
+                        finish();
+                        Toast.makeText(getBaseContext(), "Successfully Deleted!", Toast.LENGTH_LONG).show();
+                    }
+
+                })
+
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        return myQuittingDialogBox;
+
     }
 }
 
