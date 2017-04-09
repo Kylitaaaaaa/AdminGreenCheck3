@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -65,19 +66,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onPause(){
         super.onPause();
-        FirebaseModel.saveState(this);
+        AdminFirebaseModel.saveState(this);
     }
 
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        FirebaseModel.saveState(this);
+        AdminFirebaseModel.saveState(this);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        FirebaseModel.resumeState(this);
+        AdminFirebaseModel.resumeState(this);
     }
 
     @Override
@@ -311,18 +312,28 @@ public class MainActivity extends AppCompatActivity
                 0);
         calendar.set(Calendar.MILLISECOND, 0);
         Long settime = calendar.getTimeInMillis();
+        Log.i("huh", "time: " + settime);
 
 
 
         Log.i("huh", "Starting");
         Intent intentAlarm = new Intent(this, Receiver.class);
 
+        Log.i("huh", "Starting 1");
         // create the object
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
+        Log.i("huh", "Starting 2");
         //set the alarm for particular time
-        alarmManager.set(AlarmManager.RTC_WAKEUP, settime, PendingIntent.getBroadcast(this, 1, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
-        //Toast.makeText(this, "Alarm Scheduled for Tommrrow", Toast.LENGTH_LONG).show();
+        if(new GregorianCalendar().getTimeInMillis() <= settime) {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, settime, PendingIntent.getBroadcast(this, 1, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
+            //Toast.makeText(this, "Alarm Scheduled for Tommrrow", Toast.LENGTH_LONG).show();
+            Log.i("huh", "set");
+        }
+        else
+            Log.i("huh", "heh");
+        Log.i("huh", "Starting 3");
+
 
     }
 

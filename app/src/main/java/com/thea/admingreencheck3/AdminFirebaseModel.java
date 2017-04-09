@@ -29,7 +29,7 @@ public class AdminFirebaseModel {
     private static final String ADMIN_STORED_DATA_TAG = "admin stored data";
 
     //variables to be loaded from preferences
-    private static StoredData adminStoredData;
+    private static AdminStoredData adminStoredData;
 
 
     public static void saveState(Context context){
@@ -40,7 +40,7 @@ public class AdminFirebaseModel {
         String json = gson.toJson(adminStoredData);
         prefsEditor.putString(ADMIN_STORED_DATA_TAG, json);
         prefsEditor.commit();
-        Log.i(TAG, "Firebase.saveState() size of submittedDates is " + adminStoredData.getSubmittedDateSize());
+        //Log.i(TAG, "Firebase.saveState() size of submittedDates is " + adminStoredData.getSubmittedDateSize());
     }
 
     public static void resumeState(Context context){
@@ -50,8 +50,11 @@ public class AdminFirebaseModel {
 
         Gson gson = new Gson();
         String json = app_preferences.getString(ADMIN_STORED_DATA_TAG, null);
-        adminStoredData = gson.fromJson(json, StoredData.class);
+        adminStoredData = gson.fromJson(json, AdminStoredData.class);
         Log.i("tagg", "SubmitManager.resumeState() dateModel is null? " + (adminStoredData == null));
+
+        if(adminStoredData == null)
+            adminStoredData = new AdminStoredData();
     }
 
     public static void initialize(){

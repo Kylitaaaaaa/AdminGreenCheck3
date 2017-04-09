@@ -13,6 +13,9 @@ public class AdminStoredData {
     //shared preferences
     private ArrayList<Long> initializedDates;
 
+    public AdminStoredData(){
+        initializedDates = new ArrayList<Long>();
+    }
 
     public void initialize(){
         addInitializedDate(getDateToday());

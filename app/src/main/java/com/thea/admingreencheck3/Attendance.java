@@ -1,5 +1,9 @@
 package com.thea.admingreencheck3;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by Thea on 05/04/2017.
  */
@@ -51,6 +55,13 @@ public class Attendance {
     public static final String COL_r_id = "r_id";
     public static final String COL_b_id = "b_id";
     public static final String COL_co_id = "co_id";
+
+    private String adminId;
+    private HashMap<String, String> ids;
+
+    private boolean isDone = false;
+    //needed for firebase
+    private List<String> combinationFilters;
 
 
 
@@ -104,6 +115,36 @@ public class Attendance {
         this.facultyName = facultyName;
     }
 
+    //hashmap is used to ensure no duplicates of this attendance in a table
+    public void addId(String tableName, String id){
+        if(ids == null)
+            ids = new HashMap<String, String>();
+        ids.put(tableName, id);
+    }
+
+    public boolean hasTable(String tableName){
+        boolean hasTable = false;
+
+        if(ids == null)
+            ids = new HashMap<String, String>();
+
+        for (Map.Entry<String, String> entry : ids.entrySet()) {
+            String t = entry.getKey();
+            if(t.equals(tableName))
+                hasTable = true;
+        }
+        return hasTable;
+    }
+
+    public boolean sameAs(Attendance a){
+        return adminId.equals(a.getAdminId());
+    }
+
+    public List<String> generateFilters() {
+        combinationFilters = AttendanceUtils.getCombinationFilters(this);
+        return combinationFilters;
+    }
+
     public void getAllFilters(){
         String f1 = (rotationId == null) ? "_" : rotationId;//if (rotationid == null) return "_" else return rotationid;
         String f2 = (status == null) ? "_" : status;
@@ -111,6 +152,22 @@ public class Attendance {
         //String f4 = (startTimeFilter == null) ? "_" : Long.toString(startTimeFilter);
 
         //return f1 + "-" + f2 + "-" + f3 + "-" + f4;
+    }
+
+    public String getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
+    }
+
+    public HashMap<String, String> getIds() {
+        return ids;
+    }
+
+    public void setIds(HashMap<String, String> ids) {
+        this.ids = ids;
     }
 
     public String getName() {
@@ -359,5 +416,21 @@ public class Attendance {
 
     public void setCo_id(String co_id) {
         this.co_id = co_id;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    public List<String> getCombinationFilters() {
+        return combinationFilters;
+    }
+
+    public void setCombinationFilters(List<String> combinationFilters) {
+        this.combinationFilters = combinationFilters;
     }
 }
