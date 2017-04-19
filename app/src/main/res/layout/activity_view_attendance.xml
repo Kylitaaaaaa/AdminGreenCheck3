@@ -91,6 +91,14 @@
                         android:textAlignment="center" />
                 </LinearLayout>
 
+                <TextView
+                    android:text="zzz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black_overlay"
+                    android:id="@+id/tv_date" />
+
             </LinearLayout>
 
             <LinearLayout

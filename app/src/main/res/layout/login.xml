@@ -57,14 +57,8 @@
             android:layout_centerHorizontal="true"
             android:layout_width="82dp"
             android:layout_height="82dp"
-            android:src="@drawable/greencheck" />
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/google_btn_login"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.google.android.gms.common.SignInButton>
+            android:src="@drawable/greencheck"
+            />
     </RelativeLayout>
 </RelativeLayout>
 

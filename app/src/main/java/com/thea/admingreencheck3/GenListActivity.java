@@ -15,8 +15,11 @@ import android.widget.TextView;
 
 import com.andexert.library.RippleView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.thea.admingreencheck3.Add.AddEditRoomActivity;
 import com.thea.admingreencheck3.View.BuildingActivity;
 import com.thea.admingreencheck3.ViewIndiv.ViewBuildingActivity;
@@ -29,6 +32,7 @@ public class GenListActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private int currProcess = 0;
     static RippleView rippleView;
+    private TextView emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +45,35 @@ public class GenListActivity extends AppCompatActivity {
         list = (RecyclerView) findViewById(R.id.list);
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+        emptyView = (TextView) findViewById(R.id.empty_view);
+        getSupportActionBar().setTitle("Choose Building");
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getChildrenCount() == 0) {
+
+                    list.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                    emptyView.setText("No buildings yet");
+                }
+                else{
+                    list.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         firebaseRecyclerAdapter= new FirebaseRecyclerAdapter<Building, GenListActivity.BuildingViewHolder>(Building.class, R.layout.gen_row, GenListActivity.BuildingViewHolder.class, mDatabase) {
             @Override

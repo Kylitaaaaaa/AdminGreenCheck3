@@ -25,9 +25,9 @@ public class Receiver extends BroadcastReceiver
     private DatabaseReference mDatabaseB = FirebaseDatabase.getInstance().getReference().child(Building.TABLE_NAME);
     Boolean isG;
     @Override
-    public void onReceive(Context context, Intent intent){
+    public void onReceive(final Context context, Intent intent){
         Log.i("huh", "here receiving");
-        Toast.makeText(context, "Alarm worked.", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Updating Checker's Database.", Toast.LENGTH_LONG).show();
 
         Log.i("huh", "Starting here");
 
@@ -222,6 +222,9 @@ public class Receiver extends BroadcastReceiver
 
                 }
                 Log.i("huh", "done");
+
+                Toast.makeText(context, "Successfully Created Attendance for Today", Toast.LENGTH_LONG).show();
+                Log.i("huh", "zzz");
             }
 
             @Override
@@ -232,8 +235,7 @@ public class Receiver extends BroadcastReceiver
 
         //here
         //crucru5
-        Toast.makeText(context, "Successfully Created Attendance for Today", Toast.LENGTH_LONG).show();
-        Log.i("huh", "zzz");
+
     }
 
 

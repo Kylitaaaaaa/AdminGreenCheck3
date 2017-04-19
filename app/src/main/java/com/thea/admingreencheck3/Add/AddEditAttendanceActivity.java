@@ -35,13 +35,16 @@ import com.thea.admingreencheck3.Joint;
 import com.thea.admingreencheck3.R;
 import com.thea.admingreencheck3.Room;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class AddEditAttendanceActivity extends AppCompatActivity {
 
     String id;
     private DatabaseReference mDatabase;
 
     private ImageView imgFac;
-    private TextView facultyName, facultyCourse, facultyRoom, classTime, remarkField;
+    private TextView facultyName, facultyCourse, facultyRoom, classTime, remarkField, tvDate;
     private Button abBtn, edBtn, laBtn, prBtn, sbBtn, swBtn, usBtn, vrBtn, ceBtn;
     private Boolean ab = false,
             ed = false,
@@ -75,6 +78,7 @@ public class AddEditAttendanceActivity extends AppCompatActivity {
         facultyRoom = (TextView) findViewById(R.id.facultyRoom);
         classTime = (TextView) findViewById(R.id.classTime);
         remarkField = (TextView) findViewById(R.id.remarkField);
+        tvDate = (TextView) findViewById(R.id.tv_date);
 
 
         abBtn = (Button) findViewById(R.id.abBtn);
@@ -101,6 +105,8 @@ public class AddEditAttendanceActivity extends AppCompatActivity {
                     String remarks = (String) dataSnapshot.child(Attendance.COL_remarks).getValue();
                     String code = (String) dataSnapshot.child(Attendance.COL_code).getValue();
                     String pic = (String) dataSnapshot.child(Attendance.COL_pic).getValue();
+                    long starttime = (long) dataSnapshot.child(Attendance.COL_startTime).getValue();
+                    long endtime = (long) dataSnapshot.child(Attendance.COL_endTime).getValue();
 
                     if(name != null &&
                             ccode != null &&
@@ -112,8 +118,21 @@ public class AddEditAttendanceActivity extends AppCompatActivity {
                         facultyName.setText(name);
                         facultyCourse.setText(ccode);
                         facultyRoom.setText(room);
-                        classTime.setText(dataSnapshot.child(Attendance.COL_startHour).getValue() + " : " + dataSnapshot.child(Attendance.COL_startMin).getValue()
-                                + " - " + dataSnapshot.child(Attendance.COL_endHour).getValue() + " : " + dataSnapshot.child(Attendance.COL_endMin).getValue());
+
+                        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+                        Date dstart = new Date(starttime);
+                        String startt = formatter.format(dstart);
+
+                        Date dend = new Date(endtime);
+                        String endt = formatter.format(dend);
+
+                        classTime.setText(startt + " - " + endt);
+
+                        SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
+                        String datetv = formatter2.format(dstart);
+
+                        tvDate.setText(datetv);
+
                         if(remarks == "")
                             remarkField.setText("No remarks");
                         else

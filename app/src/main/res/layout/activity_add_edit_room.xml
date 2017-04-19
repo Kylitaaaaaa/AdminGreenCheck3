@@ -71,6 +71,8 @@
         android:layout_toRightOf="@id/btn_F"
         android:id="@+id/btn_G" />
 
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,8 +82,8 @@
         android:textSize="16sp"
         android:text="Building"
         android:layout_marginTop="14dp"
-        android:layout_below="@+id/tv_roomNumber"
-        android:layout_alignStart="@+id/tv_roomNumber" />
+        android:layout_below="@+id/tv_roomNumber_heh"
+        android:layout_alignStart="@+id/tv_roomNumber_heh" />
 
     <ImageView
         android:layout_width="30dp"
@@ -100,14 +102,6 @@
         android:layout_marginTop="12dp"
         android:id="@+id/imageView25" />
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:srcCompat="@mipmap/ic_satellite_black_24dp"
-        android:id="@+id/imageView23"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:text="Rotation ID:"
         android:layout_width="wrap_content"
@@ -118,6 +112,15 @@
         android:layout_marginStart="11dp"
         android:textSize="16sp" />
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/tv_roomNumber_heh"
+        android:layout_alignStart="@+id/textView15"
+        android:nextFocusForward="@+id/til_last_name"  >
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,8 +128,8 @@
         android:ems="10"
         android:id="@+id/tv_roomNumber"
         android:hint="Room Number"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView15" />
+        />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:text="A"
@@ -140,4 +143,13 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="18dp"
         android:layout_marginLeft="10dp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/ic_satellite_black_24dp"
+        android:id="@+id/imageView23"
+        android:layout_above="@+id/tv_building"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="11dp" />
 </RelativeLayout>
