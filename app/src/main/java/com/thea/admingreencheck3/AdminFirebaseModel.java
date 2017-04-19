@@ -59,7 +59,7 @@ public class AdminFirebaseModel {
 
     public static void initialize(){
         //if today is not initialized, then initialize
-        if(!adminStoredData.hasInitializedToDate(AdminStoredData.getDateToday())){
+        //if(!adminStoredData.hasInitializedToDate(AdminStoredData.getDateToday())){
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("AdminAttendance");
 
             //retrieve all attendance, create tables, and transfer' to those tables
@@ -68,6 +68,7 @@ public class AdminFirebaseModel {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot attendanceSnapshot : dataSnapshot.getChildren()) {
                         Attendance a = attendanceSnapshot.getValue(Attendance.class);
+                        a.addId("AdminAttendance", attendanceSnapshot.getKey());
 
                         Log.i(TAG, a.getRotationId() + ", "+a.getStatus() + " isPending? "+"PENDING".equalsIgnoreCase(a.getStatus()));
                         Log.i(TAG, attendanceSnapshot.getKey() + ", key");
@@ -80,7 +81,7 @@ public class AdminFirebaseModel {
                 @Override public void onCancelled(DatabaseError databaseError) {}
             });
             adminStoredData.initialize();
-        }
+        //}
     }
 
     private static void addAttendance(Attendance a){

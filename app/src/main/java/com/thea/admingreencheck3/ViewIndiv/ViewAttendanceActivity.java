@@ -88,6 +88,10 @@ public class ViewAttendanceActivity extends AppCompatActivity {
                 String remarks = (String) dataSnapshot.child(Attendance.COL_remarks).getValue();
                 String code = (String) dataSnapshot.child(Attendance.COL_code).getValue();
                 String pic = (String) dataSnapshot.child(Attendance.COL_pic).getValue();
+                long starttime = (long) dataSnapshot.child(Attendance.COL_startTime).getValue();
+                long endtime = (long) dataSnapshot.child(Attendance.COL_endTime).getValue();
+                Log.i("huh", "startime " + starttime);
+                Log.i("huh", "endtime " + endtime);
 
                 if(name != null &&
                         ccode != null &&
