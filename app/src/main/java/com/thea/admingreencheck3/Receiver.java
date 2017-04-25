@@ -217,10 +217,11 @@ public class Receiver extends BroadcastReceiver
 
                             newThing.child(Attendance.COL_endTime).setValue(calendar.getTimeInMillis());
 
-                            AdminFirebaseModel.initialize();
+
                         }
 
                 }
+                AdminFirebaseModel.initialize();
                 Log.i("huh", "done");
 
                 Toast.makeText(context, "Successfully Created Attendance for Today", Toast.LENGTH_LONG).show();
