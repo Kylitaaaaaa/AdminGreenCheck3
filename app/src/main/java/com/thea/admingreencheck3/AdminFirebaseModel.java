@@ -59,7 +59,7 @@ public class AdminFirebaseModel {
 
     public static void initialize(){
         //if today is not initialized, then initialize
-        //if(!adminStoredData.hasInitializedToDate(AdminStoredData.getDateToday())){
+        if(!adminStoredData.hasInitializedToDate(AdminStoredData.getDateToday())){
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("AdminAttendance");
 
             //retrieve all attendance, create tables, and transfer' to those tables
@@ -81,7 +81,7 @@ public class AdminFirebaseModel {
                 @Override public void onCancelled(DatabaseError databaseError) {}
             });
             adminStoredData.initialize();
-        //}
+        }
     }
 
     private static void addAttendance(Attendance a){

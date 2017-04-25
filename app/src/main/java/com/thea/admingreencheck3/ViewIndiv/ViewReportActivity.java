@@ -76,8 +76,12 @@ public class ViewReportActivity extends AppCompatActivity {
                     Attendance huh = ty.getValue(Attendance.class);
                     String tempID = huh.getF_id();
                     String tempStatus = huh.getStatus();
+
+                    Log.i("huh", "tempID " + tempID + " " + tempStatus);
                     if(tempID != null &&
                             tempStatus != null) {
+
+
                         if (tempID.equals(id) &&
                         tempStatus.equals("SUBMITTED")){
                             Log.i("huh", "Attendance " + huh.getName());

@@ -53,6 +53,7 @@ public class AttendanceUtils {
         String building     = a.getBuilding();
         String startTime    = Long.toString(a.getStartTime());
         Log.i(TAG,"roationId: "+rotationId+", status: "+status+", building: "+building+", startTime: "+a.getStartTime() + ", "+startTime);
+        /*
 
         if(rotationId == null)
             throw new NullPointerException("rotationId is null");
@@ -62,6 +63,7 @@ public class AttendanceUtils {
             throw new NullPointerException("building is null");
         if(startTime.equals("0"))
             throw new NullPointerException("startTime is null");
+            */
 
         Calendar calendar = Calendar.getInstance();
 
